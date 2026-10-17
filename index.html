@@ -1,0 +1,2603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rayhan Ahmed Chowdhury — Motion Designer &amp; Video Editor (RAYHAN3030)</title>
+  <meta name="description" content="Portfolio of Rayhan Ahmed Chowdhury. Motion Designer &amp; Video Editor at Motionire specializing in 3D camera motion, commercial ads, and high-retention pacing.">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!-- Favicon: Video Camera / Film Play Icon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ec662d'><path d='M4 4h10a2 2 0 0 1 2 2v2.5l4-2.5a1 1 0 0 1 1.5.866v10.268a1 1 0 0 1-1.5.866l-4-2.5V18a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm7.5 8l-4-2.5v5l4-2.5z'/></svg>">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Rayhan Ahmed Chowdhury — Motion Design &amp; Video Editing">
+  <meta property="og:description" content="Motion Designer &amp; Video Editor at Motionire. Curated 82+ commercial videos archive.">
+  <meta property="og:image" content="https://img.youtube.com/vi/htTfc_paA8c/maxresdefault.jpg">
+
+  <!-- Google Fonts: Poppins (Headers/Logo), Montserrat (Project Titles), Open Sans & Inter (Body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600&family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+            montserrat: ['Montserrat', 'sans-serif'],
+            sans: ['"Open Sans"', 'Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            jluDark: '#1f1a16',
+            jluAccent: '#ec662d', // Exact signature orange from jlumotion.portfolio.site
+            jluLink: '#171717',
+            jluBg: '#ffffff',
+            jluSurface: '#f7f7f7',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* CSS Variables from jlumotion.portfolio.site */
+    :root {
+      --color: #1f1a16;
+      --accent-color: #ec662d;
+      --link-color: #171717;
+      --surface-color: #ffffff;
+      --background-color: #ffffff;
+      --font-family: 'Poppins', sans-serif;
+      --secondary-font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+      background-color: var(--background-color);
+      color: var(--color);
+      font-family: 'Open Sans', 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Fixed Left Sidebar (jlumotion layout) - Widened to 265px for generous breathing room */
+    .sidebar-container {
+      width: 265px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #ffffff;
+      border-right: 1px solid #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 45px 28px 35px 32px;
+      z-index: 50;
+      box-sizing: border-box;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Main Content Wrapper (Centers content evenly in the middle of the screen) */
+    .main-wrapper {
+      margin-left: 265px;
+      width: calc(100% - 265px);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #ffffff;
+      box-sizing: border-box;
+    }
+
+    .main-guts {
+      width: 100%;
+      max-width: 1320px;
+      padding: 35px 45px 100px 45px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 1024px) {
+      .sidebar-container {
+        transform: translateX(-100%);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      }
+      .sidebar-container.open {
+        transform: translateX(0);
+      }
+      .main-wrapper {
+        margin-left: 0;
+        width: 100%;
+      }
+      .main-guts {
+        padding: 80px 20px 60px 20px;
+      }
+    }
+
+    /* Navigation Links */
+    .nav-link {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 500;
+      color: #171717;
+      text-decoration: none;
+      line-height: 1.4;
+      display: block;
+      transition: color 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent-color);
+    }
+
+    /* Social Round Icons (Exact from jlumotion) */
+    .social-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      text-decoration: none;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .social-icon:hover {
+      transform: translateY(-2px);
+      opacity: 0.9;
+    }
+
+    /* Square Portfolio Grid Tile */
+    .thumb-box {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background-color: #050505;
+      cursor: pointer;
+      display: block;
+      border-radius: 2px;
+    }
+
+    /* Video Player Slot - Scaled & Cropped to remove YouTube title bar & watermarks */
+    .thumb-video-slot {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none; /* Mouse moves cleanly over tile without triggering YouTube player */
+    }
+
+    .thumb-video-slot iframe {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 140%;
+      height: 140%;
+      transform: translate(-50%, -50%);
+      border: 0;
+      pointer-events: none;
+    }
+
+    /* Signature White Hover Overlay from jlumotion */
+    .thumb-box .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: #ffffff;
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 20;
+    }
+    .thumb-box:hover .overlay {
+      opacity: 0.94;
+    }
+
+    /* Centered Text Overlay: ONLY Title & Category */
+    .thumb-box .text-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 30;
+      text-align: center;
+      pointer-events: none;
+    }
+    .thumb-box:hover .text-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .thumb-box .text-content h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: #000000;
+      letter-spacing: -0.02em;
+      margin: 0;
+      line-height: 1.25;
+    }
+    .thumb-box .text-content .subtitle {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-color);
+      margin-top: 8px;
+    }
+
+    /* Bento Grid Styles & Scroll Reveal */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      gap: 16px;
+      grid-auto-flow: dense;
+    }
+    @media (min-width: 640px) {
+      .bento-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-auto-rows: 240px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .bento-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-rows: 250px;
+      }
+    }
+    @media (min-width: 1280px) {
+      .bento-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-auto-rows: 260px;
+      }
+    }
+
+    .bento-item {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0a0a0a;
+      cursor: pointer;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+    .bento-item.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .bento-item:hover {
+      box-shadow: 0 16px 32px rgba(0,0,0,0.22);
+    }
+    .bento-item .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: #ffffff;
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      z-index: 20;
+    }
+    .bento-item:hover .overlay {
+      opacity: 0.94;
+    }
+    .bento-item .text-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 30;
+      text-align: center;
+      pointer-events: none;
+    }
+    .bento-item:hover .text-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .bento-item .text-content h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #171717;
+      margin: 0 0 6px 0;
+      line-height: 1.3;
+    }
+    .bento-item .text-content .subtitle {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-color);
+    }
+
+    /* Bento Spans */
+    .bento-span-tall {
+      grid-row: span 2;
+    }
+    .bento-span-wide {
+      grid-column: span 2;
+    }
+    .bento-span-large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    @media (max-width: 639px) {
+      .bento-span-tall, .bento-span-wide, .bento-span-large {
+        grid-column: span 1 !important;
+        grid-row: span 1 !important;
+        min-height: 280px;
+      }
+    }
+
+    /* Cinema Modal Custom Styles */
+    .modal-controls-fade {
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .modal-hide-cursor {
+      cursor: none !important;
+    }
+
+    /* Hero Video Player Frame */
+    .carbon-player-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000000;
+      overflow: hidden;
+      border-radius: 4px;
+      margin-bottom: 24px;
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: #999999; }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== LOCAL FILE NOTICE BANNER (Fix for Error 153) ==================== -->
+  <div id="file-protocol-banner" class="hidden bg-[#1f1a16] text-white px-5 py-3 text-xs font-poppins flex flex-col sm:flex-row items-center justify-between gap-3 border-b border-orange-500/30 z-50 relative">
+    <div class="flex items-center gap-2.5">
+      <span class="w-2.5 h-2.5 rounded-full bg-[#ec662d] animate-pulse shrink-0"></span>
+      <span>
+        <strong>YouTube Local Embed Notice:</strong> If YouTube shows <em>"Video player configuration error Error 153"</em>, it's caused by Google restricting embeds on direct <code class="bg-black/50 px-1 py-0.5 rounded text-orange-400">file:///</code> links.
+        <strong>Fix:</strong> Double-click <strong class="text-orange-400">Open_Portfolio.bat</strong> in this folder to run via local server (<code class="text-orange-300">http://localhost:8000</code>) where every YouTube video autoplays in Full HD!
+      </span>
+    </div>
+    <div class="flex items-center gap-3 shrink-0">
+      <button onclick="dismissBanner()" class="text-neutral-400 hover:text-white text-xs">Dismiss ✕</button>
+    </div>
+  </div>
+
+  <!-- ==================== MOBILE TOP BAR ==================== -->
+  <div class="lg:hidden fixed top-0 left-0 w-full bg-white/95 backdrop-blur-md border-b border-gray-100 px-6 py-4 flex items-center justify-between z-40">
+    <a href="#" onclick="showSection('work')" class="font-poppins font-bold text-2xl text-[#1f1a16] tracking-tight">
+      Rayhan<span class="text-[#ec662d]">.</span>
+    </a>
+    <button onclick="toggleSidebar()" class="p-2 text-[#1f1a16] focus:outline-none" aria-label="Toggle Menu">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ==================== FIXED LEFT SIDENAV (Exact jlumotion design) ==================== -->
+  <aside class="sidebar-container" id="sidebar">
+    
+    <!-- Top Brand Logo -->
+    <div>
+      <a href="#" onclick="showSection('work'); closeSidebar();" class="text-decoration-none group block">
+        <h1 class="font-poppins font-bold text-4xl text-[#1f1a16] tracking-tight group-hover:text-[#ec662d] transition-colors leading-none">
+          Rayhan
+        </h1>
+        <p class="font-poppins text-[11px] font-semibold text-neutral-400 uppercase tracking-widest mt-2">
+          Motion Design &amp; Video Editing
+        </p>
+      </a>
+
+      <!-- Navigation Column Stacked -->
+      <nav class="mt-14 space-y-3">
+        <a href="#work" onclick="showSection('work'); closeSidebar();" class="nav-link active" id="nav-work">Work</a>
+        <a href="#shots" onclick="showSection('shots'); closeSidebar();" class="nav-link" id="nav-shots">Shots</a>
+        <a href="#about" onclick="showSection('about'); closeSidebar();" class="nav-link" id="nav-about">About</a>
+        <a href="#tools" onclick="showSection('tools'); closeSidebar();" class="nav-link" id="nav-tools">SoundBoard</a>
+      </nav>
+    </div>
+
+    <!-- Sidebar Bottom: Copyright & Social Icons -->
+    <div>
+      <div class="font-poppins text-xs text-neutral-400 mb-3.5">
+        © Rayhan Ahmed Chowdhury<br>
+        <span class="text-[10px] text-neutral-400">Brand: RAYHAN3030 • <a href="https://motionire.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[#ec662d] transition underline decoration-neutral-400">Motionire</a></span>
+      </div>
+
+      <!-- Social Icon Circles (Facebook, Instagram, LinkedIn, GitHub, WhatsApp) -->
+      <div class="flex items-center gap-2">
+        <a href="https://www.facebook.com/rayhan.3300" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#1877f2]" title="Facebook">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/rayhan3030/" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#517fa4]" title="Instagram">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/rayhan3030" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#007bb5]" title="LinkedIn">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+        <a href="https://github.com/rayhan3030" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#0056ff]" title="GitHub">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://wa.me/8801683876000" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#25d366]" title="WhatsApp (+8801683876000)">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ==================== MAIN GUTS (Content Area) ==================== -->
+  <div class="main-wrapper">
+    <main class="main-guts">
+
+    <!-- ==================== TAB 1: WORK (Hero Showreel + Viewport Autoplay 2-Col Grid) ==================== -->
+    <section id="section-work" class="tab-page">
+      
+      <!-- HERO SHOWREEL: Direct 1080p Native MP4 Video (Exact jlumotion.portfolio.site style) -->
+      <div class="carbon-player-frame group relative overflow-hidden rounded-lg bg-black cursor-pointer" id="hero-player-box" onclick="openHeroInModal()">
+        <video 
+          id="hero-video-player"
+          class="w-full h-full object-cover"
+          src="./compressed_1080p_5MB.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        ></video>
+        
+        <!-- Controls Strip -->
+        <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs text-white pointer-events-none z-30">
+          <div class="bg-black/75 backdrop-blur px-3 py-1.5 rounded font-poppins text-[11px] font-medium flex items-center gap-2 pointer-events-auto">
+            <span class="w-2 h-2 rounded-full bg-[#ec662d] animate-pulse"></span>
+            <span>Featured: From Motion Design to Humanity Advances (3D Camera Showcase)</span>
+          </div>
+          <div class="flex items-center gap-2 pointer-events-auto">
+            <button onclick="event.stopPropagation(); toggleMuteHero()" id="hero-mute-btn" class="bg-black/75 hover:bg-black text-white font-mono text-[10px] px-3 py-1.5 rounded transition">
+              🔊 Unmute Sound
+            </button>
+            <button onclick="event.stopPropagation(); openHeroInModal()" class="bg-[#ec662d] hover:bg-orange-600 text-white font-poppins font-semibold px-3 py-1.5 rounded text-[11px] shadow transition">
+              Theater Mode ↗
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Bar Strip -->
+      <div class="flex flex-wrap items-center justify-between gap-4 py-4 mb-6 border-b border-gray-100 text-xs text-neutral-500 font-poppins">
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6">
+          <span class="font-semibold text-black uppercase tracking-wider text-[10px]">CLIENTS:</span>
+          <a href="https://motionire.com" target="_blank" class="hover:text-black font-medium">Motionire (Agency)</a>
+          <span>MT Catering Birmingham 🇬🇧</span>
+          <span>Student Aid UK 🇬🇧</span>
+          <span>TradeQualified 🇦🇺</span>
+        </div>
+        <div class="font-mono text-[11px] text-neutral-400">
+          81+ ARCHIVE • AUTO-PLAYS IN VIEWPORT
+        </div>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap items-center gap-2 mb-8" id="category-pills">
+        <button onclick="filterCategory('all')" data-cat="all" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-semibold bg-[#1f1a16] text-white transition">
+          All (81)
+        </button>
+        <button onclick="filterCategory('motion')" data-cat="motion" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition">
+          Signature 3D &amp; Motion (5)
+        </button>
+        <button onclick="filterCategory('vox')" data-cat="vox" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition">
+          Vox &amp; Paper Collage (4)
+        </button>
+        <button onclick="filterCategory('profiles')" data-cat="profiles" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition">
+          Profiles &amp; Sports (9)
+        </button>
+        <button onclick="filterCategory('ui')" data-cat="ui" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition">
+          UI &amp; Commercial Ads (6)
+        </button>
+        <button onclick="filterCategory('catering')" data-cat="catering" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition">
+          MT Catering UK (30)
+        </button>
+        <button onclick="filterCategory('richkid')" data-cat="richkid" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition">
+          RiCH KiD Universe (27)
+        </button>
+      </div>
+
+      <!-- 2-COLUMN SQUARE GRID (Viewport Autoplaying from YouTube) -->
+      <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 gap-[17px]">
+        <!-- Dynamically injected via JavaScript with Viewport Autoplay and White Hover Overlays -->
+      </div>
+
+      <!-- See More Button -->
+      <div id="see-more-wrap" class="text-center mt-12">
+        <button onclick="loadAllVideosInCurrentTab()" class="font-poppins text-xs font-semibold uppercase tracking-wider px-8 py-3.5 rounded-full border border-neutral-300 hover:border-black hover:bg-black hover:text-white transition">
+          See Full Archive (+ More Videos)
+        </button>
+      </div>
+
+    </section>
+
+    <!-- ==================== TAB 2: SHOTS (Bento Grid View of Full 81+ Archive) ==================== -->
+    <section id="section-shots" class="tab-page hidden">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-gray-100">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#ec662d] animate-pulse"></span>
+            <span class="font-poppins text-xs font-semibold text-neutral-400 uppercase tracking-widest">Curated Bento Showcase</span>
+          </div>
+          <h2 class="font-poppins font-bold text-3xl sm:text-4xl text-[#1f1a16]">Shots &amp; Motion Loops</h2>
+          <p class="font-sans text-sm text-neutral-500 mt-1">
+            Full 81+ video archive in asymmetric Bento layout: vertical reels, kinetic typography, 3D orbits &amp; brand cuts with smooth scroll reveal.
+          </p>
+        </div>
+        <div class="font-mono text-xs text-neutral-400 shrink-0">
+          <span id="shots-total-count" class="bg-neutral-100 text-neutral-700 px-3.5 py-1.5 rounded-full font-semibold border border-neutral-200">81 Videos Live</span>
+        </div>
+      </div>
+
+      <!-- Bento Grid Container with Scroll Reveal & Lazy Loading -->
+      <div class="bento-grid" id="shots-grid">
+        <!-- Dynamically injected via JS -->
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: ABOUT (Exact jlumotion /about layout) ==================== -->
+    <section id="section-about" class="tab-page hidden pt-12 md:pt-16 pb-20 max-w-5xl mx-auto">
+      
+      <!-- Top Profile Row: Portrait Photo + Name + Bio -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-start pb-14 border-b border-gray-100">
+        
+        <!-- Left: Portrait Photo Frame -->
+        <div class="md:col-span-5 flex justify-center md:justify-start">
+          <div class="w-full max-w-[320px] aspect-[1080/1456] rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-neutral-100 ring-1 ring-black/5">
+            <img 
+              src="./portrait.png" 
+              alt="Rayhan Ahmed Chowdhury" 
+              class="w-full h-full object-cover object-top"
+              onerror="this.src='https://img.youtube.com/vi/htTfc_paA8c/maxresdefault.jpg'"
+            >
+          </div>
+        </div>
+
+        <!-- Right: Name, Email in Orange Accent, and Friendly Bio -->
+        <div class="md:col-span-7">
+          <h1 class="font-poppins font-bold text-4xl sm:text-5xl text-[#1f1a16] leading-tight mb-3">
+            Rayhan Ahmed Chowdhury
+          </h1>
+          <p class="font-poppins font-bold text-lg text-[#ec662d] mb-6">
+            <a href="mailto:rayhan3030@gmail.com" class="hover:underline">rayhan3030@gmail.com</a>
+            <span class="text-neutral-400 font-normal ml-2">/ +880 1683 876 000</span>
+          </p>
+
+          <div class="font-sans text-[15px] leading-relaxed text-[#1f1a16] space-y-4">
+            <p class="font-semibold text-lg text-black">Ciao! Salut! Hi! Hallo!</p>
+            <p>
+              I’m a freelance <strong>Motion Designer &amp; Video Editor</strong> at <a href="https://motionire.com/" target="_blank" rel="noopener noreferrer" class="font-bold text-[#1f1a16] hover:text-[#ec662d] transition underline decoration-neutral-300">Motionire</a>, with a profound focus on 3D camera spatial design, commercial retention pacing, and sound architecture.
+            </p>
+            <p>
+              I’ve been creating in this field for 3+ years and I’m currently based on Habiganj, working remotely with clients and production agencies across the UK, Australia, and worldwide.
+            </p>
+            <p>
+              My diverse skillset is at your disposal and I’m always eager to learn, explore new styles, and break through creative boundaries every single day.
+            </p>
+            <p>
+              So if you fancy something here, let’s have a chat!
+            </p>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="mt-8 flex flex-wrap items-center gap-3">
+            <a href="https://wa.me/8801683876000?text=Hi%20Rayhan,%20I%20love%20your%20portfolio." target="_blank" class="bg-[#25d366] hover:bg-green-600 text-white font-poppins font-semibold text-xs px-5 py-2.5 rounded-full transition flex items-center gap-2 shadow">
+              <span>Chat on WhatsApp</span>
+              <span>↗</span>
+            </a>
+            <button onclick="downloadVCard()" class="border border-black text-black hover:bg-black hover:text-white font-poppins text-xs font-semibold px-5 py-2.5 rounded-full transition">
+              Download vCard (.vcf)
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 4-Column Details Block -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-12">
+        <div>
+          <h4 class="font-montserrat font-bold text-base text-[#1f1a16] mb-3 uppercase tracking-wider text-[13px]">
+            01 / SOFTWARE
+          </h4>
+          <ul class="font-sans text-sm text-neutral-600 space-y-1.5">
+            <li>Adobe Premiere Pro</li>
+            <li>Adobe After Effects</li>
+            <li>Photoshop &amp; Illustrator</li>
+            <li>CapCut</li>
+            <li>Canva</li>
+            <li>Nano Banana</li>
+            <li>Gemini Omni</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-montserrat font-bold text-base text-[#1f1a16] mb-3 uppercase tracking-wider text-[13px]">
+            02 / DISCIPLINES
+          </h4>
+          <ul class="font-sans text-sm text-neutral-600 space-y-1.5">
+            <li>3D Camera Orbit Tracking</li>
+            <li>High-Retention Social Pacing</li>
+            <li>Vox &amp; Paper Collage Animation</li>
+            <li>Layered Audio Foley Design</li>
+            <li>AI Prompt-to-Motion Pipeline</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-montserrat font-bold text-base text-[#1f1a16] mb-3 uppercase tracking-wider text-[13px]">
+            03 / EXPERIENCE
+          </h4>
+          <ul class="font-sans text-sm text-neutral-600 space-y-1.5">
+            <li><a href="https://motionire.com/" target="_blank" rel="noopener noreferrer" class="font-bold text-neutral-800 hover:text-[#ec662d] transition underline decoration-neutral-300">Motionire</a> (In-House Motion Designer)</li>
+            <li><strong>MT Catering Birmingham</strong> (30 Ads UK)</li>
+            <li><strong>Student Aid UK</strong> (Education Outreach)</li>
+            <li><strong>TradeQualified</strong> (Australia RTO)</li>
+            <li><strong>Shopiyal.com</strong> (E-Commerce ABC)</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-montserrat font-bold text-base text-[#1f1a16] mb-3 uppercase tracking-wider text-[13px]">
+            04 / CREATIVE TECH
+          </h4>
+          <p class="font-sans text-sm text-neutral-600 mb-2">
+            Creator of <strong>SoundBoard Pro v20</strong>, custom Adobe Premiere extension for instant SFX auditioning.
+          </p>
+          <a href="https://github.com/rayhan3030/SoundBoard-Pro-v20" target="_blank" class="font-poppins text-xs font-semibold text-[#ec662d] hover:underline">
+            View GitHub Repository ↗
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== TAB 4: SOUNDBOARD PRO (Live Interactive Extension Demo) ==================== -->
+    <section id="section-tools" class="tab-page hidden">
+      
+      <!-- Header Strip -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 pb-4 border-b border-gray-100">
+        <div>
+          <div class="flex items-center gap-2 mb-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#8a5cf5] animate-pulse"></span>
+            <span class="font-poppins text-xs font-bold text-[#8a5cf5] uppercase tracking-wider">Custom Adobe CEP Premiere Extension</span>
+          </div>
+          <h2 class="font-poppins font-bold text-3xl sm:text-4xl text-[#1f1a16]">SoundBoard Pro v20</h2>
+          <p class="font-sans text-sm text-neutral-500 mt-1 max-w-2xl">
+            Built to eliminate Premiere Composer's 500-SFX restriction. Unlimited audio storage, VS Code-style folder tree, millisecond waveform scrubbing, and one-click timeline drops.
+          </p>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <a href="https://github.com/rayhan3030/SoundBoard-Pro-v20" target="_blank" rel="noopener noreferrer" class="bg-[#1f1a16] hover:bg-[#8a5cf5] text-white font-poppins text-xs font-semibold px-5 py-2.5 rounded-full transition flex items-center gap-2 shadow">
+            <span>Explore GitHub Repo</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Live Interactive Plugin Container -->
+      <div class="rounded-2xl border border-neutral-800 bg-[#1e1e1e] text-[#e8e8e8] shadow-2xl overflow-hidden font-sans select-none mb-10">
+        
+        <!-- Window Chrome Header -->
+        <div class="bg-[#181818] px-4 py-2.5 border-b border-[#333] flex items-center justify-between text-xs text-neutral-400 font-mono">
+          <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1.5 mr-2">
+              <span class="w-3 h-3 rounded-full bg-[#ff5f56] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#ffbd2e] inline-block"></span>
+              <span class="w-3 h-3 rounded-full bg-[#27c93f] inline-block"></span>
+            </div>
+            <span class="text-white font-semibold font-sans text-xs">com.rayhan.soundboardpro</span>
+            <span class="text-[10px] text-neutral-500">v20.4 — Adobe Premiere Pro CEP Engine</span>
+          </div>
+          <div class="flex items-center gap-2 text-[11px]">
+            <span class="w-2 h-2 rounded-full bg-[#25d366]"></span>
+            <span class="text-[#25d366]">Audio Engine Ready (Web Audio Live)</span>
+          </div>
+        </div>
+
+        <!-- Extension Top Compact Bar -->
+        <div class="flex flex-wrap items-center gap-2 p-3 bg-[#252525] border-b border-[#333] text-xs">
+          <button onclick="sbReloadPacks()" class="bg-[#8a5cf5] hover:bg-[#a07cff] text-white px-3.5 py-1.5 rounded-md font-bold text-xs transition flex items-center gap-1.5 shadow">
+            <span>📁 Add Main Folder</span>
+          </button>
+          <button onclick="sbSetTab('all')" id="sb-tab-all" class="bg-[#8a5cf5] text-white px-3 py-1.5 rounded-md font-bold text-xs border border-[#8a5cf5] transition">
+            All (<span id="sb-count-all">24</span>)
+          </button>
+          <button onclick="sbSetTab('fav')" id="sb-tab-fav" class="bg-[#333] text-neutral-300 hover:text-white px-3 py-1.5 rounded-md font-bold text-xs border border-[#444] transition">
+            ★ Fav (<span id="sb-count-fav">6</span>)
+          </button>
+          <div class="flex-1 min-w-[200px] relative">
+            <input 
+              id="sb-search-input" 
+              type="text" 
+              placeholder="Global search all roots... Type 'whoosh', 'hit', 'riser', 'glitch'..."
+              oninput="sbHandleSearch(this.value)"
+              class="w-full bg-[#1a1a1a] border border-[#444] focus:border-[#8a5cf5] focus:ring-1 focus:ring-[#8a5cf5] text-white px-3 py-1.5 rounded-lg text-xs placeholder-neutral-500 outline-none transition"
+            >
+            <button onclick="sbClearSearch()" id="sb-search-clear" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white text-xs">✕</button>
+          </div>
+          <span class="text-[10px] font-mono text-neutral-400 hidden md:inline">Drag to Track A1-A4</span>
+        </div>
+
+        <!-- Main Plugin Split: Left Folder Tree + Right File List -->
+        <div class="grid grid-cols-1 md:grid-cols-12 min-h-[360px] max-h-[460px] bg-[#1e1e1e]">
+          
+          <!-- Left: VS Code Style Folder Tree -->
+          <div class="md:col-span-4 bg-[#252525] border-r border-[#333] flex flex-col overflow-hidden">
+            <div class="flex items-center justify-between px-3 py-2 border-b border-[#333] text-[10px] font-bold uppercase tracking-wider text-neutral-400">
+              <span id="sb-tree-roots-count">6 Folders • Roots</span>
+              <span class="text-[#8a5cf5]">MULTI ROOT</span>
+            </div>
+            <div class="overflow-y-auto p-2 space-y-1 flex-1 font-mono text-xs" id="sb-folder-tree">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+          <!-- Right: Audio File List -->
+          <div class="md:col-span-8 flex flex-col bg-[#1e1e1e] overflow-hidden">
+            <!-- Header Strip -->
+            <div class="flex items-center justify-between px-3.5 py-2 bg-[#2a2a2a] border-b border-[#333] text-xs font-semibold text-neutral-400">
+              <div class="flex items-center gap-2 truncate">
+                <span id="sb-active-folder-label" class="text-[#a07cff] font-bold">All Sound Effects</span>
+                <span class="text-neutral-500">•</span>
+                <span id="sb-active-files-count" class="text-neutral-300 font-mono text-[11px]">24 items</span>
+              </div>
+              <span class="text-[10px] font-mono text-neutral-500 hidden sm:inline">Click sound to audition</span>
+            </div>
+
+            <!-- List of Audio Items -->
+            <div class="overflow-y-auto flex-1 p-1 space-y-0.5" id="sb-file-list">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bottom Player Bar (Waveform Canvas + Scrubbable Red Playhead + Controls) -->
+        <div class="bg-[#252525] border-t border-[#333] p-3 flex flex-col gap-2.5">
+          
+          <!-- Waveform Canvas Strip -->
+          <div class="relative w-full h-16 bg-[#111] rounded-lg overflow-hidden border border-[#333] cursor-pointer group" id="sb-wave-wrap" onclick="sbSeekFromWave(event)">
+            <canvas id="sb-wave-canvas" class="w-full h-full block"></canvas>
+            
+            <!-- Red Scrubber Playhead -->
+            <div id="sb-playhead" class="absolute top-0 bottom-0 w-[2px] bg-[#ff4a4a] pointer-events-none z-10 transition-all shadow-[0_0_8px_rgba(255,74,74,0.9)]" style="left: 0%;">
+              <div id="sb-playhead-handle" class="absolute -top-1 -left-[5px] w-3 h-3 rounded-full bg-[#ff4a4a] shadow-[0_0_8px_rgba(255,74,74,1)] cursor-ew-resize"></div>
+            </div>
+
+            <!-- Empty / Hover Tip -->
+            <div id="sb-wave-hint" class="absolute inset-0 flex items-center justify-center text-[11px] font-mono text-neutral-500 pointer-events-none">
+              Click any sound above to audition live waveform
+            </div>
+          </div>
+
+          <!-- Controls Row -->
+          <div class="flex flex-wrap items-center justify-between gap-3 bg-[#1f1f1f] border border-[#2a2a2a] rounded-lg px-3 py-2 text-xs">
+            
+            <!-- Playback Controls -->
+            <div class="flex items-center gap-2">
+              <button onclick="sbRewind()" class="bg-[#2e2e2e] hover:bg-[#3a3a3a] border border-[#3a3a3a] text-neutral-200 hover:text-white px-2.5 py-1.5 rounded text-xs font-bold transition" title="Rewind to start">
+                ↺
+              </button>
+              <button onclick="sbTogglePlay()" id="sb-play-btn" class="bg-[#8a5cf5] hover:bg-[#a07cff] text-white px-3.5 py-1.5 rounded text-xs font-bold transition flex items-center gap-1.5" title="Play/Pause (Space)">
+                <span id="sb-play-icon">▶</span>
+                <span id="sb-play-text">Play</span>
+              </button>
+              <button onclick="sbToggleMute()" id="sb-mute-btn" class="bg-[#2e2e2e] hover:bg-[#3a3a3a] border border-[#3a3a3a] text-neutral-200 px-2.5 py-1.5 rounded text-xs transition" title="Mute/Unmute">
+                🔊
+              </button>
+              <input id="sb-vol-slider" type="range" min="0" max="1" step="0.02" value="0.9" oninput="sbSetVolume(this.value)" class="w-16 accent-[#8a5cf5] cursor-pointer" title="Volume">
+            </div>
+
+            <!-- Timecode Readout -->
+            <div class="font-mono text-[11px] text-neutral-300 bg-black/40 px-2.5 py-1 rounded border border-white/5">
+              <span id="sb-time-cur" class="text-white font-bold">00:00:00:00</span>
+              <span class="text-neutral-500">/</span>
+              <span id="sb-time-dur" class="text-neutral-400">00:00:00:00</span>
+            </div>
+
+            <!-- Pitch Shift Engine -->
+            <div class="flex items-center gap-2 text-[11px]">
+              <span class="text-neutral-400 font-semibold">Pitch:</span>
+              <input id="sb-pitch-slider" type="range" min="-12" max="12" step="1" value="0" oninput="sbSetPitch(this.value)" class="w-20 accent-[#8a5cf5] cursor-pointer">
+              <span id="sb-pitch-val" class="font-mono text-[#a07cff] font-bold w-6 text-center">0</span>
+              <button onclick="sbResetPitch()" class="bg-[#2e2e2e] hover:bg-[#3a3a3a] border border-[#444] text-[#a07cff] px-2 py-0.5 rounded text-[10px] font-bold transition">
+                Reset
+              </button>
+            </div>
+
+            <!-- Branding & Action -->
+            <div class="flex items-center gap-3">
+              <button onclick="sbInsertActiveSound()" id="sb-insert-btn" class="bg-[#8a5cf5] hover:bg-[#a07cff] text-white font-poppins text-xs font-bold px-3.5 py-1.5 rounded shadow transition flex items-center gap-1.5">
+                <span>+ ADD to Timeline</span>
+              </button>
+              <span class="text-[10px] font-semibold text-neutral-500">Brand: <span class="text-[#8a5cf5]">RAYHAN3030</span></span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Floating HUD Notice for Timeline Drop -->
+        <div id="sb-hud-notice" class="hidden bg-[#25d366] text-black font-poppins text-xs font-bold px-4 py-2 rounded-lg fixed bottom-8 right-8 shadow-2xl z-50 flex items-center gap-2 transition-all duration-300">
+          <span>✓</span>
+          <span id="sb-hud-text">Added to Premiere Timeline [Track A3]</span>
+        </div>
+
+      </div>
+
+      <!-- Extension Features & Architecture Strip -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+        <div class="p-5 rounded-xl border border-gray-100 bg-[#f9f9f9]">
+          <div class="text-[#8a5cf5] font-bold text-lg mb-1">01 / Unlimited SFX Capacity</div>
+          <p class="text-xs text-neutral-600 leading-relaxed font-sans">
+            Completely bypasses Adobe Premiere Composer’s 500-item free limitation. Add folders containing 5,000+ wav/mp3 files with zero lag or slowdown.
+          </p>
+        </div>
+        <div class="p-5 rounded-xl border border-gray-100 bg-[#f9f9f9]">
+          <div class="text-[#8a5cf5] font-bold text-lg mb-1">02 / Dynamic Track Allocation</div>
+          <p class="text-xs text-neutral-600 leading-relaxed font-sans">
+            Auto-detects active audio clips at your current playhead and automatically places the new sound onto the next empty audio track without overwriting existing dialogue.
+          </p>
+        </div>
+        <div class="p-5 rounded-xl border border-gray-100 bg-[#f9f9f9]">
+          <div class="text-[#8a5cf5] font-bold text-lg mb-1">03 / Real-Time Audition &amp; Pitch</div>
+          <p class="text-xs text-neutral-600 leading-relaxed font-sans">
+            Instant click-to-play with waveform visualizer and variable semitone pitch shifting, allowing sound designers to tune impacts and whooshes on the fly.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+  </div>
+
+  <!-- ==================== CINEMA THEATER MODAL ==================== -->
+  <div id="video-modal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-xl flex items-center justify-center select-none overflow-hidden" onclick="handleModalBackdropClick(event)">
+    
+    <!-- Top Bar Header (Title, Category, Close Button) -->
+    <div id="modal-header" class="modal-controls-fade absolute top-0 left-0 right-0 z-30 px-6 sm:px-10 py-5 flex items-center justify-between bg-gradient-to-b from-black/85 via-black/40 to-transparent">
+      <div>
+        <span id="modal-tag" class="font-poppins text-[11px] uppercase font-bold tracking-wider text-[#ec662d]">Category</span>
+        <h3 id="modal-title" class="font-montserrat font-bold text-lg sm:text-2xl text-white truncate max-w-xl sm:max-w-2xl drop-shadow">Video Title</h3>
+      </div>
+      <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition hover:scale-110 focus:outline-none" title="Close (ESC)">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Navigation Arrow: PREVIOUS VIDEO (Left Side of Screen) -->
+    <button id="modal-prev-btn" onclick="playPreviousVideo()" class="modal-controls-fade absolute left-4 sm:left-8 z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/25 text-white backdrop-blur flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none shadow-2xl" title="Previous Video (←)">
+      <svg class="w-6 h-6 sm:w-7 sm:h-7 -ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+
+    <!-- Navigation Arrow: NEXT VIDEO (Right Side of Screen) -->
+    <button id="modal-next-btn" onclick="playNextVideo()" class="modal-controls-fade absolute right-4 sm:right-8 z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/25 text-white backdrop-blur flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none shadow-2xl" title="Next Video (→)">
+      <svg class="w-6 h-6 sm:w-7 sm:h-7 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+    </button>
+
+    <!-- Video Stage Box (Aspect Ratio Aware: 16:9 Cinema or 9:16 Vertical) -->
+    <div id="modal-stage" class="relative transition-all duration-300 flex items-center justify-center w-[92vw] max-w-[1360px] aspect-[16/9] max-h-[82vh]" onclick="event.stopPropagation();">
+      <!-- Player Slot -->
+      <div id="modal-player-slot" class="w-full h-full bg-black rounded-lg overflow-hidden shadow-2xl relative"></div>
+    </div>
+
+    <!-- Bottom Controls Strip (Seek Bar, Play/Pause, Time, Sound, Fullscreen) -->
+    <div id="modal-controls" class="modal-controls-fade absolute bottom-0 left-0 right-0 z-30 px-6 sm:px-12 pb-6 pt-12 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col gap-3">
+      
+      <!-- Interactive Seek Bar -->
+      <div id="seek-bar-container" class="group relative w-full h-4 flex items-center cursor-pointer select-none" onclick="handleSeekBarClick(event)">
+        <!-- Rail -->
+        <div class="w-full h-1.5 group-hover:h-2.5 bg-white/25 rounded-full relative transition-all overflow-hidden">
+          <div id="seek-progress" class="absolute left-0 top-0 bottom-0 bg-[#ec662d] rounded-full transition-all" style="width: 0%;"></div>
+        </div>
+        <!-- Thumb -->
+        <div id="seek-thumb" class="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg scale-0 group-hover:scale-100 transition-transform pointer-events-none" style="left: 0%;"></div>
+      </div>
+
+      <!-- Controls Row -->
+      <div class="flex items-center justify-between text-white text-xs font-poppins">
+        <div class="flex items-center gap-4">
+          <!-- Play / Pause Button -->
+          <button id="modal-play-btn" onclick="toggleModalPlayback()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center text-white transition hover:scale-105 focus:outline-none" title="Play/Pause (Space)">
+            <svg id="modal-play-icon" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="modal-pause-icon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+
+          <!-- Current Time / Duration -->
+          <span id="modal-time-display" class="font-mono text-xs text-neutral-300 tracking-wider">00:00 / 00:00</span>
+          
+          <!-- Quality Badge -->
+          <span class="hidden sm:inline-block bg-[#ec662d]/20 border border-[#ec662d]/50 text-[#ec662d] text-[10px] font-bold px-2.5 py-0.5 rounded font-mono">
+            1080p Full HD
+          </span>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Sound Toggle -->
+          <button id="modal-sound-btn" onclick="toggleModalSound()" class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/25 flex items-center gap-1.5 text-xs text-white transition focus:outline-none">
+            <span id="modal-sound-icon">🔊</span>
+            <span id="modal-sound-label">Sound ON</span>
+          </button>
+
+          <!-- Direct YouTube Link -->
+          <a id="modal-direct-link" href="#" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-1 text-xs text-neutral-400 hover:text-white transition px-2 py-1">
+            <span>YouTube ↗</span>
+          </a>
+
+          <!-- Native Fullscreen -->
+          <button onclick="toggleModalFullscreen()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center text-white transition hover:scale-105 focus:outline-none" title="Toggle Fullscreen (F)">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ==================== JAVASCRIPT & VIEWPORT AUTOPLAY ENGINE ==================== -->
+  <script>
+    // Check if loaded via file:/// protocol and display helpful notice
+    if (window.location.protocol === 'file:') {
+      const banner = document.getElementById('file-protocol-banner');
+      if (banner) banner.classList.remove('hidden');
+    }
+    function dismissBanner() {
+      const banner = document.getElementById('file-protocol-banner');
+      if (banner) banner.style.display = 'none';
+    }
+
+    // 81+ Real Videos Archive across 6 categories
+    const videoArchive = {
+      motion: [
+        { id: "pa7E0suhShs", title: "How a Random Caffe in Norway Got 2M Views", subtitle: "Viral Case Study", duration: "0:38" },
+        { id: "Prk5R5SfHcM", title: "Six Luxuries Money Can't Buy", subtitle: "Minimalist Motion", duration: "0:42" },
+        { id: "wNZQ3gaEGHs", title: "New Era of Video Editing Manifesto", subtitle: "Visual Manifesto", duration: "0:50" },
+        { id: "jYBQeqG-xQA", title: "Why Some Edits Feel Cinematic", subtitle: "Cinematic Rhythm", duration: "0:36" },
+        { id: "KK9UGLtHvdc", title: "Viral Reel: Be Unique, Be Top 1%", subtitle: "High-Pacing Reel", duration: "0:30" }
+      ],
+      vox: [
+        { id: "bmGiser02eg", title: "Vox Style: New York City Explained", subtitle: "Vox Paper Collage", duration: "0:55" },
+        { id: "whUf1ghDusg", title: "Where Did Rickshaws Really Come From", subtitle: "Historical Motion", duration: "0:48" },
+        { id: "lmqVH1I2nvg", title: "Vox Style: Warren Buffett Billionaire", subtitle: "Financial Infographic", duration: "0:45" },
+        { id: "UsTGqZ9xlDA", title: "Doctor Doom: Marvel's Most Terrifying Villain", subtitle: "Comic Book Collage", duration: "0:52" }
+      ],
+      profiles: [
+        { id: "xKl_sewuR6g", title: "MrBeast: From $100 Bill to $1 Billion", subtitle: "Creator Documentary", duration: "0:58" },
+        { id: "RyFvi9fxxdA", title: "Alex Hormozi: $100M Money Flying Profile", subtitle: "Business Profile", duration: "0:40" },
+        { id: "8m-U_drG3jU", title: "Lionel Messi: Definition of Greatness", subtitle: "Sports Cinematic", duration: "0:44" },
+        { id: "JR4YbelpmXs", title: "Michael Jackson: King of Pop Biography", subtitle: "Music Icon Profile", duration: "0:50" },
+        { id: "qKqvXWz0scs", title: "Drake Career Journey & Discography", subtitle: "Artist Profile", duration: "0:46" },
+        { id: "RaHgRIUsVkQ", title: "Salman Muqtadir: YouTube Pioneer", subtitle: "Creator Story", duration: "0:52" },
+        { id: "MTmbl424hLU", title: "Erling Haaland: The Number 9 King", subtitle: "Football Dynamics", duration: "0:34" },
+        { id: "4CpjY9s1INo", title: "IShowSpeed: Supercars Jump Reel", subtitle: "Viral Energy", duration: "0:28" },
+        { id: "oVIfmr_ZQXo", title: "IShowSpeed x World Cup 2026 Prediction", subtitle: "Cultural Motion", duration: "0:38" }
+      ],
+      ui: [
+        { id: "Bx6xQA6x4E", title: "iPhone 17 Pro Purchase Flow UI Animation", subtitle: "App Prototype", duration: "0:32" },
+        { id: "2zkVnqD3RsE", title: "iMessage Typo Apple Green Bubble UI", subtitle: "Interaction Design", duration: "0:25" },
+        { id: "q-vM7qyTBxI", title: "Netflix: Unlimited TV Shows Promo Ad", subtitle: "Streaming Commercial", duration: "0:30" },
+        { id: "bWecQsJTgLE", title: "Tahsan: Top Facebook Influencer (8.8M)", subtitle: "Social Campaign", duration: "0:40" },
+        { id: "-0BnDnvpLGY", title: "TradeQualified Beauty Therapy Diploma Ad", subtitle: "Australia Commercial", duration: "0:35" },
+        { id: "37nbYhP5Dwg", title: "UGC Magnetic RGB Speaker Commercial", subtitle: "E-Commerce UGC Ad", duration: "0:42" }
+      ],
+      catering: [
+        { id: "U6GU4y9N_H0", title: "MT Catering: Origami Pop-up Book Luxury Ad", subtitle: "Campaign Highlight", duration: "0:45" },
+        { id: "_WNby92ndx4", title: "MT Catering: 3D Plush Doll Panic to Sorted Ad", subtitle: "Story Commercial", duration: "0:48" },
+        { id: "BSbsd0_5AjY", title: "MT Catering: Luxury Event Cinematic Ad", subtitle: "Cinematic Film", duration: "0:50" },
+        { id: "-IqzwYUhje8", title: "Grand Wedding Entry: Rolls Royce vs Helicopter", subtitle: "Wedding Luxury", duration: "0:35" },
+        { id: "if9VrzV7LRA", title: "MT Catering: Things Nobody Tells You AI UGC", subtitle: "AI Character UGC", duration: "0:40" },
+        { id: "DoBvhjIElIc", title: "MT Catering: Complete Venue Tour", subtitle: "Venue Walkthrough", duration: "1:00" },
+        { id: "DDqjuE6CHF4", title: "MT Catering: Desi Dawat Food ASMR", subtitle: "Culinary Audio", duration: "0:30" },
+        { id: "DTK2WOw0bLo", title: "MT Catering: Full Event Service Buffet", subtitle: "Service Showcase", duration: "0:45" },
+        { id: "4xDQQXI9laY", title: "MT Catering: Walima Post Biryani to Table", subtitle: "Cultural Dining", duration: "0:35" },
+        { id: "wvIz6NHlzrI", title: "MT Catering: Taste of Home Kacchi Biryani", subtitle: "Food Reel", duration: "0:38" },
+        { id: "noLrGas1DdI", title: "MT Catering: Live BBQ Whole Lamb Roast", subtitle: "Live BBQ Film", duration: "0:42" },
+        { id: "Cx9jcPVsWRU", title: "MT Catering: Halal Catering Drone Food Letters", subtitle: "Drone Spatial Ad", duration: "0:32" },
+        { id: "KLHZ1wpMgkY", title: "MT Catering: Vintage Newspaper Animation", subtitle: "Vintage Editorial", duration: "0:30" },
+        { id: "Wllckzi1vZ0", title: "MT Catering: Chef on Action Beef Curry", subtitle: "Kitchen Action", duration: "0:28" },
+        { id: "WDuemx0Yw60", title: "MT Catering: Before Guests Arrive BTS", subtitle: "BTS Camera", duration: "0:35" },
+        { id: "2urEBtbQbqU", title: "MT Catering: Catering With Love Journey", subtitle: "Brand Story", duration: "0:45" },
+        { id: "kc9h8XTuCZ4", title: "MT Catering: Asian Wedding Full Service", subtitle: "Asian Wedding UK", duration: "0:50" },
+        { id: "4M34vvieVIw", title: "MT Catering: Garden Wedding & Food Showcase", subtitle: "Outdoor Event", duration: "0:40" },
+        { id: "_ni0srJ0uIM", title: "MT Catering: Desi Vibes Global Style", subtitle: "Brand Hybrid", duration: "0:38" },
+        { id: "ZIbhTundHnQ", title: "MT Catering: Desi Wedding Vibes Vision", subtitle: "Vision Concept", duration: "0:36" },
+        { id: "HfWrwljY_Nk", title: "MT Catering: Romantic Couple Buffet", subtitle: "Couple Special", duration: "0:32" },
+        { id: "jVBX99gn4nc", title: "MT Catering: On Reels Signature Menu", subtitle: "Menu Walk", duration: "0:30" },
+        { id: "FO_zaxQxkzo", title: "MT Catering: On Reels v2 Hall to Buffet", subtitle: "Hall Walkthrough", duration: "0:34" },
+        { id: "QcB79CmtzGc", title: "MT Catering: Simple Food French Fries", subtitle: "Quick Cut", duration: "0:20" },
+        { id: "6lBdQnLuiXw", title: "MT Catering: Stay Cool Eat Fresh Summer Ad", subtitle: "Summer Campaign", duration: "0:30" },
+        { id: "H13T5J4IAME", title: "MT Catering: Trust Matters", subtitle: "Brand Credibility", duration: "0:40" },
+        { id: "X3RaxZP4qO4", title: "MT Catering: UK Event Planning Stress", subtitle: "Problem Solver Ad", duration: "0:44" },
+        { id: "w0Dp4eBr5jo", title: "MT Catering: When Food is Better Than Expected", subtitle: "Guest POV", duration: "0:28" },
+        { id: "neO4Z8F0gdI", title: "MT Catering: The Food Hits Different UGC", subtitle: "Guest Testimonial", duration: "0:35" },
+        { id: "Fbm4pyVBnJc", title: "MT Catering: Happy Wedding Stage Decor", subtitle: "Stage Lighting", duration: "0:30" }
+      ],
+      richkid: [
+        { id: "g_IUgW21Z5c", title: "Rich Kid Joseph: 3 Advice for Editors 2026", subtitle: "AI Character Reel", duration: "0:45" },
+        { id: "sidPcqJ4aD8", title: "Rich Kid Passport Animation", subtitle: "Passport 3D", duration: "0:38" },
+        { id: "ZEBwABtyodQ", title: "RiCH KiD শীত এসেছে র‍্যাপ সং (Winter Rap)", subtitle: "AI Rap Video", duration: "0:52" },
+        { id: "ISE5fJkYc8U", title: "Rich Kid Interview with Politicians", subtitle: "Political Satire", duration: "0:40" },
+        { id: "KunUc-gNKK0", title: "টাঙ্গুয়ার হাওড়ে ঘুরতে যাওয়া বন্ধুদের নাচ", subtitle: "Travel Motion", duration: "0:35" },
+        { id: "4WY-2WtYiZU", title: "তারেক ভাইয়ের তিমি মাছ চুরি (Whale Heist)", subtitle: "Surreal Comedy", duration: "0:48" },
+        { id: "_X6ZurvdNhU", title: "Small Brother Nabil Got Roasted", subtitle: "Character Dialogue", duration: "0:32" },
+        { id: "ovvqu3rhojY", title: "Rich Kid Interview সফলতার কারন", subtitle: "Motivational Parody", duration: "0:44" },
+        { id: "HEoJBJHs-TQ", title: "Rich Kid Rap Song 1", subtitle: "Original Audio Sync", duration: "0:50" },
+        { id: "MiV90WBCfZk", title: "Rich Kid Motivational Influencer", subtitle: "Influencer Satire", duration: "0:36" },
+        { id: "MaK1vEBQcp0", title: "RiCH KiD Nightmare", subtitle: "Dark Humor AI", duration: "0:42" },
+        { id: "f5qjcglqKo4", title: "RiCH KiD Street Vloger কুরবানির বাজার", subtitle: "Market Vlogger", duration: "0:46" },
+        { id: "H7ORKKn1cBQ", title: "RiCH KiD মশার নিয়ে অভিযোগ (Mosquito Rant)", subtitle: "Relatable Comedy", duration: "0:30" },
+        { id: "KIS0pEn0IyU", title: "RiCH KiD পাওয়ার ব্যাংক এয়ারপোর্টে", subtitle: "Airport Logic", duration: "0:34" },
+        { id: "ruYPF_RbC2k", title: "RiCH KiD মুড সুইং (Mood Swing)", subtitle: "Character Study", duration: "0:28" },
+        { id: "ONfqJt2A8nY", title: "RiCH KiD কবি সাজার চেষ্টা (Poet Parody)", subtitle: "Bengali Satire", duration: "0:38" },
+        { id: "UDFreVjEKGI", title: "RiCH KiD কালো অন্তরকে মোটিভেশন", subtitle: "Comic Dialogue", duration: "0:40" },
+        { id: "zMHkavretYY", title: "RiCH KiD ছোট ভাই অন্তর প্রশ্ন", subtitle: "Q&A Character", duration: "0:32" },
+        { id: "Hyo4C8hoBhI", title: "RiCH KiD দিপুকে বিয়ের পরামর্শ", subtitle: "Wedding Advice", duration: "0:44" },
+        { id: "3XGOs9MtvD4", title: "RiCH KiD ছোট ভাই নাবিল পচানি", subtitle: "Roast Series", duration: "0:35" },
+        { id: "tbLdMyaepN8", title: "RiCH KiD ডিজিটাল কামলা রনি", subtitle: "Freelancer Satire", duration: "0:42" },
+        { id: "GK2-h7reu-Q", title: "RiCH KiD তার এক্স এর কথা মনে", subtitle: "Nostalgia Humor", duration: "0:36" },
+        { id: "1cX1DMpynbE", title: "RiCH KiD বান্ডা সমাজ টকশো তিমি", subtitle: "Animated Talkshow", duration: "0:45" },
+        { id: "l3iLc_4ChCI", title: "RiCH KiD বান্ডা সমাজ নিপিড়িত বানর", subtitle: "Social Satire", duration: "0:40" },
+        { id: "u-VS0Byaq4A", title: "RiCH KiD বিদেশ যাবে ট্রিট দিচ্ছে", subtitle: "Treat Culture", duration: "0:33" },
+        { id: "L9t9Xm0lw4o", title: "RiCh KiD ভাইরাল হলুদ পানি ট্রেন্ড", subtitle: "Meme Trend", duration: "0:25" },
+        { id: "bXELyk9xRXI", title: "RiCh KiD মীম এর ডিমের তুলনা", subtitle: "Dialogue Short", duration: "0:38" }
+      ]
+    };
+
+    // State
+    let activeFilter = 'all';
+    let isFullArchive = false;
+    let heroMuted = true;
+
+    // Helper: Send command to embedded YouTube player
+    function postMessageToPlayer(iframe, func, args = []) {
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage(JSON.stringify({
+          event: 'command',
+          func: func,
+          args: args
+        }), '*');
+      }
+    }
+
+    // Mount player in viewport container (Supports both Local MP4 and YouTube)
+    function mountViewportPlayer(container) {
+      if (container.dataset.loaded === 'true') {
+        const localVid = container.querySelector('video');
+        if (localVid) localVid.play().catch(() => {});
+        const iframe = container.querySelector('iframe');
+        if (iframe) postMessageToPlayer(iframe, 'playVideo');
+        return;
+      }
+      
+      // Check if local MP4 file is provided
+      if (container.dataset.videoSrc) {
+        const video = document.createElement('video');
+        video.src = container.dataset.videoSrc;
+        video.className = 'w-full h-full object-cover';
+        video.autoplay = true;
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.preload = 'auto';
+        container.innerHTML = '';
+        container.appendChild(video);
+        container.dataset.loaded = 'true';
+        video.play().catch(() => {});
+        return;
+      }
+
+      const videoId = container.dataset.videoId;
+      if (!videoId) return;
+
+      // Clean origin calculation to prevent YouTube Error 153
+      const isFile = window.location.protocol === 'file:';
+      const originHost = isFile ? 'https://www.youtube.com' : window.location.origin;
+
+      // Construct embed URL with autoplay=1, mute=1 (browser requirement for autoplay), 
+      // loop=1, playlist, and enablejsapi=1
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(originHost)}&widget_referrer=${encodeURIComponent(originHost)}`;
+
+      const iframe = document.createElement('iframe');
+      iframe.className = 'border-0';
+      iframe.src = embedUrl;
+      iframe.title = 'Portfolio Video';
+      iframe.frameBorder = '0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allowFullscreen = true;
+
+      iframe.onload = () => {
+        // Enforce maximum playback resolution (hd1080)
+        setTimeout(() => {
+          postMessageToPlayer(iframe, 'setPlaybackQuality', ['hd1080']);
+          postMessageToPlayer(iframe, 'playVideo');
+        }, 300);
+      };
+
+      container.innerHTML = '';
+      container.appendChild(iframe);
+      container.dataset.loaded = 'true';
+    }
+
+    // Pause player when scrolled out of viewport
+    function pauseViewportPlayer(container) {
+      const localVid = container.querySelector('video');
+      if (localVid) localVid.pause();
+      const iframe = container.querySelector('iframe');
+      if (iframe) {
+        postMessageToPlayer(iframe, 'pauseVideo');
+      }
+    }
+
+    // Global Viewport Intersection Observer for Autoplay
+    const videoViewportObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const container = entry.target;
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.2) {
+          mountViewportPlayer(container);
+        } else {
+          pauseViewportPlayer(container);
+        }
+      });
+    }, {
+      rootMargin: '100px 0px 100px 0px',
+      threshold: [0, 0.2, 0.5, 0.8]
+    });
+
+    // Toggle sound for an individual video card
+    function toggleTileSound(event, boxElement, videoId) {
+      event.stopPropagation();
+      const slot = boxElement.querySelector('.thumb-video-slot');
+      const iframe = slot ? slot.querySelector('iframe') : null;
+      const soundBtn = boxElement.querySelector('.sound-badge span');
+
+      if (!iframe) {
+        mountViewportPlayer(slot);
+        return;
+      }
+
+      const isMuted = boxElement.dataset.sound !== 'on';
+      if (isMuted) {
+        postMessageToPlayer(iframe, 'unMute');
+        boxElement.dataset.sound = 'on';
+        if (soundBtn) soundBtn.innerText = '🔊 Sound ON';
+      } else {
+        postMessageToPlayer(iframe, 'mute');
+        boxElement.dataset.sound = 'off';
+        if (soundBtn) soundBtn.innerText = '🔇 Muted';
+      }
+    }
+
+    // Toggle sound for Hero featured video (Local MP4)
+    function toggleMuteHero() {
+      const heroVideo = document.getElementById('hero-video-player');
+      const btn = document.getElementById('hero-mute-btn');
+      if (!heroVideo) return;
+
+      heroVideo.muted = !heroVideo.muted;
+      if (btn) {
+        btn.innerText = heroVideo.muted ? '🔊 Unmute Sound' : '🔇 Mute Sound';
+      }
+    }
+
+    // Open Hero video in Fullscreen Cinema Modal
+    function openHeroInModal() {
+      openModal({
+        id: 'htTfc_paA8c',
+        src: './compressed_1080p_5MB.mp4',
+        title: 'From Motion Design to Humanity Advances (3D Camera Showcase)',
+        catName: 'Featured 3D Motion (1080p Full HD)',
+        ratio: '16:9',
+        duration: '0:45'
+      });
+    }
+
+    // Render Work 2-Column Square Grid with Viewport Autoplay
+    function renderProjectsGrid() {
+      const grid = document.getElementById('projects-grid');
+      const seeMoreWrap = document.getElementById('see-more-wrap');
+      grid.innerHTML = '';
+
+      let items = [];
+      if (activeFilter === 'all') {
+        for (const cat in videoArchive) {
+          videoArchive[cat].forEach(v => items.push({ ...v, catName: getCategoryNiceName(cat) }));
+        }
+      } else {
+        items = (videoArchive[activeFilter] || []).map(v => ({ ...v, catName: getCategoryNiceName(activeFilter) }));
+      }
+
+      const total = items.length;
+      const limit = isFullArchive ? total : Math.min(total, 8);
+
+      if (total <= 8 || isFullArchive) {
+        seeMoreWrap.style.display = 'none';
+      } else {
+        seeMoreWrap.style.display = 'block';
+      }
+
+      const visibleItems = items.slice(0, limit);
+
+      visibleItems.forEach((vid, idx) => {
+        const itemBox = document.createElement('div');
+        itemBox.className = 'thumb-box';
+        itemBox.onclick = () => openModal(vid, visibleItems, idx);
+
+        itemBox.innerHTML = `
+          <!-- Video Slot monitored by IntersectionObserver -->
+          <div class="thumb-video-slot" id="slot-${vid.id}-${idx}" data-video-id="${vid.id}" ${vid.src ? `data-video-src="${vid.src}"` : ''}>
+            <!-- Fallback Poster Image -->
+            <img 
+              src="https://img.youtube.com/vi/${vid.id}/maxresdefault.jpg" 
+              alt="${escapeHtml(vid.title)}" 
+              loading="lazy"
+              class="w-full h-full object-cover"
+              onerror="this.src='https://img.youtube.com/vi/${vid.id}/hqdefault.jpg';"
+            >
+          </div>
+          
+          <!-- Signature White Hover Overlay from jlumotion -->
+          <div class="overlay"></div>
+
+          <!-- Centered Title on Hover (ONLY Title & Category Visible) -->
+          <div class="text-content">
+            <h3>${escapeHtml(vid.title)}</h3>
+            <div class="subtitle">${escapeHtml(vid.subtitle || vid.catName)}</div>
+          </div>
+        `;
+
+        grid.appendChild(itemBox);
+
+        // Register slot to the Viewport Intersection Observer
+        const slot = itemBox.querySelector('.thumb-video-slot');
+        if (slot) videoViewportObserver.observe(slot);
+      });
+    }
+
+    // Switch Tab Categories on Work Page
+    function filterCategory(catKey) {
+      activeFilter = catKey;
+      isFullArchive = false;
+
+      document.querySelectorAll('.cat-pill').forEach(btn => {
+        if (btn.getAttribute('data-cat') === catKey) {
+          btn.className = 'cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-semibold bg-[#1f1a16] text-white transition';
+        } else {
+          btn.className = 'cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition';
+        }
+      });
+
+      renderProjectsGrid();
+    }
+
+    function loadAllVideosInCurrentTab() {
+      isFullArchive = true;
+      renderProjectsGrid();
+    }
+
+    // Scroll Reveal Observer for Bento Grid
+    const shotsScrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-revealed');
+          shotsScrollObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '60px 0px 60px 0px',
+      threshold: 0.1
+    });
+
+    // Render Shots Full 81+ Video Archive in Bento Grid with Scroll Reveal
+    function renderShotsMasonry() {
+      const grid = document.getElementById('shots-grid');
+      const countBadge = document.getElementById('shots-total-count');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      let allShots = [];
+      for (const cat in videoArchive) {
+        videoArchive[cat].forEach(v => {
+          allShots.push({
+            ...v,
+            catKey: cat,
+            catName: getCategoryNiceName(cat),
+            ratio: getVideoRatio(v)
+          });
+        });
+      }
+
+      if (countBadge) {
+        countBadge.innerText = `${allShots.length} Videos Live`;
+      }
+
+      allShots.forEach((vid, idx) => {
+        const item = document.createElement('div');
+        
+        // Bento Span Logic:
+        // - 9:16 vertical reels get tall span (row-span-2)
+        // - Key showcase items at rhythmic intervals get wide span (col-span-2) or prominent 2x2
+        // - Others get standard 1x1 cell
+        let spanClass = 'col-span-1 row-span-1';
+        if (vid.ratio === '9:16') {
+          spanClass = 'bento-span-tall';
+        } else if (idx % 7 === 0) {
+          spanClass = 'bento-span-wide';
+        } else if (idx % 13 === 0) {
+          spanClass = 'bento-span-large';
+        }
+
+        item.className = `bento-item ${spanClass} group`;
+        item.onclick = () => openModal(vid, allShots, idx);
+
+        item.innerHTML = `
+          <div class="thumb-video-slot" data-video-id="${vid.id}">
+            <img 
+              src="https://img.youtube.com/vi/${vid.id}/hqdefault.jpg" 
+              alt="${escapeHtml(vid.title)}" 
+              loading="lazy"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              onerror="this.src='https://img.youtube.com/vi/${vid.id}/mqdefault.jpg';"
+            >
+          </div>
+          <div class="overlay"></div>
+          <div class="text-content">
+            <h3>${escapeHtml(vid.title)}</h3>
+            <div class="subtitle">${escapeHtml(vid.subtitle || vid.catName)}</div>
+            <span class="mt-2 text-[10px] font-mono text-neutral-500 bg-black/5 px-2.5 py-0.5 rounded-full font-medium">
+              ${vid.ratio === '9:16' ? '📱 9:16 Reel' : '🎬 16:9 Showcase'} • ${escapeHtml(vid.duration || '0:40')}
+            </span>
+          </div>
+        `;
+
+        grid.appendChild(item);
+
+        // Register for smooth scroll-reveal fade-in
+        shotsScrollObserver.observe(item);
+
+        // Register for viewport autoplay
+        const slot = item.querySelector('.thumb-video-slot');
+        if (slot) videoViewportObserver.observe(slot);
+      });
+    }
+
+    // Tab Navigation Switcher (Work, Shots, About, SoundBoard)
+    function showSection(sectionId) {
+      document.querySelectorAll('.tab-page').forEach(sec => sec.classList.add('hidden'));
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+
+      const target = document.getElementById('section-' + sectionId);
+      const targetNav = document.getElementById('nav-' + sectionId);
+      if (target) target.classList.remove('hidden');
+      if (targetNav) targetNav.classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (sectionId === 'shots') renderShotsMasonry();
+      if (sectionId === 'work') renderProjectsGrid();
+      if (sectionId === 'tools') sbInitPlugin();
+    }
+
+    // ==================== CINEMA THEATER MODAL ENGINE ====================
+    let modalPlaylist = [];
+    let modalCurrentIndex = 0;
+    let isModalPlaying = true;
+    let isModalMuted = false;
+    let modalIdleTimer = null;
+    let modalSeekInterval = null;
+    let modalCurrentSeconds = 0;
+    let modalTotalSeconds = 45;
+
+    // Aspect ratio detector helper
+    function getVideoRatio(vid) {
+      if (vid && vid.ratio) return vid.ratio;
+      if (vid && (vid.catKey === 'richkid' || vid.catName === 'RiCH KiD Universe' || vid.catName === 'Shots & Motion Loops')) {
+        return '9:16';
+      }
+      const verticalIds = [
+        "4CpjY9s1INo", "RyFvi9fxxdA", "MTmbl424hLU", "KK9UGLtHvdc",
+        "wvIz6NHlzrI", "jVBX99gn4nc", "FO_zaxQxkzo", "QcB79CmtzGc",
+        "6lBdQnLuiXw", "w0Dp4eBr5jo", "neO4Z8F0gdI", "4xDQQXI9laY"
+      ];
+      if (vid && verticalIds.includes(vid.id)) return '9:16';
+      return '16:9';
+    }
+
+    // Format seconds to mm:ss
+    function formatTime(sec) {
+      sec = Math.max(0, Math.floor(sec || 0));
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+    }
+
+    // Open Cinema Theater Modal
+    function openModal(vidOrId, playlistOrTitle = [], indexOrCategory = 0) {
+      if (typeof vidOrId === 'string') {
+        const vidObj = { id: vidOrId, title: playlistOrTitle || 'Featured Showcase', catName: indexOrCategory || 'Signature 3D & Motion', ratio: '16:9' };
+        modalPlaylist = [vidObj];
+        modalCurrentIndex = 0;
+      } else {
+        modalPlaylist = (playlistOrTitle && playlistOrTitle.length) ? playlistOrTitle : [vidOrId];
+        modalCurrentIndex = (typeof indexOrCategory === 'number' && indexOrCategory >= 0 && indexOrCategory < modalPlaylist.length) ? indexOrCategory : 0;
+      }
+
+      const modal = document.getElementById('video-modal');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+
+      loadModalVideo(modalPlaylist[modalCurrentIndex]);
+      setupModalInactivityTracking();
+    }
+
+    // Load video into Cinema Modal
+    function loadModalVideo(vid) {
+      if (!vid) return;
+
+      const titleEl = document.getElementById('modal-title');
+      const tagEl = document.getElementById('modal-tag');
+      const directLink = document.getElementById('modal-direct-link');
+      const stage = document.getElementById('modal-stage');
+      const slot = document.getElementById('modal-player-slot');
+
+      titleEl.innerText = vid.title || 'Untitled Project';
+      tagEl.innerText = vid.catName || 'Featured Showcase';
+      directLink.href = `https://www.youtube.com/watch?v=${vid.id}`;
+
+      // Set Aspect Ratio Container: 16:9 Widescreen or 9:16 Vertical
+      const ratio = getVideoRatio(vid);
+      if (ratio === '9:16') {
+        stage.className = 'relative transition-all duration-300 flex items-center justify-center h-[84vh] max-h-[84vh] aspect-[9/16] max-w-[calc(84vh*9/16)] shadow-2xl';
+      } else {
+        stage.className = 'relative transition-all duration-300 flex items-center justify-center w-[92vw] max-w-[1360px] aspect-[16/9] max-h-[82vh] shadow-2xl';
+      }
+
+      // Reset Seek Bar & Time
+      modalCurrentSeconds = 0;
+      if (vid.duration) {
+        const parts = vid.duration.split(':');
+        if (parts.length === 2) {
+          modalTotalSeconds = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
+        }
+      } else {
+        modalTotalSeconds = 45;
+      }
+      updateModalSeekBarUI(0, modalTotalSeconds);
+
+      // Mount Video Player (Supports Local MP4 or YouTube)
+      if (vid.src) {
+        directLink.style.display = 'none';
+        slot.innerHTML = `
+          <video 
+            id="modal-active-video"
+            class="w-full h-full object-contain bg-black" 
+            src="${vid.src}" 
+            autoplay 
+            playsinline
+          ></video>
+        `;
+        const videoEl = document.getElementById('modal-active-video');
+        videoEl.onloadedmetadata = () => {
+          if (videoEl.duration && !isNaN(videoEl.duration)) {
+            modalTotalSeconds = videoEl.duration;
+            updateModalSeekBarUI(0, modalTotalSeconds);
+          }
+        };
+        videoEl.ontimeupdate = () => {
+          modalCurrentSeconds = videoEl.currentTime;
+          updateModalSeekBarUI(modalCurrentSeconds, modalTotalSeconds);
+        };
+        videoEl.onended = () => {
+          playNextVideo();
+        };
+
+        isModalPlaying = true;
+        isModalMuted = false;
+        updatePlayPauseIcon(true);
+        updateModalSoundUI(false);
+      } else {
+        directLink.style.display = 'flex';
+        directLink.href = `https://www.youtube.com/watch?v=${vid.id}`;
+
+        // Mount YouTube IFrame with full HD 1080p, autoplay, enablejsapi
+        const originHost = (window.location.protocol === 'file:') ? 'https://www.youtube.com' : window.location.origin;
+        const embedUrl = `https://www.youtube.com/embed/${vid.id}?autoplay=1&mute=0&rel=0&modestbranding=1&controls=0&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(originHost)}&widget_referrer=${encodeURIComponent(originHost)}`;
+
+        slot.innerHTML = `
+          <iframe 
+            id="modal-active-iframe"
+            class="w-full h-full border-0" 
+            src="${embedUrl}" 
+            title="${escapeHtml(vid.title)}" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            referrerpolicy="strict-origin-when-cross-origin" 
+            allowfullscreen>
+          </iframe>
+        `;
+
+        isModalPlaying = true;
+        isModalMuted = false;
+        updatePlayPauseIcon(true);
+        updateModalSoundUI(false);
+
+        // Enforce 1080p high resolution playback once loaded
+        const iframe = slot.querySelector('iframe');
+        if (iframe) {
+          iframe.onload = () => {
+            setTimeout(() => {
+              postMessageToPlayer(iframe, 'setPlaybackQuality', ['hd1080']);
+              postMessageToPlayer(iframe, 'playVideo');
+            }, 300);
+          };
+        }
+
+        // Start Seek Bar Progression Loop
+        clearInterval(modalSeekInterval);
+        modalSeekInterval = setInterval(() => {
+          if (isModalPlaying) {
+            modalCurrentSeconds += 0.1;
+            if (modalCurrentSeconds >= modalTotalSeconds) {
+              playNextVideo();
+              return;
+            }
+            updateModalSeekBarUI(modalCurrentSeconds, modalTotalSeconds);
+          }
+        }, 100);
+      }
+
+      // Show controls and restart 3s auto-hide timer
+      wakeModalControls();
+    }
+
+    // Previous & Next Video Navigation
+    function playPreviousVideo() {
+      if (!modalPlaylist.length) return;
+      modalCurrentIndex = (modalCurrentIndex - 1 + modalPlaylist.length) % modalPlaylist.length;
+      loadModalVideo(modalPlaylist[modalCurrentIndex]);
+    }
+
+    function playNextVideo() {
+      if (!modalPlaylist.length) return;
+      modalCurrentIndex = (modalCurrentIndex + 1) % modalPlaylist.length;
+      loadModalVideo(modalPlaylist[modalCurrentIndex]);
+    }
+
+    // Update Seek Bar UI
+    function updateModalSeekBarUI(current, total) {
+      const progressBar = document.getElementById('seek-progress');
+      const thumb = document.getElementById('seek-thumb');
+      const timeDisplay = document.getElementById('modal-time-display');
+
+      if (!progressBar || !timeDisplay) return;
+
+      const pct = total > 0 ? Math.min(100, Math.max(0, (current / total) * 100)) : 0;
+      progressBar.style.width = pct + '%';
+      if (thumb) thumb.style.left = pct + '%';
+      timeDisplay.innerText = `${formatTime(current)} / ${formatTime(total)}`;
+    }
+
+    // Click on Seek Bar to scrub
+    function handleSeekBarClick(event) {
+      const container = document.getElementById('seek-bar-container');
+      if (!container) return;
+
+      const rect = container.getBoundingClientRect();
+      const clickX = event.clientX - rect.left;
+      const pct = Math.max(0, Math.min(1, clickX / rect.width));
+      modalCurrentSeconds = pct * modalTotalSeconds;
+
+      updateModalSeekBarUI(modalCurrentSeconds, modalTotalSeconds);
+
+      const videoEl = document.getElementById('modal-active-video');
+      if (videoEl) {
+        videoEl.currentTime = modalCurrentSeconds;
+      }
+      const iframe = document.getElementById('modal-active-iframe');
+      if (iframe) {
+        postMessageToPlayer(iframe, 'seekTo', [modalCurrentSeconds, true]);
+      }
+    }
+
+    // Play / Pause Toggle
+    function toggleModalPlayback() {
+      const videoEl = document.getElementById('modal-active-video');
+      if (videoEl) {
+        if (videoEl.paused) {
+          videoEl.play();
+          isModalPlaying = true;
+          updatePlayPauseIcon(true);
+          wakeModalControls();
+        } else {
+          videoEl.pause();
+          isModalPlaying = false;
+          updatePlayPauseIcon(false);
+          showModalControlsPermanently();
+        }
+        return;
+      }
+
+      const iframe = document.getElementById('modal-active-iframe');
+      if (!iframe) return;
+
+      isModalPlaying = !isModalPlaying;
+      if (isModalPlaying) {
+        postMessageToPlayer(iframe, 'playVideo');
+        updatePlayPauseIcon(true);
+        wakeModalControls();
+      } else {
+        postMessageToPlayer(iframe, 'pauseVideo');
+        updatePlayPauseIcon(false);
+        showModalControlsPermanently();
+      }
+    }
+
+    function updatePlayPauseIcon(playing) {
+      const playIcon = document.getElementById('modal-play-icon');
+      const pauseIcon = document.getElementById('modal-pause-icon');
+      if (!playIcon || !pauseIcon) return;
+      if (playing) {
+        playIcon.classList.add('hidden');
+        pauseIcon.classList.remove('hidden');
+      } else {
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+      }
+    }
+
+    // Sound Toggle
+    function toggleModalSound() {
+      const videoEl = document.getElementById('modal-active-video');
+      if (videoEl) {
+        videoEl.muted = !videoEl.muted;
+        isModalMuted = videoEl.muted;
+        updateModalSoundUI(isModalMuted);
+        return;
+      }
+
+      const iframe = document.getElementById('modal-active-iframe');
+      if (!iframe) return;
+
+      isModalMuted = !isModalMuted;
+      if (isModalMuted) {
+        postMessageToPlayer(iframe, 'mute');
+      } else {
+        postMessageToPlayer(iframe, 'unMute');
+        postMessageToPlayer(iframe, 'setVolume', [100]);
+      }
+      updateModalSoundUI(isModalMuted);
+    }
+
+    function updateModalSoundUI(muted) {
+      const icon = document.getElementById('modal-sound-icon');
+      const label = document.getElementById('modal-sound-label');
+      if (!icon || !label) return;
+      if (muted) {
+        icon.innerText = '🔇';
+        label.innerText = 'Muted';
+      } else {
+        icon.innerText = '🔊';
+        label.innerText = 'Sound ON';
+      }
+    }
+
+    // Fullscreen Toggle
+    function toggleModalFullscreen() {
+      const modal = document.getElementById('video-modal');
+      if (!document.fullscreenElement) {
+        if (modal.requestFullscreen) modal.requestFullscreen();
+        else if (modal.webkitRequestFullscreen) modal.webkitRequestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    // 3-Second Inactivity Auto-Hide Engine
+    function wakeModalControls() {
+      const header = document.getElementById('modal-header');
+      const controls = document.getElementById('modal-controls');
+      const prevBtn = document.getElementById('modal-prev-btn');
+      const nextBtn = document.getElementById('modal-next-btn');
+      const modal = document.getElementById('video-modal');
+
+      if (!header || !controls) return;
+
+      header.style.opacity = '1';
+      header.style.pointerEvents = 'auto';
+      controls.style.opacity = '1';
+      controls.style.pointerEvents = 'auto';
+      if (prevBtn) { prevBtn.style.opacity = '1'; prevBtn.style.pointerEvents = 'auto'; }
+      if (nextBtn) { nextBtn.style.opacity = '1'; nextBtn.style.pointerEvents = 'auto'; }
+      if (modal) modal.classList.remove('modal-hide-cursor');
+
+      clearTimeout(modalIdleTimer);
+      if (isModalPlaying) {
+        modalIdleTimer = setTimeout(() => {
+          if (isModalPlaying) {
+            header.style.opacity = '0';
+            header.style.pointerEvents = 'none';
+            controls.style.opacity = '0';
+            controls.style.pointerEvents = 'none';
+            if (prevBtn) { prevBtn.style.opacity = '0'; prevBtn.style.pointerEvents = 'none'; }
+            if (nextBtn) { nextBtn.style.opacity = '0'; nextBtn.style.pointerEvents = 'none'; }
+            if (modal) modal.classList.add('modal-hide-cursor');
+          }
+        }, 3000); // 3 seconds
+      }
+    }
+
+    function showModalControlsPermanently() {
+      clearTimeout(modalIdleTimer);
+      const header = document.getElementById('modal-header');
+      const controls = document.getElementById('modal-controls');
+      const prevBtn = document.getElementById('modal-prev-btn');
+      const nextBtn = document.getElementById('modal-next-btn');
+      const modal = document.getElementById('video-modal');
+
+      if (header) { header.style.opacity = '1'; header.style.pointerEvents = 'auto'; }
+      if (controls) { controls.style.opacity = '1'; controls.style.pointerEvents = 'auto'; }
+      if (prevBtn) { prevBtn.style.opacity = '1'; prevBtn.style.pointerEvents = 'auto'; }
+      if (nextBtn) { nextBtn.style.opacity = '1'; nextBtn.style.pointerEvents = 'auto'; }
+      if (modal) modal.classList.remove('modal-hide-cursor');
+    }
+
+    let inactivityTrackingBound = false;
+    function setupModalInactivityTracking() {
+      if (inactivityTrackingBound) return;
+      const modal = document.getElementById('video-modal');
+      modal.addEventListener('mousemove', wakeModalControls);
+      modal.addEventListener('mousedown', wakeModalControls);
+      modal.addEventListener('touchstart', wakeModalControls);
+      inactivityTrackingBound = true;
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('video-modal');
+      const slot = document.getElementById('modal-player-slot');
+      clearInterval(modalSeekInterval);
+      clearTimeout(modalIdleTimer);
+      slot.innerHTML = '';
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      if (document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function handleModalBackdropClick(e) {
+      if (e.target.id === 'video-modal') closeModal();
+    }
+
+    // Keyboard Shortcuts
+    window.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('video-modal');
+      const isModalOpen = !modal.classList.contains('hidden');
+
+      if (e.key === 'Escape') closeModal();
+
+      if (isModalOpen) {
+        if (e.code === 'Space') {
+          e.preventDefault();
+          toggleModalPlayback();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          playPreviousVideo();
+        } else if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          playNextVideo();
+        } else if (e.key === 'f' || e.key === 'F') {
+          e.preventDefault();
+          toggleModalFullscreen();
+        } else if (e.key === 'm' || e.key === 'M') {
+          e.preventDefault();
+          toggleModalSound();
+        }
+      }
+    });
+
+    // YouTube PostMessage Listener to synchronize duration and progress
+    window.addEventListener('message', (event) => {
+      try {
+        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        if (data && data.event === 'infoDelivery' && data.info) {
+          if (data.info.duration && data.info.duration > 0) {
+            modalTotalSeconds = data.info.duration;
+          }
+          if (data.info.currentTime !== undefined) {
+            modalCurrentSeconds = data.info.currentTime;
+            updateModalSeekBarUI(modalCurrentSeconds, modalTotalSeconds);
+          }
+          if (data.info.playerState !== undefined) {
+            if (data.info.playerState === 1) { // Playing
+              isModalPlaying = true;
+              updatePlayPauseIcon(true);
+            } else if (data.info.playerState === 2) { // Paused
+              isModalPlaying = false;
+              updatePlayPauseIcon(false);
+              showModalControlsPermanently();
+            } else if (data.info.playerState === 0) { // Ended
+              playNextVideo();
+            }
+          }
+        }
+      } catch (err) {}
+    });
+
+    // Mobile Sidebar Drawer
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('open');
+    }
+
+    // Helper Namer
+    function getCategoryNiceName(key) {
+      const map = {
+        all: 'All Projects',
+        motion: 'Signature 3D & Motion',
+        vox: 'Vox & Paper Collage',
+        profiles: 'Profiles & Sports',
+        ui: 'UI & Commercial Ads',
+        catering: 'MT Catering UK Campaign',
+        richkid: 'RiCH KiD Universe'
+      };
+      return map[key] || 'Commercial Work';
+    }
+
+    function escapeHtml(str) {
+      return (str || '').replace(/[&<>'"]/g, 
+        tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+      );
+    }
+
+    // Download vCard
+    function downloadVCard() {
+      const vcard = `BEGIN:VCARD\nVERSION:3.0\nFN:Rayhan Ahmed Chowdhury\nORG:Motionire / Motion & Edit\nEMAIL:rayhan3030@gmail.com\nTEL:+8801683876000\nURL:https://github.com/rayhan3030\nNOTE:Motion Designer & Video Editor (Brand: RAYHAN3030)\nEND:VCARD`;
+      const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "Rayhan-Ahmed-Chowdhury.vcf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    // =========================================================================
+    // SOUNDBOARD PRO v20 INTERACTIVE ENGINE & PROCEDURAL WEB AUDIO SYNTHESIZER
+    // =========================================================================
+    const sbData = {
+      folders: [
+        { id: "all", name: "All Sound Effects", count: 24, icon: "📁" },
+        { id: "whoosh", name: "01 Whooshes & Swishes", count: 5, icon: "🌪️" },
+        { id: "hits", name: "02 Cinematic Hits & Impacts", count: 4, icon: "💥" },
+        { id: "risers", name: "03 Risers & Tension Builds", count: 4, icon: "⚡" },
+        { id: "glitch", name: "04 Digital Glitch & UI Clicks", count: 4, icon: "👾" },
+        { id: "sub", name: "05 Sub Drops & Deep Booms", count: 4, icon: "🔊" },
+        { id: "ambient", name: "06 Ambient Textures & Drones", count: 3, icon: "🌌" }
+      ],
+      sounds: [
+        // Whooshes
+        { id: "wh_01", folder: "whoosh", title: "Hyper-Speed SciFi Whoosh 01.wav", durationSec: 1.4, durationStr: "00:00:01:10", type: "whoosh", fav: true },
+        { id: "wh_02", folder: "whoosh", title: "Cinema Trailer Pass-by Swish.wav", durationSec: 1.8, durationStr: "00:00:01:20", type: "whoosh", fav: false },
+        { id: "wh_03", folder: "whoosh", title: "Sub Low-End Air Swipe.wav", durationSec: 1.2, durationStr: "00:00:01:05", type: "whoosh", fav: true },
+        { id: "wh_04", folder: "whoosh", title: "Short High-Pitch Whip Zoom.wav", durationSec: 0.8, durationStr: "00:00:00:20", type: "whoosh", fav: false },
+        { id: "wh_05", folder: "whoosh", title: "3D Spatial Camera Swoosh.wav", durationSec: 1.6, durationStr: "00:00:01:15", type: "whoosh", fav: false },
+
+        // Hits & Impacts
+        { id: "hit_01", folder: "hits", title: "Heavy Metal Stomp Impact.wav", durationSec: 2.2, durationStr: "00:00:02:05", type: "hit", fav: true },
+        { id: "hit_02", folder: "hits", title: "Cinematic Trailer Deep Slam.wav", durationSec: 3.1, durationStr: "00:00:03:02", type: "hit", fav: true },
+        { id: "hit_03", folder: "hits", title: "Anvil Distorted Smash.wav", durationSec: 1.9, durationStr: "00:00:01:23", type: "hit", fav: false },
+        { id: "hit_04", folder: "hits", title: "Punchy Action Hit Accent.wav", durationSec: 1.5, durationStr: "00:00:01:12", type: "hit", fav: false },
+
+        // Risers
+        { id: "rise_01", folder: "risers", title: "Tension Stutter Riser 120BPM.wav", durationSec: 4.0, durationStr: "00:00:04:00", type: "riser", fav: true },
+        { id: "rise_02", folder: "risers", title: "Shepard Tone Pitch Ascent.wav", durationSec: 3.5, durationStr: "00:00:03:12", type: "riser", fav: false },
+        { id: "rise_03", folder: "risers", title: "Dark Noise Build-Up Sweeper.wav", durationSec: 2.8, durationStr: "00:00:02:20", type: "riser", fav: false },
+        { id: "rise_04", folder: "risers", title: "High-String Tremolo Climax.wav", durationSec: 3.2, durationStr: "00:00:03:05", type: "riser", fav: false },
+
+        // Glitch & UI
+        { id: "gl_01", folder: "glitch", title: "Cyberpunk Digital Glitch Burst.wav", durationSec: 0.9, durationStr: "00:00:00:23", type: "glitch", fav: true },
+        { id: "gl_02", folder: "glitch", title: "Snappy Apple UI Interaction Click.wav", durationSec: 0.4, durationStr: "00:00:00:10", type: "click", fav: false },
+        { id: "gl_03", folder: "glitch", title: "Data Stream Buffer Artifact.wav", durationSec: 1.1, durationStr: "00:00:01:02", type: "glitch", fav: false },
+        { id: "gl_04", folder: "glitch", title: "Modern Haptic Tap Feedback.wav", durationSec: 0.3, durationStr: "00:00:00:08", type: "click", fav: false },
+
+        // Sub Drops
+        { id: "sub_01", folder: "sub", title: "808 Sub Bass Drop Boom 40Hz.wav", durationSec: 2.5, durationStr: "00:00:02:12", type: "sub", fav: false },
+        { id: "sub_02", folder: "sub", title: "Deep Earthquake Cinema Sub.wav", durationSec: 3.8, durationStr: "00:00:03:20", type: "sub", fav: false },
+        { id: "sub_03", folder: "sub", title: "Punchy 808 Trap Kick Drop.wav", durationSec: 1.8, durationStr: "00:01:20", type: "sub", fav: false },
+        { id: "sub_04", folder: "sub", title: "Low-End Downshifter Rumble.wav", durationSec: 2.9, durationStr: "00:00:02:22", type: "sub", fav: false },
+
+        // Ambient Textures
+        { id: "amb_01", folder: "ambient", title: "Ethereal Sci-Fi Space Drone.wav", durationSec: 5.0, durationStr: "00:00:05:00", type: "ambient", fav: false },
+        { id: "amb_02", folder: "ambient", title: "Dark Mystery Tape Hiss Pad.wav", durationSec: 4.5, durationStr: "00:00:04:15", type: "ambient", fav: false },
+        { id: "amb_03", folder: "ambient", title: "Subtle Vinyl Room Reverb.wav", durationSec: 3.5, durationStr: "00:00:03:12", type: "ambient", fav: false }
+      ]
+    };
+
+    let sbAudioCtx = null;
+    let sbActiveNode = null;
+    let sbActiveSound = sbData.sounds[0];
+    let sbPitchSemitones = 0;
+    let sbVolume = 0.9;
+    let sbIsMuted = false;
+    let sbIsPlaying = false;
+    let sbCurrentFolder = 'all';
+    let sbCurrentTab = 'all';
+    let sbSearchQuery = '';
+    let sbAnimFrameId = null;
+    let sbPlayStartTime = 0;
+    let sbPlayDuration = 0;
+    let sbCurrentProgress = 0;
+    let sbPluginInitialized = false;
+
+    function getSbAudioContext() {
+      if (!sbAudioCtx) {
+        const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtxClass) {
+          sbAudioCtx = new AudioCtxClass();
+        }
+      }
+      if (sbAudioCtx && sbAudioCtx.state === 'suspended') {
+        sbAudioCtx.resume();
+      }
+      return sbAudioCtx;
+    }
+
+    function sbInitPlugin() {
+      if (sbPluginInitialized) return;
+      sbPluginInitialized = true;
+      sbRenderFolderTree();
+      sbRenderFileList();
+      sbUpdateCounts();
+      setTimeout(() => {
+        sbDrawWaveform(sbActiveSound, 0);
+        sbUpdatePlayhead(0);
+        sbUpdateTimeDisplays(0, sbActiveSound.durationSec);
+      }, 50);
+    }
+
+    function sbRenderFolderTree() {
+      const treeEl = document.getElementById('sb-folder-tree');
+      if (!treeEl) return;
+      treeEl.innerHTML = '';
+
+      sbData.folders.forEach(f => {
+        const row = document.createElement('div');
+        const isActive = sbCurrentFolder === f.id;
+        row.className = `flex items-center justify-between px-2.5 py-1.5 rounded cursor-pointer transition text-xs ${
+          isActive ? 'bg-[#8a5cf5]/20 text-[#a07cff] font-bold border-l-2 border-[#8a5cf5]' : 'hover:bg-[#333] text-neutral-300'
+        }`;
+        row.onclick = () => sbSelectFolder(f.id);
+
+        row.innerHTML = `
+          <div class="flex items-center gap-2 truncate">
+            <span class="text-sm">${f.icon}</span>
+            <span class="truncate">${escapeHtml(f.name)}</span>
+          </div>
+          <span class="text-[10px] bg-black/40 px-2 py-0.5 rounded text-neutral-400 font-mono">${f.count}</span>
+        `;
+        treeEl.appendChild(row);
+      });
+    }
+
+    function sbSelectFolder(folderId) {
+      sbCurrentFolder = folderId;
+      sbCurrentTab = 'all';
+      sbSearchQuery = '';
+      const searchInput = document.getElementById('sb-search-input');
+      if (searchInput) searchInput.value = '';
+      const clearBtn = document.getElementById('sb-search-clear');
+      if (clearBtn) clearBtn.classList.add('hidden');
+
+      sbUpdateTabsUI();
+      sbRenderFolderTree();
+      sbRenderFileList();
+    }
+
+    function sbSetTab(tabKey) {
+      sbCurrentTab = tabKey;
+      sbCurrentFolder = 'all';
+      sbUpdateTabsUI();
+      sbRenderFolderTree();
+      sbRenderFileList();
+    }
+
+    function sbUpdateTabsUI() {
+      const tabAll = document.getElementById('sb-tab-all');
+      const tabFav = document.getElementById('sb-tab-fav');
+      if (!tabAll || !tabFav) return;
+
+      if (sbCurrentTab === 'all') {
+        tabAll.className = 'bg-[#8a5cf5] text-white px-3 py-1.5 rounded-md font-bold text-xs border border-[#8a5cf5] transition';
+        tabFav.className = 'bg-[#333] text-neutral-300 hover:text-white px-3 py-1.5 rounded-md font-bold text-xs border border-[#444] transition';
+      } else {
+        tabFav.className = 'bg-[#8a5cf5] text-white px-3 py-1.5 rounded-md font-bold text-xs border border-[#8a5cf5] transition';
+        tabAll.className = 'bg-[#333] text-neutral-300 hover:text-white px-3 py-1.5 rounded-md font-bold text-xs border border-[#444] transition';
+      }
+    }
+
+    function sbHandleSearch(q) {
+      sbSearchQuery = (q || '').trim().toLowerCase();
+      const clearBtn = document.getElementById('sb-search-clear');
+      if (clearBtn) {
+        if (sbSearchQuery) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+      }
+      sbRenderFileList();
+    }
+
+    function sbClearSearch() {
+      sbSearchQuery = '';
+      const searchInput = document.getElementById('sb-search-input');
+      if (searchInput) searchInput.value = '';
+      const clearBtn = document.getElementById('sb-search-clear');
+      if (clearBtn) clearBtn.classList.add('hidden');
+      sbRenderFileList();
+    }
+
+    function sbUpdateCounts() {
+      const allCount = sbData.sounds.length;
+      const favCount = sbData.sounds.filter(s => s.fav).length;
+      const elAll = document.getElementById('sb-count-all');
+      const elFav = document.getElementById('sb-count-fav');
+      if (elAll) elAll.innerText = allCount;
+      if (elFav) elFav.innerText = favCount;
+    }
+
+    function sbRenderFileList() {
+      const listEl = document.getElementById('sb-file-list');
+      const labelEl = document.getElementById('sb-active-folder-label');
+      const countEl = document.getElementById('sb-active-files-count');
+      if (!listEl) return;
+      listEl.innerHTML = '';
+
+      let items = sbData.sounds;
+
+      if (sbSearchQuery) {
+        items = items.filter(s => 
+          s.title.toLowerCase().includes(sbSearchQuery) || 
+          s.type.toLowerCase().includes(sbSearchQuery) ||
+          s.folder.toLowerCase().includes(sbSearchQuery)
+        );
+        if (labelEl) labelEl.innerText = `Search: "${sbSearchQuery}"`;
+      } else if (sbCurrentTab === 'fav') {
+        items = items.filter(s => s.fav);
+        if (labelEl) labelEl.innerText = 'Favorite Sound Effects';
+      } else if (sbCurrentFolder !== 'all') {
+        items = items.filter(s => s.folder === sbCurrentFolder);
+        const fObj = sbData.folders.find(f => f.id === sbCurrentFolder);
+        if (labelEl) labelEl.innerText = fObj ? fObj.name : 'Folder Items';
+      } else {
+        if (labelEl) labelEl.innerText = 'All Sound Effects';
+      }
+
+      if (countEl) countEl.innerText = `${items.length} items`;
+
+      if (items.length === 0) {
+        listEl.innerHTML = `
+          <div class="py-12 text-center text-neutral-500 font-mono text-xs">
+            No sound effects match your search or filter criteria.
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach(sound => {
+        const isCurrent = sbActiveSound && sbActiveSound.id === sound.id;
+        const isPlayingThis = isCurrent && sbIsPlaying;
+
+        const row = document.createElement('div');
+        row.className = `flex items-center justify-between px-3 py-2 rounded-md transition cursor-pointer text-xs ${
+          isCurrent ? 'bg-[#2b1f4a] text-[#d8c6ff] border border-[#8a5cf5]/50' : 'hover:bg-[#252525] text-neutral-300'
+        }`;
+        row.onclick = () => sbPlaySound(sound);
+
+        row.innerHTML = `
+          <div class="flex items-center gap-2.5 truncate flex-1 min-w-0 pr-3">
+            <button onclick="event.stopPropagation(); sbToggleFav('${sound.id}')" class="text-sm transition hover:scale-125 focus:outline-none ${sound.fav ? 'text-amber-400' : 'text-neutral-600 hover:text-neutral-400'}" title="Toggle Favorite">
+              ★
+            </button>
+            <span class="text-sm shrink-0">${isPlayingThis ? '🔊' : '🎵'}</span>
+            <span class="truncate font-medium">${escapeHtml(sound.title)}</span>
+          </div>
+
+          <div class="flex items-center gap-2.5 shrink-0">
+            <span class="font-mono text-[10px] bg-[#1a1a1a] border border-[#2e2e2e] text-neutral-400 px-2 py-0.5 rounded-full">
+              ${sound.durationStr.slice(6)}
+            </span>
+            <button onclick="event.stopPropagation(); sbPlaySound(sbData.sounds.find(s=>s.id==='${sound.id}'))" class="w-6 h-6 rounded bg-[#333] hover:bg-[#8a5cf5] hover:text-white flex items-center justify-center text-[10px] font-bold text-neutral-300 transition" title="Audition Sound">
+              ${isPlayingThis ? '⏸' : '▶'}
+            </button>
+            <button onclick="event.stopPropagation(); sbInsertSoundDirect('${sound.id}')" class="bg-[#333] hover:bg-[#8a5cf5] hover:text-white text-neutral-300 px-2 py-1 rounded text-[10px] font-bold transition flex items-center gap-1" title="Insert directly to Timeline">
+              <span>+ ADD</span>
+            </button>
+          </div>
+        `;
+
+        listEl.appendChild(row);
+      });
+    }
+
+    function sbToggleFav(soundId) {
+      const sound = sbData.sounds.find(s => s.id === soundId);
+      if (sound) {
+        sound.fav = !sound.fav;
+        sbUpdateCounts();
+        sbRenderFileList();
+      }
+    }
+
+    function sbReloadPacks() {
+      sbCurrentFolder = 'all';
+      sbCurrentTab = 'all';
+      sbSearchQuery = '';
+      sbUpdateTabsUI();
+      sbRenderFolderTree();
+      sbRenderFileList();
+      sbShowHud("Root SFX Library reloaded • 24 items mapped");
+    }
+
+    // Procedural Web Audio Synthesizer: Generates high-fidelity sound effects live in-browser!
+    function sbPlayProceduralSound(sound, pitchSemitones) {
+      const ctx = getSbAudioContext();
+      if (!ctx) return;
+
+      if (sbActiveNode) {
+        try { sbActiveNode.stop(); } catch (e) {}
+        sbActiveNode = null;
+      }
+
+      const pitchFactor = Math.pow(2, (pitchSemitones || 0) / 12);
+      const effectiveVol = sbIsMuted ? 0 : sbVolume;
+
+      const masterGain = ctx.createGain();
+      masterGain.gain.setValueAtTime(effectiveVol, ctx.currentTime);
+      masterGain.connect(ctx.destination);
+
+      const now = ctx.currentTime;
+      const dur = sound.durationSec;
+
+      if (sound.type === 'whoosh') {
+        const bufferSize = Math.max(1, Math.floor(ctx.sampleRate * dur));
+        const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = noiseBuffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          output[i] = Math.random() * 2 - 1;
+        }
+
+        const whiteNoise = ctx.createBufferSource();
+        whiteNoise.buffer = noiseBuffer;
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.Q.value = 3.5;
+
+        filter.frequency.setValueAtTime(250 * pitchFactor, now);
+        filter.frequency.exponentialRampToValueAtTime(2600 * pitchFactor, now + dur * 0.45);
+        filter.frequency.exponentialRampToValueAtTime(320 * pitchFactor, now + dur);
+
+        const envGain = ctx.createGain();
+        envGain.gain.setValueAtTime(0.001, now);
+        envGain.gain.exponentialRampToValueAtTime(0.85, now + dur * 0.4);
+        envGain.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+        whiteNoise.connect(filter);
+        filter.connect(envGain);
+        envGain.connect(masterGain);
+
+        whiteNoise.start(now);
+        whiteNoise.stop(now + dur);
+        sbActiveNode = whiteNoise;
+
+      } else if (sound.type === 'hit') {
+        const osc = ctx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(140 * pitchFactor, now);
+        osc.frequency.exponentialRampToValueAtTime(38 * pitchFactor, now + dur * 0.6);
+
+        const env = ctx.createGain();
+        env.gain.setValueAtTime(1.0, now);
+        env.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+        const clickOsc = ctx.createOscillator();
+        clickOsc.type = 'triangle';
+        clickOsc.frequency.setValueAtTime(600 * pitchFactor, now);
+        clickOsc.frequency.exponentialRampToValueAtTime(40, now + 0.08);
+
+        const clickGain = ctx.createGain();
+        clickGain.gain.setValueAtTime(0.7, now);
+        clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+
+        clickOsc.connect(clickGain);
+        clickGain.connect(masterGain);
+        clickOsc.start(now);
+        clickOsc.stop(now + 0.08);
+
+        osc.connect(env);
+        env.connect(masterGain);
+        osc.start(now);
+        osc.stop(now + dur);
+        sbActiveNode = osc;
+
+      } else if (sound.type === 'riser') {
+        const osc = ctx.createOscillator();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(80 * pitchFactor, now);
+        osc.frequency.exponentialRampToValueAtTime(850 * pitchFactor, now + dur * 0.95);
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.Q.value = 4.0;
+        filter.frequency.setValueAtTime(300 * pitchFactor, now);
+        filter.frequency.exponentialRampToValueAtTime(3200 * pitchFactor, now + dur);
+
+        const env = ctx.createGain();
+        env.gain.setValueAtTime(0.1, now);
+        env.gain.linearRampToValueAtTime(0.9, now + dur * 0.9);
+        env.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+        osc.connect(filter);
+        filter.connect(env);
+        env.connect(masterGain);
+
+        osc.start(now);
+        osc.stop(now + dur);
+        sbActiveNode = osc;
+
+      } else if (sound.type === 'sub') {
+        const osc = ctx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(88 * pitchFactor, now);
+        osc.frequency.exponentialRampToValueAtTime(26 * pitchFactor, now + dur * 0.85);
+
+        const env = ctx.createGain();
+        env.gain.setValueAtTime(1.0, now);
+        env.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+        osc.connect(env);
+        env.connect(masterGain);
+        osc.start(now);
+        osc.stop(now + dur);
+        sbActiveNode = osc;
+
+      } else if (sound.type === 'click') {
+        const osc = ctx.createOscillator();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(1600 * pitchFactor, now);
+        osc.frequency.exponentialRampToValueAtTime(400, now + dur);
+
+        const env = ctx.createGain();
+        env.gain.setValueAtTime(0.8, now);
+        env.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+        osc.connect(env);
+        env.connect(masterGain);
+        osc.start(now);
+        osc.stop(now + dur);
+        sbActiveNode = osc;
+
+      } else if (sound.type === 'glitch') {
+        const osc = ctx.createOscillator();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(880 * pitchFactor, now);
+        osc.frequency.setValueAtTime(1320 * pitchFactor, now + 0.1);
+        osc.frequency.setValueAtTime(440 * pitchFactor, now + 0.25);
+        osc.frequency.setValueAtTime(1760 * pitchFactor, now + 0.45);
+
+        const env = ctx.createGain();
+        env.gain.setValueAtTime(0.35, now);
+        env.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+        osc.connect(env);
+        env.connect(masterGain);
+        osc.start(now);
+        osc.stop(now + dur);
+        sbActiveNode = osc;
+
+      } else {
+        const osc1 = ctx.createOscillator();
+        const osc2 = ctx.createOscillator();
+        osc1.type = 'triangle';
+        osc2.type = 'triangle';
+        osc1.frequency.setValueAtTime(130 * pitchFactor, now);
+        osc2.frequency.setValueAtTime(195 * pitchFactor, now);
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(500, now);
+
+        const env = ctx.createGain();
+        env.gain.setValueAtTime(0.05, now);
+        env.gain.linearRampToValueAtTime(0.6, now + 1.0);
+        env.gain.exponentialRampToValueAtTime(0.001, now + dur);
+
+        osc1.connect(filter);
+        osc2.connect(filter);
+        filter.connect(env);
+        env.connect(masterGain);
+
+        osc1.start(now);
+        osc2.start(now);
+        osc1.stop(now + dur);
+        osc2.stop(now + dur);
+        sbActiveNode = osc1;
+      }
+    }
+
+    function sbPlaySound(sound) {
+      if (!sound) return;
+
+      if (sbActiveSound && sbActiveSound.id === sound.id && sbIsPlaying) {
+        sbPauseSound();
+        return;
+      }
+
+      sbActiveSound = sound;
+      sbIsPlaying = true;
+      sbPlayStartTime = performance.now();
+      sbPlayDuration = sound.durationSec * 1000;
+      sbCurrentProgress = 0;
+
+      sbPlayProceduralSound(sound, sbPitchSemitones);
+      sbUpdatePlayButtonUI(true);
+      sbRenderFileList();
+
+      const hintEl = document.getElementById('sb-wave-hint');
+      if (hintEl) hintEl.style.display = 'none';
+
+      cancelAnimationFrame(sbAnimFrameId);
+      sbAnimatePlayback();
+    }
+
+    function sbPauseSound() {
+      sbIsPlaying = false;
+      if (sbActiveNode) {
+        try { sbActiveNode.stop(); } catch(e) {}
+        sbActiveNode = null;
+      }
+      cancelAnimationFrame(sbAnimFrameId);
+      sbUpdatePlayButtonUI(false);
+      sbRenderFileList();
+    }
+
+    function sbTogglePlay() {
+      if (sbIsPlaying) {
+        sbPauseSound();
+      } else {
+        sbPlaySound(sbActiveSound || sbData.sounds[0]);
+      }
+    }
+
+    function sbRewind() {
+      sbCurrentProgress = 0;
+      sbUpdatePlayhead(0);
+      sbUpdateTimeDisplays(0, sbActiveSound ? sbActiveSound.durationSec : 2.0);
+      if (sbIsPlaying) {
+        sbPlaySound(sbActiveSound);
+      } else {
+        sbDrawWaveform(sbActiveSound, 0);
+      }
+    }
+
+    function sbAnimatePlayback() {
+      if (!sbIsPlaying || !sbActiveSound) return;
+
+      const elapsed = performance.now() - sbPlayStartTime;
+      sbCurrentProgress = Math.min(1, elapsed / sbPlayDuration);
+
+      sbUpdatePlayhead(sbCurrentProgress);
+      sbDrawWaveform(sbActiveSound, sbCurrentProgress);
+      sbUpdateTimeDisplays(elapsed / 1000, sbActiveSound.durationSec);
+
+      if (sbCurrentProgress >= 1) {
+        sbIsPlaying = false;
+        sbUpdatePlayButtonUI(false);
+        sbRenderFileList();
+        sbUpdatePlayhead(0);
+        sbDrawWaveform(sbActiveSound, 0);
+        return;
+      }
+
+      sbAnimFrameId = requestAnimationFrame(sbAnimatePlayback);
+    }
+
+    function sbUpdatePlayhead(prog) {
+      const playhead = document.getElementById('sb-playhead');
+      if (playhead) {
+        playhead.style.left = (prog * 100) + '%';
+      }
+    }
+
+    function sbUpdatePlayButtonUI(playing) {
+      const icon = document.getElementById('sb-play-icon');
+      const text = document.getElementById('sb-play-text');
+      if (icon) icon.innerText = playing ? '⏸' : '▶';
+      if (text) text.innerText = playing ? 'Pause' : 'Play';
+    }
+
+    function sbUpdateTimeDisplays(currentSec, totalSec) {
+      const curEl = document.getElementById('sb-time-cur');
+      const durEl = document.getElementById('sb-time-dur');
+      if (curEl) curEl.innerText = sbFormatTimecode(currentSec);
+      if (durEl) durEl.innerText = sbFormatTimecode(totalSec);
+    }
+
+    function sbFormatTimecode(s) {
+      if (!isFinite(s) || s < 0) s = 0;
+      const ms = Math.floor((s % 1) * 100);
+      const sec = Math.floor(s % 60);
+      const m = Math.floor((s / 60) % 60);
+      const h = Math.floor(s / 3600);
+      return String(h).padStart(2,'0') + ':' + 
+             String(m).padStart(2,'0') + ':' + 
+             String(sec).padStart(2,'0') + ':' + 
+             String(ms).padStart(2,'0');
+    }
+
+    function sbSeekFromWave(e) {
+      const wrap = document.getElementById('sb-wave-wrap');
+      if (!wrap || !sbActiveSound) return;
+      const rect = wrap.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      sbCurrentProgress = Math.max(0, Math.min(1, clickX / rect.width));
+      sbUpdatePlayhead(sbCurrentProgress);
+      sbUpdateTimeDisplays(sbCurrentProgress * sbActiveSound.durationSec, sbActiveSound.durationSec);
+      sbDrawWaveform(sbActiveSound, sbCurrentProgress);
+      if (sbIsPlaying) {
+        sbPlaySound(sbActiveSound);
+      }
+    }
+
+    function sbDrawWaveform(sound, progress) {
+      const canvas = document.getElementById('sb-wave-canvas');
+      if (!canvas) return;
+      const dpr = window.devicePixelRatio || 1;
+      const width = canvas.parentElement.clientWidth;
+      const height = canvas.parentElement.clientHeight;
+
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      const ctx = canvas.getContext('2d');
+      ctx.scale(dpr, dpr);
+      ctx.clearRect(0, 0, width, height);
+
+      const barCount = 120;
+      const barWidth = width / barCount;
+      const centerY = height / 2;
+
+      const seed = (sound && sound.id) ? sound.id.charCodeAt(0) + sound.id.length : 42;
+
+      for (let i = 0; i < barCount; i++) {
+        const norm = i / barCount;
+        let amp = Math.sin(norm * Math.PI) * 0.75 + 
+                  Math.sin(norm * 18 + seed) * 0.15 + 
+                  Math.sin(norm * 45 + seed * 2) * 0.1;
+        amp = Math.max(0.08, Math.min(0.95, Math.abs(amp)));
+        const barH = amp * (height * 0.78);
+
+        if (norm <= progress) {
+          ctx.fillStyle = '#a07cff';
+        } else {
+          ctx.fillStyle = '#3a3a3a';
+        }
+
+        ctx.fillRect(i * barWidth + 1, centerY - barH / 2, Math.max(1, barWidth - 1.5), barH);
+      }
+    }
+
+    function sbSetVolume(val) {
+      sbVolume = parseFloat(val);
+      sbIsMuted = (sbVolume === 0);
+      const muteBtn = document.getElementById('sb-mute-btn');
+      if (muteBtn) muteBtn.innerText = sbIsMuted ? '🔇' : '🔊';
+    }
+
+    function sbToggleMute() {
+      sbIsMuted = !sbIsMuted;
+      const muteBtn = document.getElementById('sb-mute-btn');
+      const volSlider = document.getElementById('sb-vol-slider');
+      if (muteBtn) muteBtn.innerText = sbIsMuted ? '🔇' : '🔊';
+      if (volSlider) volSlider.value = sbIsMuted ? 0 : sbVolume;
+    }
+
+    function sbSetPitch(val) {
+      sbPitchSemitones = parseInt(val, 10);
+      const valEl = document.getElementById('sb-pitch-val');
+      if (valEl) valEl.innerText = (sbPitchSemitones > 0 ? '+' : '') + sbPitchSemitones;
+    }
+
+    function sbResetPitch() {
+      sbPitchSemitones = 0;
+      const slider = document.getElementById('sb-pitch-slider');
+      const valEl = document.getElementById('sb-pitch-val');
+      if (slider) slider.value = 0;
+      if (valEl) valEl.innerText = '0';
+    }
+
+    function sbInsertActiveSound() {
+      if (!sbActiveSound) sbActiveSound = sbData.sounds[0];
+      sbShowHud(`Inserted "${sbActiveSound.title}" to Premiere Timeline [Track A3]`);
+    }
+
+    function sbInsertSoundDirect(soundId) {
+      const sound = sbData.sounds.find(s => s.id === soundId);
+      if (sound) {
+        sbShowHud(`Inserted "${sound.title}" to Premiere Timeline [Track A3]`);
+      }
+    }
+
+    let sbHudTimer = null;
+    function sbShowHud(text) {
+      const hud = document.getElementById('sb-hud-notice');
+      const textEl = document.getElementById('sb-hud-text');
+      if (!hud || !textEl) return;
+      textEl.innerText = text;
+      hud.classList.remove('hidden');
+      hud.style.opacity = '1';
+      clearTimeout(sbHudTimer);
+      sbHudTimer = setTimeout(() => {
+        hud.style.opacity = '0';
+        setTimeout(() => hud.classList.add('hidden'), 300);
+      }, 2500);
+    }
+
+    window.addEventListener('resize', () => {
+      if (sbActiveSound) {
+        sbDrawWaveform(sbActiveSound, sbCurrentProgress);
+      }
+    });
+
+    // Initialize on Load
+    window.addEventListener('DOMContentLoaded', () => {
+      renderProjectsGrid();
+      sbInitPlugin();
+
+      // Ensure Hero local 1080p video autoplays
+      const heroVideo = document.getElementById('hero-video-player');
+      if (heroVideo) {
+        heroVideo.play().catch(() => {
+          heroVideo.muted = true;
+          heroVideo.play().catch(() => {});
+        });
+      }
+    });
+  </script>
+</body>
+</html>
