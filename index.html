@@ -364,8 +364,21 @@
       aspect-ratio: 16 / 9;
       background: #000000;
       overflow: hidden;
-      border-radius: 4px;
+      border-radius: 8px;
       margin-bottom: 24px;
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 640px) {
+      .carbon-player-frame {
+        width: calc(100% + 40px);
+        margin-left: -20px;
+        margin-right: -20px;
+        margin-top: -12px;
+        aspect-ratio: 4 / 3;
+        min-height: 280px;
+        border-radius: 0;
+        margin-bottom: 20px;
+      }
     }
 
     /* Custom Scrollbars */
@@ -473,8 +486,8 @@
           preload="auto"
         ></video>
         
-        <!-- Controls Strip -->
-        <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between text-xs text-white pointer-events-none z-30">
+        <!-- Controls Strip (Hidden on mobile as requested, clean and prominent on desktop) -->
+        <div class="hidden sm:flex absolute bottom-3 left-4 right-4 items-center justify-between text-xs text-white pointer-events-none z-30">
           <div class="bg-black/75 backdrop-blur px-3 py-1.5 rounded font-poppins text-[11px] font-medium flex items-center gap-2 pointer-events-auto">
             <span class="w-2 h-2 rounded-full bg-[#ec662d] animate-pulse"></span>
             <span>Featured: From Motion Design to Humanity Advances (3D Camera Showcase)</span>
@@ -1007,7 +1020,7 @@
         { id: "oVIfmr_ZQXo", ratio: "16:9", title: "IShowSpeed x World Cup 2026 Prediction", subtitle: "Cultural Motion", duration: "0:38", preview: "./Preview/IShowSpeed x World Cup 2026 - Portugal's Gonna Win  Prediction Edit.mp4" }
       ],
       ui: [
-        { id: "Bx6xQA6x4E", ratio: "16:9", title: "iPhone 17 Pro Purchase Flow UI Animation", subtitle: "App Prototype", duration: "0:32", preview: "./Preview/iPhone 17 Pro Purchase Flow - Apple Style UI Animation.mp4" },
+        { id: "Bx6xQAuca4E", ratio: "16:9", title: "iPhone 17 Pro Purchase Flow UI Animation", subtitle: "App Prototype", duration: "0:32", preview: "./Preview/iPhone 17 Pro Purchase Flow - Apple Style UI Animation.mp4" },
         { id: "2zkVnqD3RsE", ratio: "16:9", title: "iMessage Typo Apple Green Bubble UI", subtitle: "Interaction Design", duration: "0:25", preview: "./Preview/iMassage Typo - Apple iMessage Green Bubble UI Animation.mp4" },
         { id: "q-vM7qyTBxI", ratio: "16:9", title: "Netflix: Unlimited TV Shows Promo Ad", subtitle: "Streaming Commercial", duration: "0:30", preview: "./Preview/Netflix - Unlimited TV Shows  Breaking Bad, Squid Game, Stranger Things Promo Ad.mp4" },
         { id: "bWecQsJTgLE", ratio: "16:9", title: "Tahsan: Top Facebook Influencer (8.8M)", subtitle: "Social Campaign", duration: "0:40", preview: "./Preview/Tahsan - Top Facebook Influencer  8.8M Followers  UI Animation.mp4" },
