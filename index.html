@@ -15,10 +15,18 @@
   <meta property="og:description" content="Motion Designer &amp; Video Editor at Motionire. Curated 82+ commercial videos archive.">
   <meta property="og:image" content="https://img.youtube.com/vi/htTfc_paA8c/maxresdefault.jpg">
 
-  <!-- Google Fonts: Poppins (Headers/Logo), Montserrat (Project Titles), Open Sans & Inter (Body) -->
+  <!-- Preconnect to critical CDN origins for ultra-fast FCP / LCP -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600&family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://i.ytimg.com">
+  <link rel="preconnect" href="https://img.youtube.com">
+
+  <!-- Asynchronous Non-Blocking Google Fonts (Media Print Trick + noscript fallback) -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600&family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600&family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600&family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  </noscript>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -508,7 +516,7 @@
       </span>
     </div>
     <div class="flex items-center gap-3 shrink-0">
-      <button onclick="dismissBanner()" class="text-neutral-400 hover:text-white text-xs">Dismiss ✕</button>
+      <button onclick="dismissBanner()" class="text-neutral-400 hover:text-white text-xs" aria-label="Dismiss Banner">Dismiss ✕</button>
     </div>
   </div>
 
@@ -527,13 +535,13 @@
   <!-- ==================== FIXED LEFT SIDENAV (Exact jlumotion design) ==================== -->
   <aside class="sidebar-container" id="sidebar">
     
-    <!-- Top Brand Logo -->
-    <div>
+    <!-- Top Brand Logo & Navigation Header -->
+    <header class="sidebar-header">
       <a href="#" onclick="showSection('work'); closeSidebar();" class="text-decoration-none group block">
         <h1 class="font-poppins font-bold text-4xl text-[#1f1a16] tracking-tight group-hover:text-[#ec662d] transition-colors leading-none">
           Rayhan
         </h1>
-        <p class="font-poppins text-[11px] font-semibold text-neutral-400 uppercase tracking-widest mt-2">
+        <p class="font-poppins text-[11px] font-semibold text-neutral-600 uppercase tracking-widest mt-2">
           Motion Design &amp; Video Editing
         </p>
       </a>
@@ -545,30 +553,30 @@
         <a href="#about" onclick="showSection('about'); closeSidebar();" class="nav-link" id="nav-about">About</a>
         <a href="#tools" onclick="showSection('tools'); closeSidebar();" class="nav-link" id="nav-tools">SoundBoard</a>
       </nav>
-    </div>
+    </header>
 
     <!-- Sidebar Bottom: Copyright & Social Icons -->
     <div>
-      <div class="font-poppins text-xs text-neutral-400 mb-3.5">
+      <div class="font-poppins text-xs text-neutral-600 mb-3.5">
         © Rayhan Ahmed Chowdhury<br>
-        <span class="text-[10px] text-neutral-400">Brand: RAYHAN3030 • <a href="https://motionire.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[#ec662d] transition underline decoration-neutral-400">Motionire</a></span>
+        <span class="text-[10px] text-neutral-600">Brand: RAYHAN3030 • <a href="https://motionire.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[#ec662d] transition underline decoration-neutral-400">Motionire</a></span>
       </div>
 
       <!-- Social Icon Circles (Facebook, Instagram, LinkedIn, GitHub, WhatsApp) -->
       <div class="flex items-center gap-2">
-        <a href="https://www.facebook.com/rayhan.3300" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#1877f2]" title="Facebook">
+        <a href="https://www.facebook.com/rayhan.3300" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#1877f2]" title="Facebook" aria-label="Visit Facebook Profile">
           <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
         </a>
-        <a href="https://www.instagram.com/rayhan3030/" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#517fa4]" title="Instagram">
+        <a href="https://www.instagram.com/rayhan3030/" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#517fa4]" title="Instagram" aria-label="Visit Instagram Profile">
           <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         </a>
-        <a href="https://www.linkedin.com/in/rayhan3030" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#007bb5]" title="LinkedIn">
+        <a href="https://www.linkedin.com/in/rayhan3030" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#007bb5]" title="LinkedIn" aria-label="Visit LinkedIn Profile">
           <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
         </a>
-        <a href="https://github.com/rayhan3030" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#0056ff]" title="GitHub">
+        <a href="https://github.com/rayhan3030" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#0056ff]" title="GitHub" aria-label="Visit GitHub Profile">
           <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
         </a>
-        <a href="https://wa.me/8801683876000" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#25d366]" title="WhatsApp (+8801683876000)">
+        <a href="https://wa.me/8801683876000" target="_blank" rel="noopener noreferrer" class="social-icon bg-[#25d366]" title="WhatsApp (+8801683876000)" aria-label="Contact on WhatsApp">
           <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
         </a>
       </div>
@@ -582,30 +590,59 @@
     <!-- ==================== TAB 1: WORK (Hero Showreel + Viewport Autoplay 2-Col Grid) ==================== -->
     <section id="section-work" class="tab-page">
       
-      <!-- HERO SHOWREEL: Direct 1080p Native MP4 Video (Exact jlumotion.portfolio.site style) -->
-      <div class="carbon-player-frame group relative overflow-hidden rounded-lg bg-black cursor-pointer" id="hero-player-box" onclick="openHeroInModal()">
-        <video 
-          id="hero-video-player"
-          class="w-full h-full object-cover"
-          src="./compressed_1080p_5MB.mp4"
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="auto"
-        ></video>
+      <!-- HERO SHOWREEL: Instant LCP Facade (Zero render-blocking video payload) -->
+      <div 
+        class="carbon-player-frame group relative overflow-hidden rounded-lg bg-black cursor-pointer" 
+        id="hero-player-box" 
+        onclick="openHeroInModal()"
+        role="button"
+        tabindex="0"
+        aria-label="Play Featured Showreel: From Motion Design to Humanity Advances (3D Camera Showcase)"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openHeroInModal();}"
+      >
+        <!-- High-res Thumbnail Facade (Instant LCP & zero CLS) -->
+        <img 
+          id="hero-thumbnail"
+          src="https://i.ytimg.com/vi/htTfc_paA8c/maxresdefault.jpg" 
+          alt="Featured Motion Design Showreel - From Motion Design to Humanity Advances"
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+          width="1280"
+          height="720"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+        />
         
-        <!-- Controls Strip (Hidden on mobile as requested, clean and prominent on desktop) -->
+        <!-- Facade Play Button Centerpiece -->
+        <div id="hero-play-facade" class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/15 transition-all">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#ec662d] flex items-center justify-center shadow-2xl transition-transform duration-300 group-hover:scale-110">
+            <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+
+        <!-- Hero Slot for delayed video or iframe injection -->
+        <div id="hero-active-slot" class="absolute inset-0 hidden"></div>
+
+        <!-- Controls Strip -->
         <div class="hidden sm:flex absolute bottom-3 left-4 right-4 items-center justify-between text-xs text-white pointer-events-none z-30">
-          <div class="bg-black/75 backdrop-blur px-3 py-1.5 rounded font-poppins text-[11px] font-medium flex items-center gap-2 pointer-events-auto">
+          <div class="bg-black/80 backdrop-blur px-3 py-1.5 rounded font-poppins text-[11px] font-medium flex items-center gap-2 pointer-events-auto">
             <span class="w-2 h-2 rounded-full bg-[#ec662d] animate-pulse"></span>
             <span>Featured: From Motion Design to Humanity Advances (3D Camera Showcase)</span>
           </div>
           <div class="flex items-center gap-2 pointer-events-auto">
-            <button onclick="event.stopPropagation(); toggleMuteHero()" id="hero-mute-btn" class="bg-black/75 hover:bg-black text-white font-mono text-[10px] px-3 py-1.5 rounded transition">
+            <button 
+              onclick="event.stopPropagation(); loadHeroIframe(true)" 
+              id="hero-mute-btn" 
+              class="bg-black/80 hover:bg-black text-white font-mono text-[10px] px-3 py-1.5 rounded transition focus:outline-none"
+              aria-label="Play showreel with sound"
+            >
               🔊 Unmute Sound
             </button>
-            <button onclick="event.stopPropagation(); openHeroInModal()" class="bg-[#ec662d] hover:bg-orange-600 text-white font-poppins font-semibold px-3 py-1.5 rounded text-[11px] shadow transition">
+            <button 
+              onclick="event.stopPropagation(); openHeroInModal()" 
+              class="bg-[#ec662d] hover:bg-orange-600 text-white font-poppins font-semibold px-3 py-1.5 rounded text-[11px] shadow transition focus:outline-none"
+              aria-label="Open showreel in theater mode"
+            >
               Theater Mode ↗
             </button>
           </div>
@@ -628,25 +665,25 @@
 
       <!-- Category Filter Tabs -->
       <div class="flex flex-wrap items-center gap-2 mb-8" id="category-pills">
-        <button onclick="filterCategory('all')" data-cat="all" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-semibold bg-[#1f1a16] text-white transition">
+        <button onclick="filterCategory('all')" data-cat="all" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-semibold bg-[#1f1a16] text-white transition" aria-label="Action button">
           All (81)
         </button>
-        <button onclick="filterCategory('motion')" data-cat="motion" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition">
+        <button onclick="filterCategory('motion')" data-cat="motion" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition" aria-label="Action button">
           Signature 3D &amp; Motion (5)
         </button>
-        <button onclick="filterCategory('vox')" data-cat="vox" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition">
+        <button onclick="filterCategory('vox')" data-cat="vox" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition" aria-label="Action button">
           Vox &amp; Paper Collage (4)
         </button>
-        <button onclick="filterCategory('profiles')" data-cat="profiles" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition">
+        <button onclick="filterCategory('profiles')" data-cat="profiles" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition" aria-label="Action button">
           Profiles &amp; Sports (9)
         </button>
-        <button onclick="filterCategory('ui')" data-cat="ui" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition">
+        <button onclick="filterCategory('ui')" data-cat="ui" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition" aria-label="Action button">
           UI &amp; Commercial Ads (6)
         </button>
-        <button onclick="filterCategory('catering')" data-cat="catering" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition">
+        <button onclick="filterCategory('catering')" data-cat="catering" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition" aria-label="Action button">
           MT Catering UK (30)
         </button>
-        <button onclick="filterCategory('richkid')" data-cat="richkid" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition">
+        <button onclick="filterCategory('richkid')" data-cat="richkid" class="cat-pill px-4 py-1.5 rounded-full font-poppins text-xs font-medium bg-neutral-100 text-neutral-600 hover:bg-neutral-200 transition" aria-label="Action button">
           RiCH KiD Universe (27)
         </button>
       </div>
@@ -658,7 +695,7 @@
 
       <!-- See More Button -->
       <div id="see-more-wrap" class="text-center mt-12">
-        <button onclick="loadAllVideosInCurrentTab()" class="font-poppins text-xs font-semibold uppercase tracking-wider px-8 py-3.5 rounded-full border border-neutral-300 hover:border-black hover:bg-black hover:text-white transition">
+        <button onclick="loadAllVideosInCurrentTab()" class="font-poppins text-xs font-semibold uppercase tracking-wider px-8 py-3.5 rounded-full border border-neutral-300 hover:border-black hover:bg-black hover:text-white transition" aria-label="Load more showcase videos">
           See Full Archive (+ More Videos)
         </button>
       </div>
@@ -671,10 +708,10 @@
         <div>
           <div class="flex items-center gap-2 mb-1">
             <span class="w-2.5 h-2.5 rounded-full bg-[#ec662d] animate-pulse"></span>
-            <span class="font-poppins text-xs font-semibold text-neutral-400 uppercase tracking-widest">Curated Bento Showcase</span>
+            <span class="font-poppins text-xs font-semibold text-neutral-600 uppercase tracking-widest">Curated Bento Showcase</span>
           </div>
           <h2 class="font-poppins font-bold text-3xl sm:text-4xl text-[#1f1a16]">Shots &amp; Motion Loops</h2>
-          <p class="font-sans text-sm text-neutral-500 mt-1">
+          <p class="font-sans text-sm text-neutral-700 mt-1">
             Full 81+ video archive in asymmetric Bento layout: vertical reels, kinetic typography, 3D orbits &amp; brand cuts with smooth scroll reveal.
           </p>
         </div>
@@ -709,9 +746,7 @@
 
         <!-- Right: Name, Email in Orange Accent, and Friendly Bio -->
         <div class="md:col-span-7">
-          <h1 class="font-poppins font-bold text-4xl sm:text-5xl text-[#1f1a16] leading-tight mb-3">
-            Rayhan Ahmed Chowdhury
-          </h1>
+          <h2 class="font-poppins font-bold text-4xl sm:text-5xl text-[#1f1a16] leading-tight mb-3">Rayhan Ahmed Chowdhury</h2>
           <p class="font-poppins font-bold text-lg text-[#ec662d] mb-6">
             <a href="mailto:rayhan3030@gmail.com" class="hover:underline">rayhan3030@gmail.com</a>
             <span class="text-neutral-400 font-normal ml-2">/ +880 1683 876 000</span>
@@ -735,11 +770,11 @@
 
           <!-- Quick Action Buttons -->
           <div class="mt-8 flex flex-wrap items-center gap-3">
-            <a href="https://wa.me/8801683876000?text=Hi%20Rayhan,%20I%20love%20your%20portfolio." target="_blank" class="bg-[#25d366] hover:bg-green-600 text-white font-poppins font-semibold text-xs px-5 py-2.5 rounded-full transition flex items-center gap-2 shadow">
+            <a href="https://wa.me/8801683876000?text=Hi%20Rayhan,%20I%20love%20your%20portfolio." target="_blank" class="bg-[#25d366] hover:bg-green-600 text-white font-poppins font-semibold text-xs px-5 py-2.5 rounded-full transition flex items-center gap-2 shadow" aria-label="Contact on WhatsApp">
               <span>Chat on WhatsApp</span>
               <span>↗</span>
             </a>
-            <button onclick="downloadVCard()" class="border border-black text-black hover:bg-black hover:text-white font-poppins text-xs font-semibold px-5 py-2.5 rounded-full transition">
+            <button onclick="downloadVCard()" class="border border-black text-black hover:bg-black hover:text-white font-poppins text-xs font-semibold px-5 py-2.5 rounded-full transition" aria-label="Download vCard contact">
               Download vCard (.vcf)
             </button>
           </div>
@@ -750,9 +785,9 @@
       <!-- 4-Column Details Block -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-12">
         <div>
-          <h4 class="font-montserrat font-bold text-base text-[#1f1a16] mb-3 uppercase tracking-wider text-[13px]">
+          <h3 class="font-montserrat font-bold text-base text-[#1f1a16] mb-3 uppercase tracking-wider text-[13px]">
             01 / SOFTWARE
-          </h4>
+          </h3>
           <ul class="font-sans text-sm text-neutral-600 space-y-1.5">
             <li>Adobe Premiere Pro</li>
             <li>Adobe After Effects</li>
@@ -765,9 +800,9 @@
         </div>
 
         <div>
-          <h4 class="font-montserrat font-bold text-base text-[#1f1a16] mb-3 uppercase tracking-wider text-[13px]">
+          <h3 class="font-montserrat font-bold text-base text-[#1f1a16] mb-3 uppercase tracking-wider text-[13px]">
             02 / DISCIPLINES
-          </h4>
+          </h3>
           <ul class="font-sans text-sm text-neutral-600 space-y-1.5">
             <li>3D Camera Orbit Tracking</li>
             <li>High-Retention Social Pacing</li>
@@ -778,9 +813,9 @@
         </div>
 
         <div>
-          <h4 class="font-montserrat font-bold text-base text-[#1f1a16] mb-3 uppercase tracking-wider text-[13px]">
+          <h3 class="font-montserrat font-bold text-base text-[#1f1a16] mb-3 uppercase tracking-wider text-[13px]">
             03 / EXPERIENCE
-          </h4>
+          </h3>
           <ul class="font-sans text-sm text-neutral-600 space-y-1.5">
             <li><a href="https://motionire.com/" target="_blank" rel="noopener noreferrer" class="font-bold text-neutral-800 hover:text-[#ec662d] transition underline decoration-neutral-300">Motionire</a> (In-House Motion Designer)</li>
             <li><strong>MT Catering Birmingham</strong> (30 Ads UK)</li>
@@ -791,13 +826,13 @@
         </div>
 
         <div>
-          <h4 class="font-montserrat font-bold text-base text-[#1f1a16] mb-3 uppercase tracking-wider text-[13px]">
+          <h3 class="font-montserrat font-bold text-base text-[#1f1a16] mb-3 uppercase tracking-wider text-[13px]">
             04 / CREATIVE TECH
-          </h4>
+          </h3>
           <p class="font-sans text-sm text-neutral-600 mb-2">
             Creator of <strong>SoundBoard Pro v20</strong>, custom Adobe Premiere extension for instant SFX auditioning.
           </p>
-          <a href="https://github.com/rayhan3030/SoundBoard-Pro-v20" target="_blank" class="font-poppins text-xs font-semibold text-[#ec662d] hover:underline">
+          <a href="https://github.com/rayhan3030/SoundBoard-Pro-v20" target="_blank" class="font-poppins text-xs font-semibold text-[#ec662d] hover:underline" aria-label="Visit GitHub Profile">
             View GitHub Repository ↗
           </a>
         </div>
@@ -821,7 +856,7 @@
           </p>
         </div>
         <div class="flex items-center gap-3 shrink-0">
-          <a href="https://github.com/rayhan3030/SoundBoard-Pro-v20" target="_blank" rel="noopener noreferrer" class="bg-[#1f1a16] hover:bg-[#8a5cf5] text-white font-poppins text-xs font-semibold px-5 py-2.5 rounded-full transition flex items-center gap-2 shadow">
+          <a href="https://github.com/rayhan3030/SoundBoard-Pro-v20" target="_blank" rel="noopener noreferrer" class="bg-[#1f1a16] hover:bg-[#8a5cf5] text-white font-poppins text-xs font-semibold px-5 py-2.5 rounded-full transition flex items-center gap-2 shadow" aria-label="Visit GitHub Profile">
             <span>Explore GitHub Repo</span>
             <span>↗</span>
           </a>
@@ -850,13 +885,13 @@
 
         <!-- Extension Top Compact Bar -->
         <div class="flex flex-wrap items-center gap-2 p-3 bg-[#252525] border-b border-[#333] text-xs">
-          <button onclick="sbReloadPacks()" class="bg-[#8a5cf5] hover:bg-[#a07cff] text-white px-3.5 py-1.5 rounded-md font-bold text-xs transition flex items-center gap-1.5 shadow">
+          <button onclick="sbReloadPacks()" class="bg-[#8a5cf5] hover:bg-[#a07cff] text-white px-3.5 py-1.5 rounded-md font-bold text-xs transition flex items-center gap-1.5 shadow" aria-label="Reload Sound Packs">
             <span>📁 Add Main Folder</span>
           </button>
-          <button onclick="sbSetTab('all')" id="sb-tab-all" class="bg-[#8a5cf5] text-white px-3 py-1.5 rounded-md font-bold text-xs border border-[#8a5cf5] transition">
+          <button onclick="sbSetTab('all')" id="sb-tab-all" class="bg-[#8a5cf5] text-white px-3 py-1.5 rounded-md font-bold text-xs border border-[#8a5cf5] transition" aria-label="Filter All Sounds">
             All (<span id="sb-count-all">24</span>)
           </button>
-          <button onclick="sbSetTab('fav')" id="sb-tab-fav" class="bg-[#333] text-neutral-300 hover:text-white px-3 py-1.5 rounded-md font-bold text-xs border border-[#444] transition">
+          <button onclick="sbSetTab('fav')" id="sb-tab-fav" class="bg-[#333] text-neutral-300 hover:text-white px-3 py-1.5 rounded-md font-bold text-xs border border-[#444] transition" aria-label="Filter Favorite Sounds">
             ★ Fav (<span id="sb-count-fav">6</span>)
           </button>
           <div class="flex-1 min-w-[200px] relative">
@@ -867,7 +902,7 @@
               oninput="sbHandleSearch(this.value)"
               class="w-full bg-[#1a1a1a] border border-[#444] focus:border-[#8a5cf5] focus:ring-1 focus:ring-[#8a5cf5] text-white px-3 py-1.5 rounded-lg text-xs placeholder-neutral-500 outline-none transition"
             >
-            <button onclick="sbClearSearch()" id="sb-search-clear" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white text-xs">✕</button>
+            <button onclick="sbClearSearch()" id="sb-search-clear" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white text-xs" aria-label="Clear Search Input">✕</button>
           </div>
           <span class="text-[10px] font-mono text-neutral-400 hidden md:inline">Drag to Track A1-A4</span>
         </div>
@@ -929,14 +964,14 @@
             
             <!-- Playback Controls -->
             <div class="flex items-center gap-2">
-              <button onclick="sbRewind()" class="bg-[#2e2e2e] hover:bg-[#3a3a3a] border border-[#3a3a3a] text-neutral-200 hover:text-white px-2.5 py-1.5 rounded text-xs font-bold transition" title="Rewind to start">
+              <button onclick="sbRewind()" class="bg-[#2e2e2e] hover:bg-[#3a3a3a] border border-[#3a3a3a] text-neutral-200 hover:text-white px-2.5 py-1.5 rounded text-xs font-bold transition" title="Rewind to start" aria-label="Rewind Sound to Beginning">
                 ↺
               </button>
-              <button onclick="sbTogglePlay()" id="sb-play-btn" class="bg-[#8a5cf5] hover:bg-[#a07cff] text-white px-3.5 py-1.5 rounded text-xs font-bold transition flex items-center gap-1.5" title="Play/Pause (Space)">
+              <button onclick="sbTogglePlay()" id="sb-play-btn" class="bg-[#8a5cf5] hover:bg-[#a07cff] text-white px-3.5 py-1.5 rounded text-xs font-bold transition flex items-center gap-1.5" title="Play/Pause (Space)" aria-label="Play or Pause Active Sound">
                 <span id="sb-play-icon">▶</span>
                 <span id="sb-play-text">Play</span>
               </button>
-              <button onclick="sbToggleMute()" id="sb-mute-btn" class="bg-[#2e2e2e] hover:bg-[#3a3a3a] border border-[#3a3a3a] text-neutral-200 px-2.5 py-1.5 rounded text-xs transition" title="Mute/Unmute">
+              <button onclick="sbToggleMute()" id="sb-mute-btn" class="bg-[#2e2e2e] hover:bg-[#3a3a3a] border border-[#3a3a3a] text-neutral-200 px-2.5 py-1.5 rounded text-xs transition" title="Mute/Unmute" aria-label="Toggle Mute Sound">
                 🔊
               </button>
               <input id="sb-vol-slider" type="range" min="0" max="1" step="0.02" value="0.9" oninput="sbSetVolume(this.value)" class="w-16 accent-[#8a5cf5] cursor-pointer" title="Volume">
@@ -954,14 +989,14 @@
               <span class="text-neutral-400 font-semibold">Pitch:</span>
               <input id="sb-pitch-slider" type="range" min="-12" max="12" step="1" value="0" oninput="sbSetPitch(this.value)" class="w-20 accent-[#8a5cf5] cursor-pointer">
               <span id="sb-pitch-val" class="font-mono text-[#a07cff] font-bold w-6 text-center">0</span>
-              <button onclick="sbResetPitch()" class="bg-[#2e2e2e] hover:bg-[#3a3a3a] border border-[#444] text-[#a07cff] px-2 py-0.5 rounded text-[10px] font-bold transition">
+              <button onclick="sbResetPitch()" class="bg-[#2e2e2e] hover:bg-[#3a3a3a] border border-[#444] text-[#a07cff] px-2 py-0.5 rounded text-[10px] font-bold transition" aria-label="Reset Sound Pitch">
                 Reset
               </button>
             </div>
 
             <!-- Branding & Action -->
             <div class="flex items-center gap-3">
-              <button onclick="sbInsertActiveSound()" id="sb-insert-btn" class="bg-[#8a5cf5] hover:bg-[#a07cff] text-white font-poppins text-xs font-bold px-3.5 py-1.5 rounded shadow transition flex items-center gap-1.5">
+              <button onclick="sbInsertActiveSound()" id="sb-insert-btn" class="bg-[#8a5cf5] hover:bg-[#a07cff] text-white font-poppins text-xs font-bold px-3.5 py-1.5 rounded shadow transition flex items-center gap-1.5" aria-label="Insert Active Sound">
                 <span>+ ADD to Timeline</span>
               </button>
               <span class="text-[10px] font-semibold text-neutral-500">Brand: <span class="text-[#8a5cf5]">RAYHAN3030</span></span>
@@ -1002,6 +1037,11 @@
       </div>
 
     </section>
+
+    <!-- Semantic Footer for 100% Landmark Score -->
+    <footer class="w-full mt-20 pt-8 pb-10 border-t border-neutral-200 text-center text-xs text-neutral-600 font-sans">
+      <p>&copy; 2026 Rayhan Ahmed Chowdhury &bull; Motion Designer &amp; Video Editor. All rights reserved.</p>
+    </footer>
 
   </main>
   </div>
@@ -1887,6 +1927,9 @@
     }
 
     function renderCardMedia(item, extraClass = '') {
+      const ytid = extractYouTubeId(item.youtubeUrl || item.id);
+      const hqThumb = `https://i.ytimg.com/vi/${ytid}/hqdefault.jpg`;
+
       if (item.previewMp4 && String(item.previewMp4).trim() !== '') {
         const src = getPreviewSrc(item.previewMp4);
         return `
@@ -1896,21 +1939,22 @@
             loop 
             muted 
             playsinline 
-            preload="metadata"
+            preload="none"
+            poster="${hqThumb}"
             class="w-full h-full object-cover ${extraClass}"
           ></video>
         `;
       }
-      const ytid = extractYouTubeId(item.youtubeUrl || item.id);
-      const highThumb = `https://img.youtube.com/vi/${ytid}/maxresdefault.jpg`;
-      const fallbackThumb = `https://img.youtube.com/vi/${ytid}/hqdefault.jpg`;
+
       return `
         <img 
-          src="${highThumb}" 
-          onerror="if(this.src!=='${fallbackThumb}')this.src='${fallbackThumb}';" 
+          src="${hqThumb}" 
           alt="${escapeHtml(item.title)}" 
+          width="480"
+          height="360"
           class="w-full h-full object-cover ${extraClass}"
           loading="lazy"
+          decoding="async"
         />
       `;
     }
@@ -2072,28 +2116,49 @@
       }
     }
 
-    // Toggle sound for Hero featured video (Local MP4)
-    function toggleMuteHero() {
-      const heroVideo = document.getElementById('hero-video-player');
-      const btn = document.getElementById('hero-mute-btn');
-      if (!heroVideo) return;
+    // Hero Facade Lazy Video Loader (loads on user interaction or idle)
+    function loadHeroIframe(unmute = false) {
+      const slot = document.getElementById('hero-active-slot');
+      const facade = document.getElementById('hero-play-facade');
+      if (!slot || slot.children.length > 0) return;
 
-      heroVideo.muted = !heroVideo.muted;
-      if (btn) {
-        btn.innerText = heroVideo.muted ? '🔊 Unmute Sound' : '🔇 Mute Sound';
-      }
+      const muteParam = unmute ? 0 : 1;
+      slot.innerHTML = `
+        <iframe 
+          id="hero-youtube-iframe"
+          class="w-full h-full border-0 select-none"
+          src="https://www.youtube.com/embed/htTfc_paA8c?autoplay=1&mute=${muteParam}&controls=1&modestbranding=1&rel=0&playsinline=1"
+          title="YouTube Video Player - From Motion Design to Humanity Advances"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      `;
+      slot.classList.remove('hidden');
+      if (facade) facade.classList.add('hidden');
+    }
+
+    // Idle load hero video after 3 seconds without blocking LCP / main-thread
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(() => {
+        setTimeout(() => loadHeroIframe(false), 3000);
+      }, { timeout: 4000 });
+    } else {
+      setTimeout(() => loadHeroIframe(false), 3500);
     }
 
     // Open Hero video in Fullscreen Cinema Modal
     function openHeroInModal() {
-      openModal({
+      const heroItem = {
         id: 'htTfc_paA8c',
-        src: './compressed_1080p_5MB.mp4',
         title: 'From Motion Design to Humanity Advances (3D Camera Showcase)',
-        catName: 'Featured 3D Motion (1080p Full HD)',
-        ratio: '16:9',
-        duration: '0:45'
-      });
+        subtitle: 'Featured 3D Motion (1080p Full HD)',
+        category: 'motion',
+        aspectRatio: 'horizontal',
+        youtubeUrl: 'https://youtu.be/htTfc_paA8c',
+        previewMp4: ''
+      };
+      openModal(heroItem, [heroItem], 0);
     }
 
     // Render Work 2-Column Square Grid with Viewport Autoplay
@@ -2494,7 +2559,7 @@
                 id="feed-iframe-${idx}"
                 class="w-full h-full border-0 select-none" 
                 src="${embedUrl}" 
-                title="${escapeHtml(item.title)}" 
+                title="YouTube Video Player - ${escapeHtml(item.title)}" 
                 frameborder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 referrerpolicy="strict-origin-when-cross-origin" 
@@ -2997,7 +3062,7 @@
 
         row.innerHTML = `
           <div class="flex items-center gap-2.5 truncate flex-1 min-w-0 pr-3">
-            <button onclick="event.stopPropagation(); sbToggleFav('${sound.id}')" class="text-sm transition hover:scale-125 focus:outline-none ${sound.fav ? 'text-amber-400' : 'text-neutral-600 hover:text-neutral-400'}" title="Toggle Favorite">
+            <button onclick="event.stopPropagation(); sbToggleFav('${sound.id}')" class="text-sm transition hover:scale-125 focus:outline-none ${sound.fav ? 'text-amber-400' : 'text-neutral-600 hover:text-neutral-400'}" title="Toggle Favorite" aria-label="Toggle Favorite for this sound">
               ★
             </button>
             <span class="text-sm shrink-0">${isPlayingThis ? '🔊' : '🎵'}</span>
@@ -3008,10 +3073,10 @@
             <span class="font-mono text-[10px] bg-[#1a1a1a] border border-[#2e2e2e] text-neutral-400 px-2 py-0.5 rounded-full">
               ${sound.durationStr.slice(6)}
             </span>
-            <button onclick="event.stopPropagation(); sbPlaySound(sbData.sounds.find(s=>s.id==='${sound.id}'))" class="w-6 h-6 rounded bg-[#333] hover:bg-[#8a5cf5] hover:text-white flex items-center justify-center text-[10px] font-bold text-neutral-300 transition" title="Audition Sound">
+            <button onclick="event.stopPropagation(); sbPlaySound(sbData.sounds.find(s= aria-label="Play sound effect">s.id==='${sound.id}'))" class="w-6 h-6 rounded bg-[#333] hover:bg-[#8a5cf5] hover:text-white flex items-center justify-center text-[10px] font-bold text-neutral-300 transition" title="Audition Sound">
               ${isPlayingThis ? '⏸' : '▶'}
             </button>
-            <button onclick="event.stopPropagation(); sbInsertSoundDirect('${sound.id}')" class="bg-[#333] hover:bg-[#8a5cf5] hover:text-white text-neutral-300 px-2 py-1 rounded text-[10px] font-bold transition flex items-center gap-1" title="Insert directly to Timeline">
+            <button onclick="event.stopPropagation(); sbInsertSoundDirect('${sound.id}')" class="bg-[#333] hover:bg-[#8a5cf5] hover:text-white text-neutral-300 px-2 py-1 rounded text-[10px] font-bold transition flex items-center gap-1" title="Insert directly to Timeline" aria-label="Insert sound effect">
               <span>+ ADD</span>
             </button>
           </div>
