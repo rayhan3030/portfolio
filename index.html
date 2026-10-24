@@ -1846,6 +1846,12 @@
       return portfolioData.filter(item => item.category === category);
     }
 
+    function getVideoRatio(item) {
+      if (!item) return '16:9';
+      if (item.aspectRatio === 'vertical' || item.ratio === '9:16') return '9:16';
+      return '16:9';
+    }
+
     function extractYouTubeId(urlOrId) {
       if (!urlOrId) return '';
       const str = String(urlOrId).trim();
