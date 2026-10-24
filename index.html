@@ -986,7 +986,7 @@
     <!-- Floating Glassmorphic Close (X) Button - Always Visible on PC & Mobile -->
     <button 
       id="modal-close-btn" 
-      onclick="closeModal()" 
+      onclick="closeVideoModal()" 
       class="fixed z-[99999] flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none"
       style="top: max(16px, env(safe-area-inset-top)); right: 16px; width: 44px; height: 44px; min-width: 44px; min-height: 44px; border-radius: 9999px; background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.25); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); cursor: pointer;"
       title="Close (ESC)"
@@ -2293,6 +2293,11 @@
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
 
+      // Push history state for Android hardware back button & browser history
+      if (!window.history.state || !window.history.state.videoModalOpen) {
+        window.history.pushState({ videoModalOpen: true }, "", "#player");
+      }
+
       // Build Feed DOM
       const feed = document.getElementById('modal-feed');
       feed.innerHTML = '';
@@ -2488,8 +2493,8 @@
       }
     }
 
-    // Close Modal and Restore Original Scroll Position
-    function closeModal() {
+    // Internal UI close & cleanup (does NOT manipulate browser history directly)
+    function hideVideoModalUI() {
       const modal = document.getElementById('video-modal');
       const feed = document.getElementById('modal-feed');
 
@@ -2509,7 +2514,7 @@
       }
 
       if (feed) feed.innerHTML = '';
-      modal.classList.add('hidden');
+      if (modal) modal.classList.add('hidden');
       document.body.style.overflow = '';
 
       if (document.fullscreenElement) {
@@ -2519,6 +2524,33 @@
       // Smoothly return to exact portfolio position
       window.scrollTo({ top: savedPortfolioScrollY, behavior: 'instant' });
     }
+
+    // User-triggered close action (from Floating ✕ button, ESC key, or backdrop)
+    function closeVideoModal() {
+      const modal = document.getElementById('video-modal');
+      const isModalOpen = modal && !modal.classList.contains('hidden');
+      if (!isModalOpen) return;
+
+      // If #player hash or state is present, navigating history back will trigger 'popstate' naturally
+      if (window.location.hash === "#player" || (window.history.state && window.history.state.videoModalOpen)) {
+        window.history.back();
+      } else {
+        hideVideoModalUI();
+      }
+    }
+
+    // Backward-compatibility alias
+    const closeModal = closeVideoModal;
+
+    // Intercept Android hardware Back button and browser navigation (popstate)
+    window.addEventListener("popstate", (event) => {
+      const modal = document.getElementById('video-modal');
+      const isModalOpen = modal && !modal.classList.contains('hidden');
+      if (isModalOpen) {
+        // Closes the modal UI without re-navigating history
+        hideVideoModalUI();
+      }
+    });
 
     // Hero Video Fullscreen Modal Launcher
     function openHeroInModal() {
@@ -2538,6 +2570,8 @@
     // Expose modal methods on window
     window.openModal = openModal;
     window.closeModal = closeModal;
+    window.closeVideoModal = closeVideoModal;
+    window.hideVideoModalUI = hideVideoModalUI;
     window.activeSlots = activeSlots;
     window.scrollFeedTo = scrollFeedTo;
 
@@ -2547,7 +2581,7 @@
       const isModalOpen = modal && !modal.classList.contains('hidden');
 
       if (e.key === 'Escape') {
-        if (isModalOpen) closeModal();
+        if (isModalOpen) closeVideoModal();
       } else if (isModalOpen) {
         if (e.key === 'ArrowDown') {
           e.preventDefault();
