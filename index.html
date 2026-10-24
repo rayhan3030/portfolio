@@ -590,40 +590,28 @@
     <!-- ==================== TAB 1: WORK (Hero Showreel + Viewport Autoplay 2-Col Grid) ==================== -->
     <section id="section-work" class="tab-page">
       
-      <!-- HERO SHOWREEL: Instant LCP Facade (Zero render-blocking video payload) -->
+      <!-- HERO SHOWREEL: Direct 1080p Native MP4 Video (Exact jlumotion.portfolio.site style) -->
       <div 
         class="carbon-player-frame group relative overflow-hidden rounded-lg bg-black cursor-pointer" 
         id="hero-player-box" 
         onclick="openHeroInModal()"
         role="button"
         tabindex="0"
-        aria-label="Play Featured Showreel: From Motion Design to Humanity Advances (3D Camera Showcase)"
+        aria-label="Play Featured Showreel: From Motion Design to Humanity Advances"
         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openHeroInModal();}"
       >
-        <!-- High-res Thumbnail Facade (Instant LCP & zero CLS) -->
-        <img 
-          id="hero-thumbnail"
-          src="https://i.ytimg.com/vi/htTfc_paA8c/maxresdefault.jpg" 
-          alt="Featured Motion Design Showreel - From Motion Design to Humanity Advances"
-          fetchpriority="high"
-          loading="eager"
-          decoding="async"
-          width="1280"
-          height="720"
-          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+        <video 
+          id="hero-video-player"
+          class="w-full h-full object-cover"
+          src="./compressed_1080p_5MB.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+        ></video>
         
-        <!-- Facade Play Button Centerpiece -->
-        <div id="hero-play-facade" class="absolute inset-0 flex items-center justify-center bg-black/25 group-hover:bg-black/15 transition-all">
-          <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-[#ec662d] flex items-center justify-center shadow-2xl transition-transform duration-300 group-hover:scale-110">
-            <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
-
-        <!-- Hero Slot for delayed video or iframe injection -->
-        <div id="hero-active-slot" class="absolute inset-0 hidden"></div>
-
-        <!-- Controls Strip -->
+        <!-- Controls Strip (Hidden on mobile, clean and prominent on desktop) -->
         <div class="hidden sm:flex absolute bottom-3 left-4 right-4 items-center justify-between text-xs text-white pointer-events-none z-30">
           <div class="bg-black/80 backdrop-blur px-3 py-1.5 rounded font-poppins text-[11px] font-medium flex items-center gap-2 pointer-events-auto">
             <span class="w-2 h-2 rounded-full bg-[#ec662d] animate-pulse"></span>
@@ -631,17 +619,17 @@
           </div>
           <div class="flex items-center gap-2 pointer-events-auto">
             <button 
-              onclick="event.stopPropagation(); loadHeroIframe(true)" 
+              onclick="event.stopPropagation(); toggleMuteHero()" 
               id="hero-mute-btn" 
               class="bg-black/80 hover:bg-black text-white font-mono text-[10px] px-3 py-1.5 rounded transition focus:outline-none"
-              aria-label="Play showreel with sound"
+              aria-label="Unmute hero showreel sound"
             >
               🔊 Unmute Sound
             </button>
             <button 
               onclick="event.stopPropagation(); openHeroInModal()" 
               class="bg-[#ec662d] hover:bg-orange-600 text-white font-poppins font-semibold px-3 py-1.5 rounded text-[11px] shadow transition focus:outline-none"
-              aria-label="Open showreel in theater mode"
+              aria-label="Open hero showreel in theater mode"
             >
               Theater Mode ↗
             </button>
@@ -2116,47 +2104,43 @@
       }
     }
 
-    // Hero Facade Lazy Video Loader (loads on user interaction or idle)
-    function loadHeroIframe(unmute = false) {
-      const slot = document.getElementById('hero-active-slot');
-      const facade = document.getElementById('hero-play-facade');
-      if (!slot || slot.children.length > 0) return;
+        // Toggle Mute Audio for Hero featured video (Local MP4)
+    function toggleMuteHero() {
+      const heroVideo = document.getElementById('hero-video-player');
+      const btn = document.getElementById('hero-mute-btn');
+      if (!heroVideo) return;
 
-      const muteParam = unmute ? 0 : 1;
-      slot.innerHTML = `
-        <iframe 
-          id="hero-youtube-iframe"
-          class="w-full h-full border-0 select-none"
-          src="https://www.youtube.com/embed/htTfc_paA8c?autoplay=1&mute=${muteParam}&controls=1&modestbranding=1&rel=0&playsinline=1"
-          title="YouTube Video Player - From Motion Design to Humanity Advances"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      `;
-      slot.classList.remove('hidden');
-      if (facade) facade.classList.add('hidden');
+      heroVideo.muted = !heroVideo.muted;
+      if (btn) {
+        btn.innerText = heroVideo.muted ? '🔊 Unmute Sound' : '🔇 Mute Sound';
+      }
     }
 
-    // Idle load hero video after 3 seconds without blocking LCP / main-thread
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(() => {
-        setTimeout(() => loadHeroIframe(false), 3000);
-      }, { timeout: 4000 });
-    } else {
-      setTimeout(() => loadHeroIframe(false), 3500);
+    // Attempt Hero Video Autoplay (ensures immediate loop playback)
+    function attemptHeroAutoplay() {
+      const heroVideo = document.getElementById('hero-video-player');
+      if (heroVideo) {
+        const p = heroVideo.play();
+        if (p !== undefined) {
+          p.catch(() => {
+            heroVideo.muted = true;
+            heroVideo.play().catch(() => {});
+          });
+        }
+      }
     }
 
     // Open Hero video in Fullscreen Cinema Modal
     function openHeroInModal() {
       const heroItem = {
         id: 'htTfc_paA8c',
+        src: './compressed_1080p_5MB.mp4',
         title: 'From Motion Design to Humanity Advances (3D Camera Showcase)',
         subtitle: 'Featured 3D Motion (1080p Full HD)',
         category: 'motion',
         aspectRatio: 'horizontal',
         youtubeUrl: 'https://youtu.be/htTfc_paA8c',
-        previewMp4: ''
+        duration: '0:45'
       };
       openModal(heroItem, [heroItem], 0);
     }
@@ -2230,6 +2214,7 @@
       });
 
       renderProjectsGrid();
+    attemptHeroAutoplay();
     }
 
     function loadAllVideosInCurrentTab() {
