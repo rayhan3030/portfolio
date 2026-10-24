@@ -342,10 +342,36 @@
       grid-row: span 2;
     }
     @media (max-width: 639px) {
+      .bento-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+      }
       .bento-span-tall, .bento-span-wide, .bento-span-large {
         grid-column: span 1 !important;
         grid-row: span 1 !important;
-        min-height: 280px;
+        min-height: unset !important;
+      }
+      .bento-item {
+        aspect-ratio: 9 / 14;
+        min-height: unset !important;
+        border-radius: 8px;
+      }
+      .bento-item .text-content {
+        padding: 12px 8px;
+      }
+      .bento-item .text-content h3 {
+        font-size: 0.82rem;
+        line-height: 1.25;
+        margin-bottom: 3px;
+      }
+      .bento-item .text-content .subtitle {
+        font-size: 0.62rem;
+        letter-spacing: 0.05em;
+      }
+      .bento-item .text-content span {
+        font-size: 8px !important;
+        padding: 2px 6px !important;
+        margin-top: 4px !important;
       }
     }
 
