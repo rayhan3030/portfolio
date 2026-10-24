@@ -2293,8 +2293,22 @@
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
 
-      // Push history state for Android hardware back button & browser history
-      if (!window.history.state || !window.history.state.videoModalOpen) {
+      // 1. CloseWatcher API: Modern Android OS Hardware Back Button & Gesture Navigation
+      if ('CloseWatcher' in window) {
+        if (modalCloseWatcher) {
+          try { modalCloseWatcher.destroy(); } catch (e) {}
+        }
+        try {
+          modalCloseWatcher = new CloseWatcher();
+          modalCloseWatcher.onclose = () => {
+            // Android bottom back button or system edge-swipe triggered close
+            hideVideoModalUI();
+          };
+        } catch (e) {}
+      }
+
+      // 2. History API Fallback for older browsers & deep links
+      if (window.location.hash !== "#player") {
         window.history.pushState({ videoModalOpen: true }, "", "#player");
       }
 
@@ -2493,10 +2507,18 @@
       }
     }
 
-    // Internal UI close & cleanup (does NOT manipulate browser history directly)
+    let modalCloseWatcher = null;
+
+    // Internal UI close & cleanup (tears down players, restores scroll, clears active states)
     function hideVideoModalUI() {
       const modal = document.getElementById('video-modal');
       const feed = document.getElementById('modal-feed');
+
+      // Destroy CloseWatcher instance if active
+      if (modalCloseWatcher) {
+        try { modalCloseWatcher.destroy(); } catch (e) {}
+        modalCloseWatcher = null;
+      }
 
       // Stop all active iframes / videos
       for (const [idx, data] of activeSlots.entries()) {
@@ -2521,6 +2543,13 @@
         document.exitFullscreen().catch(() => {});
       }
 
+      // Clean up URL hash without adding extra history navigation
+      if (window.location.hash === "#player") {
+        try {
+          history.replaceState(null, "", window.location.pathname + window.location.search);
+        } catch (e) {}
+      }
+
       // Smoothly return to exact portfolio position
       window.scrollTo({ top: savedPortfolioScrollY, behavior: 'instant' });
     }
@@ -2531,7 +2560,11 @@
       const isModalOpen = modal && !modal.classList.contains('hidden');
       if (!isModalOpen) return;
 
-      // If #player hash or state is present, navigating history back will trigger 'popstate' naturally
+      if (modalCloseWatcher) {
+        try { modalCloseWatcher.destroy(); } catch (e) {}
+        modalCloseWatcher = null;
+      }
+
       if (window.location.hash === "#player" || (window.history.state && window.history.state.videoModalOpen)) {
         window.history.back();
       } else {
@@ -2542,15 +2575,52 @@
     // Backward-compatibility alias
     const closeModal = closeVideoModal;
 
-    // Intercept Android hardware Back button and browser navigation (popstate)
+    // Intercept Android hardware Back button and browser navigation
     window.addEventListener("popstate", (event) => {
       const modal = document.getElementById('video-modal');
       const isModalOpen = modal && !modal.classList.contains('hidden');
       if (isModalOpen) {
-        // Closes the modal UI without re-navigating history
         hideVideoModalUI();
       }
     });
+
+    window.addEventListener("hashchange", () => {
+      const modal = document.getElementById('video-modal');
+      const isModalOpen = modal && !modal.classList.contains('hidden');
+      if (isModalOpen && window.location.hash !== "#player") {
+        hideVideoModalUI();
+      }
+    });
+
+    // Touch edge-swipe back gesture listener for Android/mobile screens
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isLeftEdgeSwipe = false;
+
+    window.addEventListener("touchstart", (e) => {
+      const modal = document.getElementById('video-modal');
+      if (!modal || modal.classList.contains('hidden')) return;
+      if (e.touches && e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        // Left edge swipe: touch originates within 60px of screen edge
+        isLeftEdgeSwipe = (touchStartX <= 60);
+      }
+    }, { passive: true });
+
+    window.addEventListener("touchend", (e) => {
+      const modal = document.getElementById('video-modal');
+      if (!modal || modal.classList.contains('hidden')) return;
+      if (isLeftEdgeSwipe && e.changedTouches && e.changedTouches.length === 1) {
+        const deltaX = e.changedTouches[0].clientX - touchStartX;
+        const deltaY = Math.abs(e.changedTouches[0].clientY - touchStartY);
+        // Swiped right more than 60px with minimal vertical angle
+        if (deltaX > 60 && deltaY < 80) {
+          closeVideoModal();
+        }
+      }
+      isLeftEdgeSwipe = false;
+    }, { passive: true });
 
     // Hero Video Fullscreen Modal Launcher
     function openHeroInModal() {
