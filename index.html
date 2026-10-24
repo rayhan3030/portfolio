@@ -349,13 +349,96 @@
       }
     }
 
-    /* Cinema Modal Custom Styles */
-    .modal-controls-fade {
-      transition: opacity 0.35s ease, transform 0.35s ease;
+    /* Cinema & Shorts Vertical Feed Modal Styles */
+    /* ==================== REELS / SHORTS VERTICAL FEED MODAL STYLES ==================== */
+    #modal-feed {
+      scroll-snap-type: y mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
-    .modal-hide-cursor {
-      cursor: none !important;
+    #modal-feed::-webkit-scrollbar {
+      display: none;
+      width: 0;
+      height: 0;
     }
+
+    .feed-snap-section {
+      width: 100%;
+      height: 100vh;
+      height: 100dvh;
+      min-height: 100vh;
+      min-height: 100dvh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+      box-sizing: border-box;
+      padding: 16px 20px;
+    }
+
+    /* Vertical 9:16 Adaptive Container */
+    .feed-stage-vertical {
+      height: 88vh;
+      max-height: 88vh;
+      aspect-ratio: 9 / 16;
+      max-width: calc(88vh * 9 / 16);
+      background: #000000;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Horizontal 16:9 Adaptive Container */
+    .feed-stage-horizontal {
+      width: min(92vw, 1400px);
+      aspect-ratio: 16 / 9;
+      max-height: 85vh;
+      background: #000000;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Mobile Adaptations */
+    @media (max-width: 640px) {
+      .feed-snap-section {
+        padding: 0;
+      }
+      .feed-stage-vertical {
+        width: 100vw;
+        height: 100dvh;
+        height: 100vh;
+        max-height: 100dvh;
+        max-width: 100vw;
+        aspect-ratio: auto;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+        box-sizing: border-box;
+      }
+      .feed-stage-horizontal {
+        width: 100vw;
+        aspect-ratio: 16 / 9;
+        max-height: 100dvh;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+      }
+    }
+
 
     /* Hero Video Player Frame */
     .carbon-player-frame {
@@ -897,86 +980,37 @@
   </main>
   </div>
 
-  <!-- ==================== CINEMA THEATER MODAL ==================== -->
-  <div id="video-modal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-xl flex items-center justify-center select-none overflow-hidden" onclick="handleModalBackdropClick(event)">
+    <!-- ==================== CINEMA THEATER & SHORTS VERTICAL FEED MODAL ==================== -->
+  <div id="video-modal" class="fixed inset-0 z-50 hidden bg-black/95 backdrop-blur-xl select-none" role="dialog" aria-modal="true">
     
-    <!-- Top Bar Header (Title, Category, Close Button) -->
-    <div id="modal-header" class="modal-controls-fade absolute top-0 left-0 right-0 z-30 px-6 sm:px-10 py-5 flex items-center justify-between bg-gradient-to-b from-black/85 via-black/40 to-transparent">
-      <div>
-        <span id="modal-tag" class="font-poppins text-[11px] uppercase font-bold tracking-wider text-[#ec662d]">Category</span>
-        <h3 id="modal-title" class="font-montserrat font-bold text-lg sm:text-2xl text-white truncate max-w-xl sm:max-w-2xl drop-shadow">Video Title</h3>
-      </div>
-      <button onclick="closeModal()" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/25 text-white flex items-center justify-center transition hover:scale-110 focus:outline-none" title="Close (ESC)">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-      </button>
-    </div>
-
-    <!-- Navigation Arrow: PREVIOUS VIDEO (Left Side of Screen) -->
-    <button id="modal-prev-btn" onclick="playPreviousVideo()" class="modal-controls-fade absolute left-4 sm:left-8 z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/25 text-white backdrop-blur flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none shadow-2xl" title="Previous Video (←)">
-      <svg class="w-6 h-6 sm:w-7 sm:h-7 -ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+    <!-- Floating Glassmorphic Close (X) Button - Always Visible on PC & Mobile -->
+    <button 
+      id="modal-close-btn" 
+      onclick="closeModal()" 
+      class="fixed z-[99999] flex items-center justify-center transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none"
+      style="top: max(16px, env(safe-area-inset-top)); right: 16px; width: 44px; height: 44px; min-width: 44px; min-height: 44px; border-radius: 9999px; background: rgba(0, 0, 0, 0.65); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.25); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); cursor: pointer;"
+      title="Close (ESC)"
+      aria-label="Close Modal"
+    >
+      <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
     </button>
 
-    <!-- Navigation Arrow: NEXT VIDEO (Right Side of Screen) -->
-    <button id="modal-next-btn" onclick="playNextVideo()" class="modal-controls-fade absolute right-4 sm:right-8 z-30 w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 hover:bg-white/25 text-white backdrop-blur flex items-center justify-center transition-all duration-300 hover:scale-110 focus:outline-none shadow-2xl" title="Next Video (→)">
-      <svg class="w-6 h-6 sm:w-7 sm:h-7 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
-    </button>
-
-    <!-- Video Stage Box (Aspect Ratio Aware: 16:9 Cinema or 9:16 Vertical) -->
-    <div id="modal-stage" class="relative transition-all duration-300 flex items-center justify-center w-[92vw] max-w-[1360px] aspect-[16/9] max-h-[82vh]" onclick="event.stopPropagation();">
-      <!-- Player Slot -->
-      <div id="modal-player-slot" class="w-full h-full bg-black rounded-lg overflow-hidden shadow-2xl relative"></div>
+    <!-- Floating Top Info Pill (Title & Category) -->
+    <div id="modal-top-info" class="fixed z-[99990] pointer-events-none transition-opacity duration-300 px-4 py-2 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-white flex items-center gap-2.5 text-xs shadow-xl" style="top: max(16px, env(safe-area-inset-top)); left: 16px; max-width: calc(100vw - 80px);">
+      <span class="w-2 h-2 rounded-full bg-[#ec662d] animate-pulse shrink-0"></span>
+      <span id="modal-feed-cat" class="font-poppins text-[10px] sm:text-[11px] uppercase font-bold text-[#ec662d] shrink-0">Category</span>
+      <span class="text-neutral-500">•</span>
+      <span id="modal-feed-title" class="font-montserrat font-semibold text-xs sm:text-sm text-white truncate drop-shadow">Title</span>
     </div>
 
-    <!-- Bottom Controls Strip (Seek Bar, Play/Pause, Time, Sound, Fullscreen) -->
-    <div id="modal-controls" class="modal-controls-fade absolute bottom-0 left-0 right-0 z-30 px-6 sm:px-12 pb-6 pt-12 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col gap-3">
-      
-      <!-- Interactive Seek Bar -->
-      <div id="seek-bar-container" class="group relative w-full h-4 flex items-center cursor-pointer select-none" onclick="handleSeekBarClick(event)">
-        <!-- Rail -->
-        <div class="w-full h-1.5 group-hover:h-2.5 bg-white/25 rounded-full relative transition-all overflow-hidden">
-          <div id="seek-progress" class="absolute left-0 top-0 bottom-0 bg-[#ec662d] rounded-full transition-all" style="width: 0%;"></div>
-        </div>
-        <!-- Thumb -->
-        <div id="seek-thumb" class="absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full shadow-lg scale-0 group-hover:scale-100 transition-transform pointer-events-none" style="left: 0%;"></div>
-      </div>
-
-      <!-- Controls Row -->
-      <div class="flex items-center justify-between text-white text-xs font-poppins">
-        <div class="flex items-center gap-4">
-          <!-- Play / Pause Button -->
-          <button id="modal-play-btn" onclick="toggleModalPlayback()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center text-white transition hover:scale-105 focus:outline-none" title="Play/Pause (Space)">
-            <svg id="modal-play-icon" class="w-4 h-4 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            <svg id="modal-pause-icon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-          </button>
-
-          <!-- Current Time / Duration -->
-          <span id="modal-time-display" class="font-mono text-xs text-neutral-300 tracking-wider">00:00 / 00:00</span>
-          
-          <!-- Quality Badge -->
-          <span class="hidden sm:inline-block bg-[#ec662d]/20 border border-[#ec662d]/50 text-[#ec662d] text-[10px] font-bold px-2.5 py-0.5 rounded font-mono">
-            1080p Full HD
-          </span>
-        </div>
-
-        <div class="flex items-center gap-3">
-          <!-- Sound Toggle -->
-          <button id="modal-sound-btn" onclick="toggleModalSound()" class="px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/25 flex items-center gap-1.5 text-xs text-white transition focus:outline-none">
-            <span id="modal-sound-icon">🔊</span>
-            <span id="modal-sound-label">Sound ON</span>
-          </button>
-
-          <!-- Direct YouTube Link -->
-          <a id="modal-direct-link" href="#" target="_blank" rel="noopener noreferrer" class="hidden sm:flex items-center gap-1 text-xs text-neutral-400 hover:text-white transition px-2 py-1">
-            <span>YouTube ↗</span>
-          </a>
-
-          <!-- Native Fullscreen -->
-          <button onclick="toggleModalFullscreen()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/25 flex items-center justify-center text-white transition hover:scale-105 focus:outline-none" title="Toggle Fullscreen (F)">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
-          </button>
-        </div>
-      </div>
-
+    <!-- Vertical Scroll-Snap Feed Container -->
+    <div 
+      id="modal-feed" 
+      class="w-full h-full overflow-y-auto overflow-x-hidden flex flex-col"
+    >
+      <!-- Snap items dynamically injected by JS -->
     </div>
 
   </div>
@@ -993,102 +1027,878 @@
       if (banner) banner.style.display = 'none';
     }
 
-    // 81+ Real Videos Archive across 6 categories
+        const portfolioData = [
+      {
+        id: "pa7E0suhShs",
+        title: "How a Random Caffe in Norway Got 2M Views",
+        subtitle: "Viral Case Study",
+        category: "motion",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/pa7E0suhShs",
+        previewMp4: "./Preview/v1.mp4",
+        duration: "0:38"
+      },
+      {
+        id: "Prk5R5SfHcM",
+        title: "Six Luxuries Money Can't Buy",
+        subtitle: "Minimalist Motion",
+        category: "motion",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/Prk5R5SfHcM",
+        previewMp4: "./Preview/v2.mp4",
+        duration: "0:42"
+      },
+      {
+        id: "wNZQ3gaEGHs",
+        title: "New Era of Video Editing Manifesto",
+        subtitle: "Visual Manifesto",
+        category: "motion",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/wNZQ3gaEGHs",
+        previewMp4: "./Preview/v3.mp4",
+        duration: "0:50"
+      },
+      {
+        id: "jYBQeqG-xQA",
+        title: "Why Some Edits Feel Cinematic",
+        subtitle: "Cinematic Rhythm",
+        category: "motion",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/jYBQeqG-xQA",
+        previewMp4: "./Preview/v4.mp4",
+        duration: "0:36"
+      },
+      {
+        id: "KK9UGLtHvdc",
+        title: "Viral Reel: Be Unique, Be Top 1%",
+        subtitle: "High-Pacing Reel",
+        category: "motion",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/KK9UGLtHvdc",
+        previewMp4: "./Preview/v5.mp4",
+        duration: "0:30"
+      },
+      {
+        id: "bmGiser02eg",
+        title: "Vox Style: New York City Explained",
+        subtitle: "Vox Paper Collage",
+        category: "vox",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/bmGiser02eg",
+        previewMp4: "./Preview/v6.mp4",
+        duration: "0:55"
+      },
+      {
+        id: "whUf1ghDusg",
+        title: "Where Did Rickshaws Really Come From",
+        subtitle: "Historical Motion",
+        category: "vox",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/whUf1ghDusg",
+        previewMp4: "./Preview/v7.mp4",
+        duration: "0:48"
+      },
+      {
+        id: "lmqVH1I2nvg",
+        title: "Vox Style: Warren Buffett Billionaire",
+        subtitle: "Financial Infographic",
+        category: "vox",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/lmqVH1I2nvg",
+        previewMp4: "./Preview/v8.mp4",
+        duration: "0:45"
+      },
+      {
+        id: "UsTGqZ9xlDA",
+        title: "Doctor Doom: Marvel's Most Terrifying Villain",
+        subtitle: "Comic Book Collage",
+        category: "vox",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/UsTGqZ9xlDA",
+        previewMp4: "./Preview/v9.mp4",
+        duration: "0:52"
+      },
+      {
+        id: "xKl_sewuR6g",
+        title: "MrBeast: From $100 Bill to $1 Billion",
+        subtitle: "Creator Documentary",
+        category: "profiles",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/xKl_sewuR6g",
+        previewMp4: "./Preview/v10.mp4",
+        duration: "0:58"
+      },
+      {
+        id: "RyFvi9fxxdA",
+        title: "Alex Hormozi: $100M Money Flying Profile",
+        subtitle: "Business Profile",
+        category: "profiles",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/RyFvi9fxxdA",
+        previewMp4: "./Preview/v11.mp4",
+        duration: "0:40"
+      },
+      {
+        id: "8m-U_drG3jU",
+        title: "Lionel Messi: Definition of Greatness",
+        subtitle: "Sports Cinematic",
+        category: "profiles",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/8m-U_drG3jU",
+        previewMp4: "./Preview/v12.mp4",
+        duration: "0:44"
+      },
+      {
+        id: "JR4YbelpmXs",
+        title: "Michael Jackson: King of Pop Biography",
+        subtitle: "Music Icon Profile",
+        category: "profiles",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/JR4YbelpmXs",
+        previewMp4: "./Preview/v13.mp4",
+        duration: "0:50"
+      },
+      {
+        id: "qKqvXWz0scs",
+        title: "Drake Career Journey & Discography",
+        subtitle: "Artist Profile",
+        category: "profiles",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/qKqvXWz0scs",
+        previewMp4: "./Preview/v14.mp4",
+        duration: "0:46"
+      },
+      {
+        id: "RaHgRIUsVkQ",
+        title: "Salman Muqtadir: YouTube Pioneer",
+        subtitle: "Creator Story",
+        category: "profiles",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/RaHgRIUsVkQ",
+        previewMp4: "./Preview/v15.mp4",
+        duration: "0:52"
+      },
+      {
+        id: "MTmbl424hLU",
+        title: "Erling Haaland: The Number 9 King",
+        subtitle: "Football Dynamics",
+        category: "profiles",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/MTmbl424hLU",
+        previewMp4: "./Preview/v16.mp4",
+        duration: "0:34"
+      },
+      {
+        id: "4CpjY9s1INo",
+        title: "IShowSpeed: Supercars Jump Reel",
+        subtitle: "Viral Energy",
+        category: "profiles",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/4CpjY9s1INo",
+        previewMp4: "./Preview/v17.mp4",
+        duration: "0:28"
+      },
+      {
+        id: "oVIfmr_ZQXo",
+        title: "IShowSpeed x World Cup 2026 Prediction",
+        subtitle: "Cultural Motion",
+        category: "profiles",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/oVIfmr_ZQXo",
+        previewMp4: "./Preview/v18.mp4",
+        duration: "0:38"
+      },
+      {
+        id: "Bx6xQAuca4E",
+        title: "iPhone 17 Pro Purchase Flow UI Animation",
+        subtitle: "App Prototype",
+        category: "ui",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/Bx6xQAuca4E",
+        previewMp4: "./Preview/v19.mp4",
+        duration: "0:32"
+      },
+      {
+        id: "2zkVnqD3RsE",
+        title: "iMessage Typo Apple Green Bubble UI",
+        subtitle: "Interaction Design",
+        category: "ui",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/2zkVnqD3RsE",
+        previewMp4: "./Preview/v20.mp4",
+        duration: "0:25"
+      },
+      {
+        id: "q-vM7qyTBxI",
+        title: "Netflix: Unlimited TV Shows Promo Ad",
+        subtitle: "Streaming Commercial",
+        category: "ui",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/q-vM7qyTBxI",
+        previewMp4: "./Preview/v21.mp4",
+        duration: "0:30"
+      },
+      {
+        id: "bWecQsJTgLE",
+        title: "Tahsan: Top Facebook Influencer (8.8M)",
+        subtitle: "Social Campaign",
+        category: "ui",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/bWecQsJTgLE",
+        previewMp4: "./Preview/v22.mp4",
+        duration: "0:40"
+      },
+      {
+        id: "-0BnDnvpLGY",
+        title: "TradeQualified Beauty Therapy Diploma Ad",
+        subtitle: "Australia Commercial",
+        category: "ui",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/-0BnDnvpLGY",
+        previewMp4: "./Preview/v23.mp4",
+        duration: "0:35"
+      },
+      {
+        id: "37nbYhP5Dwg",
+        title: "UGC Magnetic RGB Speaker Commercial",
+        subtitle: "E-Commerce UGC Ad",
+        category: "ui",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/37nbYhP5Dwg",
+        previewMp4: "./Preview/v24.mp4",
+        duration: "0:42"
+      },
+      {
+        id: "U6GU4y9N_H0",
+        title: "MT Catering: Origami Pop-up Book Luxury Ad",
+        subtitle: "Campaign Highlight",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/U6GU4y9N_H0",
+        previewMp4: "./Preview/v25.mp4",
+        duration: "0:45"
+      },
+      {
+        id: "_WNby92ndx4",
+        title: "MT Catering: 3D Plush Doll Panic to Sorted Ad",
+        subtitle: "Story Commercial",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/_WNby92ndx4",
+        previewMp4: "./Preview/v26.mp4",
+        duration: "0:48"
+      },
+      {
+        id: "BSbsd0_5AjY",
+        title: "MT Catering: Luxury Event Cinematic Ad",
+        subtitle: "Cinematic Film",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/BSbsd0_5AjY",
+        previewMp4: "./Preview/v27.mp4",
+        duration: "0:50"
+      },
+      {
+        id: "-IqzwYUhje8",
+        title: "Grand Wedding Entry: Rolls Royce vs Helicopter",
+        subtitle: "Wedding Luxury",
+        category: "catering",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/-IqzwYUhje8",
+        previewMp4: "./Preview/v28.mp4",
+        duration: "0:35"
+      },
+      {
+        id: "if9VrzV7LRA",
+        title: "MT Catering: Things Nobody Tells You AI UGC",
+        subtitle: "AI Character UGC",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/if9VrzV7LRA",
+        previewMp4: "./Preview/v29.mp4",
+        duration: "0:40"
+      },
+      {
+        id: "DoBvhjIElIc",
+        title: "MT Catering: Complete Venue Tour",
+        subtitle: "Venue Walkthrough",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/DoBvhjIElIc",
+        previewMp4: "./Preview/v30.mp4",
+        duration: "1:00"
+      },
+      {
+        id: "DDqjuE6CHF4",
+        title: "MT Catering: Desi Dawat Food ASMR",
+        subtitle: "Culinary Audio",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/DDqjuE6CHF4",
+        previewMp4: "./Preview/v31.mp4",
+        duration: "0:30"
+      },
+      {
+        id: "DTK2WOw0bLo",
+        title: "MT Catering: Full Event Service Buffet",
+        subtitle: "Service Showcase",
+        category: "catering",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/DTK2WOw0bLo",
+        previewMp4: "./Preview/v32.mp4",
+        duration: "0:45"
+      },
+      {
+        id: "4xDQQXI9laY",
+        title: "MT Catering: Walima Post Biryani to Table",
+        subtitle: "Cultural Dining",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/4xDQQXI9laY",
+        previewMp4: "./Preview/v33.mp4",
+        duration: "0:35"
+      },
+      {
+        id: "wvIz6NHlzrI",
+        title: "MT Catering: Taste of Home Kacchi Biryani",
+        subtitle: "Food Reel",
+        category: "catering",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/wvIz6NHlzrI",
+        previewMp4: "./Preview/v34.mp4",
+        duration: "0:38"
+      },
+      {
+        id: "noLrGas1DdI",
+        title: "MT Catering: Live BBQ Whole Lamb Roast",
+        subtitle: "Live BBQ Film",
+        category: "catering",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/noLrGas1DdI",
+        previewMp4: "./Preview/v35.mp4",
+        duration: "0:42"
+      },
+      {
+        id: "Cx9jcPVsWRU",
+        title: "MT Catering: Halal Catering Drone Food Letters",
+        subtitle: "Drone Spatial Ad",
+        category: "catering",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/Cx9jcPVsWRU",
+        previewMp4: "./Preview/v36.mp4",
+        duration: "0:32"
+      },
+      {
+        id: "KLHZ1wpMgkY",
+        title: "MT Catering: Vintage Newspaper Animation",
+        subtitle: "Vintage Editorial",
+        category: "catering",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/KLHZ1wpMgkY",
+        previewMp4: "./Preview/v37.mp4",
+        duration: "0:30"
+      },
+      {
+        id: "Wllckzi1vZ0",
+        title: "MT Catering: Chef on Action Beef Curry",
+        subtitle: "Kitchen Action",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/Wllckzi1vZ0",
+        previewMp4: "./Preview/v38.mp4",
+        duration: "0:28"
+      },
+      {
+        id: "WDuemx0Yw60",
+        title: "MT Catering: Before Guests Arrive BTS",
+        subtitle: "BTS Camera",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/WDuemx0Yw60",
+        previewMp4: "./Preview/v39.mp4",
+        duration: "0:35"
+      },
+      {
+        id: "2urEBtbQbqU",
+        title: "MT Catering: Catering With Love Journey",
+        subtitle: "Brand Story",
+        category: "catering",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/2urEBtbQbqU",
+        previewMp4: "./Preview/v40.mp4",
+        duration: "0:45"
+      },
+      {
+        id: "kc9h8XTuCZ4",
+        title: "MT Catering: Asian Wedding Full Service",
+        subtitle: "Asian Wedding UK",
+        category: "catering",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/kc9h8XTuCZ4",
+        previewMp4: "./Preview/v41.mp4",
+        duration: "0:50"
+      },
+      {
+        id: "4M34vvieVIw",
+        title: "MT Catering: Garden Wedding & Food Showcase",
+        subtitle: "Outdoor Event",
+        category: "catering",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/4M34vvieVIw",
+        previewMp4: "./Preview/v42.mp4",
+        duration: "0:40"
+      },
+      {
+        id: "_ni0srJ0uIM",
+        title: "MT Catering: Desi Vibes Global Style",
+        subtitle: "Brand Hybrid",
+        category: "catering",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/_ni0srJ0uIM",
+        previewMp4: "./Preview/v43.mp4",
+        duration: "0:38"
+      },
+      {
+        id: "ZIbhTundHnQ",
+        title: "MT Catering: Desi Wedding Vibes Vision",
+        subtitle: "Vision Concept",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/ZIbhTundHnQ",
+        previewMp4: "./Preview/v44.mp4",
+        duration: "0:36"
+      },
+      {
+        id: "HfWrwljY_Nk",
+        title: "MT Catering: Romantic Couple Buffet",
+        subtitle: "Couple Special",
+        category: "catering",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/HfWrwljY_Nk",
+        previewMp4: "./Preview/v45.mp4",
+        duration: "0:32"
+      },
+      {
+        id: "jVBX99gn4nc",
+        title: "MT Catering: On Reels Signature Menu",
+        subtitle: "Menu Walk",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/jVBX99gn4nc",
+        previewMp4: "./Preview/v46.mp4",
+        duration: "0:30"
+      },
+      {
+        id: "FO_zaxQxkzo",
+        title: "MT Catering: On Reels v2 Hall to Buffet",
+        subtitle: "Hall Walkthrough",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/FO_zaxQxkzo",
+        previewMp4: "./Preview/v47.mp4",
+        duration: "0:34"
+      },
+      {
+        id: "QcB79CmtzGc",
+        title: "MT Catering: Simple Food French Fries",
+        subtitle: "Quick Cut",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/QcB79CmtzGc",
+        previewMp4: "./Preview/v48.mp4",
+        duration: "0:20"
+      },
+      {
+        id: "6lBdQnLuiXw",
+        title: "MT Catering: Stay Cool Eat Fresh Summer Ad",
+        subtitle: "Summer Campaign",
+        category: "catering",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/6lBdQnLuiXw",
+        previewMp4: "./Preview/v49.mp4",
+        duration: "0:30"
+      },
+      {
+        id: "H13T5J4IAME",
+        title: "MT Catering: Trust Matters",
+        subtitle: "Brand Credibility",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/H13T5J4IAME",
+        previewMp4: "./Preview/v50.mp4",
+        duration: "0:40"
+      },
+      {
+        id: "X3RaxZP4qO4",
+        title: "MT Catering: UK Event Planning Stress",
+        subtitle: "Problem Solver Ad",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/X3RaxZP4qO4",
+        previewMp4: "./Preview/v51.mp4",
+        duration: "0:44"
+      },
+      {
+        id: "w0Dp4eBr5jo",
+        title: "MT Catering: When Food is Better Than Expected",
+        subtitle: "Guest POV",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/w0Dp4eBr5jo",
+        previewMp4: "./Preview/v52.mp4",
+        duration: "0:28"
+      },
+      {
+        id: "neO4Z8F0gdI",
+        title: "MT Catering: The Food Hits Different UGC",
+        subtitle: "Guest Testimonial",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/neO4Z8F0gdI",
+        previewMp4: "./Preview/v53.mp4",
+        duration: "0:35"
+      },
+      {
+        id: "Fbm4pyVBnJc",
+        title: "MT Catering: Happy Wedding Stage Decor",
+        subtitle: "Stage Lighting",
+        category: "catering",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/Fbm4pyVBnJc",
+        previewMp4: "./Preview/v54.mp4",
+        duration: "0:30"
+      },
+      {
+        id: "g_IUgW21Z5c",
+        title: "Rich Kid Joseph: 3 Advice for Editors 2026",
+        subtitle: "AI Character Reel",
+        category: "richkid",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/g_IUgW21Z5c",
+        previewMp4: "./Preview/v55.mp4",
+        duration: "0:45"
+      },
+      {
+        id: "sidPcqJ4aD8",
+        title: "Rich Kid Passport Animation",
+        subtitle: "Passport 3D",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/sidPcqJ4aD8",
+        previewMp4: "./Preview/v56.mp4",
+        duration: "0:38"
+      },
+      {
+        id: "ZEBwABtyodQ",
+        title: "RiCH KiD শীত এসেছে র‍্যাপ সং (Winter Rap)",
+        subtitle: "AI Rap Video",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/ZEBwABtyodQ",
+        previewMp4: "./Preview/v57.mp4",
+        duration: "0:52"
+      },
+      {
+        id: "ISE5fJkYc8U",
+        title: "Rich Kid Interview with Politicians",
+        subtitle: "Political Satire",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/ISE5fJkYc8U",
+        previewMp4: "./Preview/v58.mp4",
+        duration: "0:40"
+      },
+      {
+        id: "KunUc-gNKK0",
+        title: "টাঙ্গুয়ার হাওড়ে ঘুরতে যাওয়া বন্ধুদের নাচ",
+        subtitle: "Travel Motion",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/KunUc-gNKK0",
+        previewMp4: "./Preview/v59.mp4",
+        duration: "0:35"
+      },
+      {
+        id: "4WY-2WtYiZU",
+        title: "তারেক ভাইয়ের তিমি মাছ চুরি (Whale Heist)",
+        subtitle: "Surreal Comedy",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/4WY-2WtYiZU",
+        previewMp4: "./Preview/v60.mp4",
+        duration: "0:48"
+      },
+      {
+        id: "_X6ZurvdNhU",
+        title: "Small Brother Nabil Got Roasted",
+        subtitle: "Character Dialogue",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/_X6ZurvdNhU",
+        previewMp4: "./Preview/v61.mp4",
+        duration: "0:32"
+      },
+      {
+        id: "ovvqu3rhojY",
+        title: "Rich Kid Interview সফলতার কারন",
+        subtitle: "Motivational Parody",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/ovvqu3rhojY",
+        previewMp4: "./Preview/v62.mp4",
+        duration: "0:44"
+      },
+      {
+        id: "HEoJBJHs-TQ",
+        title: "Rich Kid Rap Song 1",
+        subtitle: "Original Audio Sync",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/HEoJBJHs-TQ",
+        previewMp4: "./Preview/v63.mp4",
+        duration: "0:50"
+      },
+      {
+        id: "MiV90WBCfZk",
+        title: "Rich Kid Motivational Influencer",
+        subtitle: "Influencer Satire",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/MiV90WBCfZk",
+        previewMp4: "./Preview/v64.mp4",
+        duration: "0:36"
+      },
+      {
+        id: "MaK1vEBQcp0",
+        title: "RiCH KiD Nightmare",
+        subtitle: "Dark Humor AI",
+        category: "richkid",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/MaK1vEBQcp0",
+        previewMp4: "./Preview/v65.mp4",
+        duration: "0:42"
+      },
+      {
+        id: "f5qjcglqKo4",
+        title: "RiCH KiD Street Vloger কুরবানির বাজার",
+        subtitle: "Market Vlogger",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/f5qjcglqKo4",
+        previewMp4: "./Preview/v66.mp4",
+        duration: "0:46"
+      },
+      {
+        id: "H7ORKKn1cBQ",
+        title: "RiCH KiD মশার নিয়ে অভিযোগ (Mosquito Rant)",
+        subtitle: "Relatable Comedy",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/H7ORKKn1cBQ",
+        previewMp4: "./Preview/v67.mp4",
+        duration: "0:30"
+      },
+      {
+        id: "KIS0pEn0IyU",
+        title: "RiCH KiD পাওয়ার ব্যাংক এয়ারপোর্টে",
+        subtitle: "Airport Logic",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/KIS0pEn0IyU",
+        previewMp4: "./Preview/v68.mp4",
+        duration: "0:34"
+      },
+      {
+        id: "ruYPF_RbC2k",
+        title: "RiCH KiD মুড সুইং (Mood Swing)",
+        subtitle: "Character Study",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/ruYPF_RbC2k",
+        previewMp4: "./Preview/v69.mp4",
+        duration: "0:28"
+      },
+      {
+        id: "ONfqJt2A8nY",
+        title: "RiCH KiD কবি সাজার চেষ্টা (Poet Parody)",
+        subtitle: "Bengali Satire",
+        category: "richkid",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/ONfqJt2A8nY",
+        previewMp4: "./Preview/v70.mp4",
+        duration: "0:38"
+      },
+      {
+        id: "UDFreVjEKGI",
+        title: "RiCH KiD কালো অন্তরকে মোটিভেশন",
+        subtitle: "Comic Dialogue",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/UDFreVjEKGI",
+        previewMp4: "./Preview/v71.mp4",
+        duration: "0:40"
+      },
+      {
+        id: "zMHkavretYY",
+        title: "RiCH KiD ছোট ভাই অন্তর প্রশ্ন",
+        subtitle: "Q&A Character",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/zMHkavretYY",
+        previewMp4: "./Preview/v72.mp4",
+        duration: "0:32"
+      },
+      {
+        id: "Hyo4C8hoBhI",
+        title: "RiCH KiD দিপুকে বিয়ের পরামর্শ",
+        subtitle: "Wedding Advice",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/Hyo4C8hoBhI",
+        previewMp4: "./Preview/v73.mp4",
+        duration: "0:44"
+      },
+      {
+        id: "3XGOs9MtvD4",
+        title: "RiCH KiD ছোট ভাই নাবিল পচানি",
+        subtitle: "Roast Series",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/3XGOs9MtvD4",
+        previewMp4: "./Preview/v74.mp4",
+        duration: "0:35"
+      },
+      {
+        id: "tbLdMyaepN8",
+        title: "RiCH KiD ডিজিটাল কামলা রনি",
+        subtitle: "Freelancer Satire",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/tbLdMyaepN8",
+        previewMp4: "./Preview/v75.mp4",
+        duration: "0:42"
+      },
+      {
+        id: "GK2-h7reu-Q",
+        title: "RiCH KiD তার এক্স এর কথা মনে",
+        subtitle: "Nostalgia Humor",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/GK2-h7reu-Q",
+        previewMp4: "./Preview/v76.mp4",
+        duration: "0:36"
+      },
+      {
+        id: "1cX1DMpynbE",
+        title: "RiCH KiD বান্ডা সমাজ টকশো তিমি",
+        subtitle: "Animated Talkshow",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/1cX1DMpynbE",
+        previewMp4: "./Preview/v77.mp4",
+        duration: "0:45"
+      },
+      {
+        id: "l3iLc_4ChCI",
+        title: "RiCH KiD বান্ডা সমাজ নিপিড়িত বানর",
+        subtitle: "Social Satire",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/l3iLc_4ChCI",
+        previewMp4: "./Preview/v78.mp4",
+        duration: "0:40"
+      },
+      {
+        id: "u-VS0Byaq4A",
+        title: "RiCH KiD বিদেশ যাবে ট্রিট দিচ্ছে",
+        subtitle: "Treat Culture",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/u-VS0Byaq4A",
+        previewMp4: "./Preview/v79.mp4",
+        duration: "0:33"
+      },
+      {
+        id: "L9t9Xm0lw4o",
+        title: "RiCh KiD ভাইরাল হলুদ পানি ট্রেন্ড",
+        subtitle: "Meme Trend",
+        category: "richkid",
+        aspectRatio: "vertical",
+        youtubeUrl: "https://youtu.be/L9t9Xm0lw4o",
+        previewMp4: "./Preview/v80.mp4",
+        duration: "0:25"
+      },
+      {
+        id: "bXELyk9xRXI",
+        title: "RiCh KiD মীম এর ডিমের তুলনা",
+        subtitle: "Dialogue Short",
+        category: "richkid",
+        aspectRatio: "horizontal",
+        youtubeUrl: "https://youtu.be/bXELyk9xRXI",
+        previewMp4: "./Preview/v81.mp4",
+        duration: "0:38"
+      }
+    ];
+
+    // Centralized Category Helpers
+    function getPortfolioItems(category = 'all') {
+      if (!category || category === 'all') return portfolioData;
+      return portfolioData.filter(item => item.category === category);
+    }
+
+    function extractYouTubeId(urlOrId) {
+      if (!urlOrId) return '';
+      const str = String(urlOrId).trim();
+      if (/^[a-zA-Z0-9_-]{11}$/.test(str)) return str;
+      const match = str.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|v\/))([a-zA-Z0-9_-]{11})/);
+      return match ? match[1] : str;
+    }
+
+    function renderCardMedia(item, extraClass = '') {
+      if (item.previewMp4 && String(item.previewMp4).trim() !== '') {
+        const src = getPreviewSrc(item.previewMp4);
+        return `
+          <video 
+            src="${src}" 
+            autoplay 
+            loop 
+            muted 
+            playsinline 
+            preload="metadata"
+            class="w-full h-full object-cover ${extraClass}"
+          ></video>
+        `;
+      }
+      const ytid = extractYouTubeId(item.youtubeUrl || item.id);
+      const highThumb = `https://img.youtube.com/vi/${ytid}/maxresdefault.jpg`;
+      const fallbackThumb = `https://img.youtube.com/vi/${ytid}/hqdefault.jpg`;
+      return `
+        <img 
+          src="${highThumb}" 
+          onerror="if(this.src!=='${fallbackThumb}')this.src='${fallbackThumb}';" 
+          alt="${escapeHtml(item.title)}" 
+          class="w-full h-full object-cover ${extraClass}"
+          loading="lazy"
+        />
+      `;
+    }
+
+    // Backward-compatibility mapping for any legacy code
     const videoArchive = {
-      motion: [
-        { id: "pa7E0suhShs", ratio: "9:16", title: "How a Random Caffe in Norway Got 2M Views", subtitle: "Viral Case Study", duration: "0:38", preview: "./Preview/v1.mp4" },
-        { id: "Prk5R5SfHcM", ratio: "9:16", title: "Six Luxuries Money Can't Buy", subtitle: "Minimalist Motion", duration: "0:42", preview: "./Preview/v2.mp4" },
-        { id: "wNZQ3gaEGHs", ratio: "9:16", title: "New Era of Video Editing Manifesto", subtitle: "Visual Manifesto", duration: "0:50", preview: "./Preview/v3.mp4" },
-        { id: "jYBQeqG-xQA", ratio: "9:16", title: "Why Some Edits Feel Cinematic", subtitle: "Cinematic Rhythm", duration: "0:36", preview: "./Preview/v4.mp4" },
-        { id: "KK9UGLtHvdc", ratio: "9:16", title: "Viral Reel: Be Unique, Be Top 1%", subtitle: "High-Pacing Reel", duration: "0:30", preview: "./Preview/v5.mp4" }
-      ],
-      vox: [
-        { id: "bmGiser02eg", ratio: "16:9", title: "Vox Style: New York City Explained", subtitle: "Vox Paper Collage", duration: "0:55", preview: "./Preview/v6.mp4" },
-        { id: "whUf1ghDusg", ratio: "9:16", title: "Where Did Rickshaws Really Come From", subtitle: "Historical Motion", duration: "0:48", preview: "./Preview/v7.mp4" },
-        { id: "lmqVH1I2nvg", ratio: "16:9", title: "Vox Style: Warren Buffett Billionaire", subtitle: "Financial Infographic", duration: "0:45", preview: "./Preview/v8.mp4" },
-        { id: "UsTGqZ9xlDA", ratio: "9:16", title: "Doctor Doom: Marvel's Most Terrifying Villain", subtitle: "Comic Book Collage", duration: "0:52", preview: "./Preview/v9.mp4" }
-      ],
-      profiles: [
-        { id: "xKl_sewuR6g", ratio: "16:9", title: "MrBeast: From $100 Bill to $1 Billion", subtitle: "Creator Documentary", duration: "0:58", preview: "./Preview/v10.mp4" },
-        { id: "RyFvi9fxxdA", ratio: "16:9", title: "Alex Hormozi: $100M Money Flying Profile", subtitle: "Business Profile", duration: "0:40", preview: "./Preview/v11.mp4" },
-        { id: "8m-U_drG3jU", ratio: "9:16", title: "Lionel Messi: Definition of Greatness", subtitle: "Sports Cinematic", duration: "0:44", preview: "./Preview/v12.mp4" },
-        { id: "JR4YbelpmXs", ratio: "9:16", title: "Michael Jackson: King of Pop Biography", subtitle: "Music Icon Profile", duration: "0:50", preview: "./Preview/v13.mp4" },
-        { id: "qKqvXWz0scs", ratio: "9:16", title: "Drake Career Journey & Discography", subtitle: "Artist Profile", duration: "0:46", preview: "./Preview/v14.mp4" },
-        { id: "RaHgRIUsVkQ", ratio: "16:9", title: "Salman Muqtadir: YouTube Pioneer", subtitle: "Creator Story", duration: "0:52", preview: "./Preview/v15.mp4" },
-        { id: "MTmbl424hLU", ratio: "16:9", title: "Erling Haaland: The Number 9 King", subtitle: "Football Dynamics", duration: "0:34", preview: "./Preview/v16.mp4" },
-        { id: "4CpjY9s1INo", ratio: "16:9", title: "IShowSpeed: Supercars Jump Reel", subtitle: "Viral Energy", duration: "0:28", preview: "./Preview/v17.mp4" },
-        { id: "oVIfmr_ZQXo", ratio: "16:9", title: "IShowSpeed x World Cup 2026 Prediction", subtitle: "Cultural Motion", duration: "0:38", preview: "./Preview/v18.mp4" }
-      ],
-      ui: [
-        { id: "Bx6xQAuca4E", ratio: "16:9", title: "iPhone 17 Pro Purchase Flow UI Animation", subtitle: "App Prototype", duration: "0:32", preview: "./Preview/v19.mp4" },
-        { id: "2zkVnqD3RsE", ratio: "16:9", title: "iMessage Typo Apple Green Bubble UI", subtitle: "Interaction Design", duration: "0:25", preview: "./Preview/v20.mp4" },
-        { id: "q-vM7qyTBxI", ratio: "16:9", title: "Netflix: Unlimited TV Shows Promo Ad", subtitle: "Streaming Commercial", duration: "0:30", preview: "./Preview/v21.mp4" },
-        { id: "bWecQsJTgLE", ratio: "16:9", title: "Tahsan: Top Facebook Influencer (8.8M)", subtitle: "Social Campaign", duration: "0:40", preview: "./Preview/v22.mp4" },
-        { id: "-0BnDnvpLGY", ratio: "9:16", title: "TradeQualified Beauty Therapy Diploma Ad", subtitle: "Australia Commercial", duration: "0:35", preview: "./Preview/v23.mp4" },
-        { id: "37nbYhP5Dwg", ratio: "9:16", title: "UGC Magnetic RGB Speaker Commercial", subtitle: "E-Commerce UGC Ad", duration: "0:42", preview: "./Preview/v24.mp4" }
-      ],
-      catering: [
-        { id: "U6GU4y9N_H0", ratio: "9:16", title: "MT Catering: Origami Pop-up Book Luxury Ad", subtitle: "Campaign Highlight", duration: "0:45", preview: "./Preview/v25.mp4" },
-        { id: "_WNby92ndx4", ratio: "9:16", title: "MT Catering: 3D Plush Doll Panic to Sorted Ad", subtitle: "Story Commercial", duration: "0:48", preview: "./Preview/v26.mp4" },
-        { id: "BSbsd0_5AjY", ratio: "9:16", title: "MT Catering: Luxury Event Cinematic Ad", subtitle: "Cinematic Film", duration: "0:50", preview: "./Preview/v27.mp4" },
-        { id: "-IqzwYUhje8", ratio: "16:9", title: "Grand Wedding Entry: Rolls Royce vs Helicopter", subtitle: "Wedding Luxury", duration: "0:35", preview: "./Preview/v28.mp4" },
-        { id: "if9VrzV7LRA", ratio: "9:16", title: "MT Catering: Things Nobody Tells You AI UGC", subtitle: "AI Character UGC", duration: "0:40", preview: "./Preview/v29.mp4" },
-        { id: "DoBvhjIElIc", ratio: "9:16", title: "MT Catering: Complete Venue Tour", subtitle: "Venue Walkthrough", duration: "1:00", preview: "./Preview/v30.mp4" },
-        { id: "DDqjuE6CHF4", ratio: "9:16", title: "MT Catering: Desi Dawat Food ASMR", subtitle: "Culinary Audio", duration: "0:30", preview: "./Preview/v31.mp4" },
-        { id: "DTK2WOw0bLo", ratio: "16:9", title: "MT Catering: Full Event Service Buffet", subtitle: "Service Showcase", duration: "0:45", preview: "./Preview/v32.mp4" },
-        { id: "4xDQQXI9laY", ratio: "9:16", title: "MT Catering: Walima Post Biryani to Table", subtitle: "Cultural Dining", duration: "0:35", preview: "./Preview/v33.mp4" },
-        { id: "wvIz6NHlzrI", ratio: "16:9", title: "MT Catering: Taste of Home Kacchi Biryani", subtitle: "Food Reel", duration: "0:38", preview: "./Preview/v34.mp4" },
-        { id: "noLrGas1DdI", ratio: "16:9", title: "MT Catering: Live BBQ Whole Lamb Roast", subtitle: "Live BBQ Film", duration: "0:42", preview: "./Preview/v35.mp4" },
-        { id: "Cx9jcPVsWRU", ratio: "16:9", title: "MT Catering: Halal Catering Drone Food Letters", subtitle: "Drone Spatial Ad", duration: "0:32", preview: "./Preview/v36.mp4" },
-        { id: "KLHZ1wpMgkY", ratio: "16:9", title: "MT Catering: Vintage Newspaper Animation", subtitle: "Vintage Editorial", duration: "0:30", preview: "./Preview/v37.mp4" },
-        { id: "Wllckzi1vZ0", ratio: "9:16", title: "MT Catering: Chef on Action Beef Curry", subtitle: "Kitchen Action", duration: "0:28", preview: "./Preview/v38.mp4" },
-        { id: "WDuemx0Yw60", ratio: "9:16", title: "MT Catering: Before Guests Arrive BTS", subtitle: "BTS Camera", duration: "0:35", preview: "./Preview/v39.mp4" },
-        { id: "2urEBtbQbqU", ratio: "16:9", title: "MT Catering: Catering With Love Journey", subtitle: "Brand Story", duration: "0:45", preview: "./Preview/v40.mp4" },
-        { id: "kc9h8XTuCZ4", ratio: "16:9", title: "MT Catering: Asian Wedding Full Service", subtitle: "Asian Wedding UK", duration: "0:50", preview: "./Preview/v41.mp4" },
-        { id: "4M34vvieVIw", ratio: "16:9", title: "MT Catering: Garden Wedding & Food Showcase", subtitle: "Outdoor Event", duration: "0:40", preview: "./Preview/v42.mp4" },
-        { id: "_ni0srJ0uIM", ratio: "16:9", title: "MT Catering: Desi Vibes Global Style", subtitle: "Brand Hybrid", duration: "0:38", preview: "./Preview/v43.mp4" },
-        { id: "ZIbhTundHnQ", ratio: "9:16", title: "MT Catering: Desi Wedding Vibes Vision", subtitle: "Vision Concept", duration: "0:36", preview: "./Preview/v44.mp4" },
-        { id: "HfWrwljY_Nk", ratio: "16:9", title: "MT Catering: Romantic Couple Buffet", subtitle: "Couple Special", duration: "0:32", preview: "./Preview/v45.mp4" },
-        { id: "jVBX99gn4nc", ratio: "9:16", title: "MT Catering: On Reels Signature Menu", subtitle: "Menu Walk", duration: "0:30", preview: "./Preview/v46.mp4" },
-        { id: "FO_zaxQxkzo", ratio: "9:16", title: "MT Catering: On Reels v2 Hall to Buffet", subtitle: "Hall Walkthrough", duration: "0:34", preview: "./Preview/v47.mp4" },
-        { id: "QcB79CmtzGc", ratio: "9:16", title: "MT Catering: Simple Food French Fries", subtitle: "Quick Cut", duration: "0:20", preview: "./Preview/v48.mp4" },
-        { id: "6lBdQnLuiXw", ratio: "16:9", title: "MT Catering: Stay Cool Eat Fresh Summer Ad", subtitle: "Summer Campaign", duration: "0:30", preview: "./Preview/v49.mp4" },
-        { id: "H13T5J4IAME", ratio: "9:16", title: "MT Catering: Trust Matters", subtitle: "Brand Credibility", duration: "0:40", preview: "./Preview/v50.mp4" },
-        { id: "X3RaxZP4qO4", ratio: "9:16", title: "MT Catering: UK Event Planning Stress", subtitle: "Problem Solver Ad", duration: "0:44", preview: "./Preview/v51.mp4" },
-        { id: "w0Dp4eBr5jo", ratio: "9:16", title: "MT Catering: When Food is Better Than Expected", subtitle: "Guest POV", duration: "0:28", preview: "./Preview/v52.mp4" },
-        { id: "neO4Z8F0gdI", ratio: "9:16", title: "MT Catering: The Food Hits Different UGC", subtitle: "Guest Testimonial", duration: "0:35", preview: "./Preview/v53.mp4" },
-        { id: "Fbm4pyVBnJc", ratio: "9:16", title: "MT Catering: Happy Wedding Stage Decor", subtitle: "Stage Lighting", duration: "0:30", preview: "./Preview/v54.mp4" }
-      ],
-      richkid: [
-        { id: "g_IUgW21Z5c", ratio: "9:16", title: "Rich Kid Joseph: 3 Advice for Editors 2026", subtitle: "AI Character Reel", duration: "0:45", preview: "./Preview/v55.mp4" },
-        { id: "sidPcqJ4aD8", ratio: "16:9", title: "Rich Kid Passport Animation", subtitle: "Passport 3D", duration: "0:38", preview: "./Preview/v56.mp4" },
-        { id: "ZEBwABtyodQ", ratio: "16:9", title: "RiCH KiD শীত এসেছে র‍্যাপ সং (Winter Rap)", subtitle: "AI Rap Video", duration: "0:52", preview: "./Preview/v57.mp4" },
-        { id: "ISE5fJkYc8U", ratio: "16:9", title: "Rich Kid Interview with Politicians", subtitle: "Political Satire", duration: "0:40", preview: "./Preview/v58.mp4" },
-        { id: "KunUc-gNKK0", ratio: "16:9", title: "টাঙ্গুয়ার হাওড়ে ঘুরতে যাওয়া বন্ধুদের নাচ", subtitle: "Travel Motion", duration: "0:35", preview: "./Preview/v59.mp4" },
-        { id: "4WY-2WtYiZU", ratio: "16:9", title: "তারেক ভাইয়ের তিমি মাছ চুরি (Whale Heist)", subtitle: "Surreal Comedy", duration: "0:48", preview: "./Preview/v60.mp4" },
-        { id: "_X6ZurvdNhU", ratio: "16:9", title: "Small Brother Nabil Got Roasted", subtitle: "Character Dialogue", duration: "0:32", preview: "./Preview/v61.mp4" },
-        { id: "ovvqu3rhojY", ratio: "16:9", title: "Rich Kid Interview সফলতার কারন", subtitle: "Motivational Parody", duration: "0:44", preview: "./Preview/v62.mp4" },
-        { id: "HEoJBJHs-TQ", ratio: "16:9", title: "Rich Kid Rap Song 1", subtitle: "Original Audio Sync", duration: "0:50", preview: "./Preview/v63.mp4" },
-        { id: "MiV90WBCfZk", ratio: "16:9", title: "Rich Kid Motivational Influencer", subtitle: "Influencer Satire", duration: "0:36", preview: "./Preview/v64.mp4" },
-        { id: "MaK1vEBQcp0", ratio: "9:16", title: "RiCH KiD Nightmare", subtitle: "Dark Humor AI", duration: "0:42", preview: "./Preview/v65.mp4" },
-        { id: "f5qjcglqKo4", ratio: "16:9", title: "RiCH KiD Street Vloger কুরবানির বাজার", subtitle: "Market Vlogger", duration: "0:46", preview: "./Preview/v66.mp4" },
-        { id: "H7ORKKn1cBQ", ratio: "16:9", title: "RiCH KiD মশার নিয়ে অভিযোগ (Mosquito Rant)", subtitle: "Relatable Comedy", duration: "0:30", preview: "./Preview/v67.mp4" },
-        { id: "KIS0pEn0IyU", ratio: "16:9", title: "RiCH KiD পাওয়ার ব্যাংক এয়ারপোর্টে", subtitle: "Airport Logic", duration: "0:34", preview: "./Preview/v68.mp4" },
-        { id: "ruYPF_RbC2k", ratio: "16:9", title: "RiCH KiD মুড সুইং (Mood Swing)", subtitle: "Character Study", duration: "0:28", preview: "./Preview/v69.mp4" },
-        { id: "ONfqJt2A8nY", ratio: "9:16", title: "RiCH KiD কবি সাজার চেষ্টা (Poet Parody)", subtitle: "Bengali Satire", duration: "0:38", preview: "./Preview/v70.mp4" },
-        { id: "UDFreVjEKGI", ratio: "16:9", title: "RiCH KiD কালো অন্তরকে মোটিভেশন", subtitle: "Comic Dialogue", duration: "0:40", preview: "./Preview/v71.mp4" },
-        { id: "zMHkavretYY", ratio: "16:9", title: "RiCH KiD ছোট ভাই অন্তর প্রশ্ন", subtitle: "Q&A Character", duration: "0:32", preview: "./Preview/v72.mp4" },
-        { id: "Hyo4C8hoBhI", ratio: "16:9", title: "RiCH KiD দিপুকে বিয়ের পরামর্শ", subtitle: "Wedding Advice", duration: "0:44", preview: "./Preview/v73.mp4" },
-        { id: "3XGOs9MtvD4", ratio: "16:9", title: "RiCH KiD ছোট ভাই নাবিল পচানি", subtitle: "Roast Series", duration: "0:35", preview: "./Preview/v74.mp4" },
-        { id: "tbLdMyaepN8", ratio: "16:9", title: "RiCH KiD ডিজিটাল কামলা রনি", subtitle: "Freelancer Satire", duration: "0:42", preview: "./Preview/v75.mp4" },
-        { id: "GK2-h7reu-Q", ratio: "16:9", title: "RiCH KiD তার এক্স এর কথা মনে", subtitle: "Nostalgia Humor", duration: "0:36", preview: "./Preview/v76.mp4" },
-        { id: "1cX1DMpynbE", ratio: "16:9", title: "RiCH KiD বান্ডা সমাজ টকশো তিমি", subtitle: "Animated Talkshow", duration: "0:45", preview: "./Preview/v77.mp4" },
-        { id: "l3iLc_4ChCI", ratio: "16:9", title: "RiCH KiD বান্ডা সমাজ নিপিড়িত বানর", subtitle: "Social Satire", duration: "0:40", preview: "./Preview/v78.mp4" },
-        { id: "u-VS0Byaq4A", ratio: "16:9", title: "RiCH KiD বিদেশ যাবে ট্রিট দিচ্ছে", subtitle: "Treat Culture", duration: "0:33", preview: "./Preview/v79.mp4" },
-        { id: "L9t9Xm0lw4o", ratio: "9:16", title: "RiCh KiD ভাইরাল হলুদ পানি ট্রেন্ড", subtitle: "Meme Trend", duration: "0:25", preview: "./Preview/v80.mp4" },
-        { id: "bXELyk9xRXI", ratio: "16:9", title: "RiCh KiD মীম এর ডিমের তুলনা", subtitle: "Dialogue Short", duration: "0:38", preview: "./Preview/v81.mp4" }
-      ]
+      motion: portfolioData.filter(i => i.category === 'motion'),
+      vox: portfolioData.filter(i => i.category === 'vox'),
+      profiles: portfolioData.filter(i => i.category === 'profiles'),
+      ui: portfolioData.filter(i => i.category === 'ui'),
+      catering: portfolioData.filter(i => i.category === 'catering'),
+      richkid: portfolioData.filter(i => i.category === 'richkid')
     };
+
+    // Expose on window for easy external access and console inspection
+    window.portfolioData = portfolioData;
+    window.videoArchive = videoArchive;
+    window.getPortfolioItems = getPortfolioItems;
+    window.renderCardMedia = renderCardMedia;
+    window.extractYouTubeId = extractYouTubeId;
 
     // Helper: Safely encode preview MP4 paths (handles spaces, brackets, special chars, Bengali unicode)
     function getPreviewSrc(previewPath) {
@@ -1285,20 +2095,10 @@
         itemBox.className = 'thumb-box';
         itemBox.onclick = () => openModal(vid, visibleItems, idx);
 
-        const previewSrc = getPreviewSrc(vid.preview);
-
         itemBox.innerHTML = `
-          <!-- Video Slot with Local MP4 Preview monitored by IntersectionObserver -->
+          <!-- Media Slot with MP4 Preview or YouTube Thumbnail fallback -->
           <div class="thumb-video-slot" id="slot-${vid.id}-${idx}">
-            <video 
-              src="${previewSrc}" 
-              autoplay 
-              loop 
-              muted 
-              playsinline 
-              preload="metadata"
-              class="w-full h-full object-cover"
-            ></video>
+            ${renderCardMedia(vid, '')}
           </div>
           
           <!-- Signature White Hover Overlay from jlumotion -->
@@ -1307,7 +2107,7 @@
           <!-- Centered Title on Hover (ONLY Title & Category Visible) -->
           <div class="text-content">
             <h3>${escapeHtml(vid.title)}</h3>
-            <div class="subtitle">${escapeHtml(vid.subtitle || vid.catName)}</div>
+            <div class="subtitle">${escapeHtml(vid.subtitle || getCategoryNiceName(vid.category || vid.catKey))}</div>
           </div>
         `;
 
@@ -1380,11 +2180,10 @@
         const item = document.createElement('div');
         
         // Bento Span Logic:
-        // - 9:16 vertical reels get tall span (row-span-2)
-        // - Key showcase items at rhythmic intervals get wide span (col-span-2) or prominent 2x2
-        // - Others get standard 1x1 cell
+        // - vertical (9:16) gets tall span
+        // - Key showcase items get wide/large span
         let spanClass = 'col-span-1 row-span-1';
-        if (vid.ratio === '9:16') {
+        if (vid.aspectRatio === 'vertical' || vid.ratio === '9:16') {
           spanClass = 'bento-span-tall';
         } else if (idx % 7 === 0) {
           spanClass = 'bento-span-wide';
@@ -1395,26 +2194,16 @@
         item.className = `bento-item ${spanClass} group`;
         item.onclick = () => openModal(vid, allShots, idx);
 
-        const previewSrc = getPreviewSrc(vid.preview);
-
         item.innerHTML = `
           <div class="thumb-video-slot" data-video-id="${vid.id}">
-            <video 
-              src="${previewSrc}" 
-              autoplay 
-              loop 
-              muted 
-              playsinline 
-              preload="metadata"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            ></video>
+            ${renderCardMedia(vid, 'transition-transform duration-500 group-hover:scale-105')}
           </div>
           <div class="overlay"></div>
           <div class="text-content">
             <h3>${escapeHtml(vid.title)}</h3>
-            <div class="subtitle">${escapeHtml(vid.subtitle || vid.catName)}</div>
+            <div class="subtitle">${escapeHtml(vid.subtitle || vid.catName || getCategoryNiceName(vid.category))}</div>
             <span class="mt-2 text-[10px] font-mono text-neutral-500 bg-black/5 px-2.5 py-0.5 rounded-full font-medium">
-              ${vid.ratio === '9:16' ? '📱 9:16 Reel' : '🎬 16:9 Showcase'} • ${escapeHtml(vid.duration || '0:40')}
+              ${(vid.aspectRatio === 'vertical' || vid.ratio === '9:16') ? '📱 9:16 Reel' : '🎬 16:9 Showcase'} • ${escapeHtml(vid.duration || '0:40')}
             </span>
           </div>
         `;
@@ -1447,457 +2236,325 @@
       if (sectionId === 'tools') sbInitPlugin();
     }
 
-    // ==================== CINEMA THEATER MODAL ENGINE ====================
-    let modalPlaylist = [];
-    let modalCurrentIndex = 0;
-    let isModalPlaying = true;
-    let isModalMuted = false;
-    let modalIdleTimer = null;
-    let modalSeekInterval = null;
-    let modalCurrentSeconds = 0;
-    let modalTotalSeconds = 45;
+        // ==================== YOUTUBE SHORTS / REELS VERTICAL FEED MODAL ENGINE ====================
+    let currentPlaylist = [];
+    let currentFeedIndex = 0;
+    let savedPortfolioScrollY = 0;
+    let feedObserver = null;
+    const activeSlots = new Map(); // index -> { iframe, ytid, isNative }
 
-    // Complete verified list of all 34 vertical 9:16 video IDs
-    const verticalVideoIds = new Set([
-        "pa7E0suhShs",
-        "Prk5R5SfHcM",
-        "wNZQ3gaEGHs",
-        "jYBQeqG-xQA",
-        "KK9UGLtHvdc",
-        "whUf1ghDusg",
-        "UsTGqZ9xlDA",
-        "8m-U_drG3jU",
-        "JR4YbelpmXs",
-        "qKqvXWz0scs",
-        "-0BnDnvpLGY",
-        "37nbYhP5Dwg",
-        "U6GU4y9N_H0",
-        "_WNby92ndx4",
-        "BSbsd0_5AjY",
-        "if9VrzV7LRA",
-        "DoBvhjIElIc",
-        "DDqjuE6CHF4",
-        "4xDQQXI9laY",
-        "Wllckzi1vZ0",
-        "WDuemx0Yw60",
-        "ZIbhTundHnQ",
-        "jVBX99gn4nc",
-        "FO_zaxQxkzo",
-        "QcB79CmtzGc",
-        "H13T5J4IAME",
-        "X3RaxZP4qO4",
-        "w0Dp4eBr5jo",
-        "neO4Z8F0gdI",
-        "Fbm4pyVBnJc",
-        "g_IUgW21Z5c",
-        "MaK1vEBQcp0",
-        "ONfqJt2A8nY",
-        "L9t9Xm0lw4o"
-    ]);
-
-    // Aspect ratio detector helper
-    function getVideoRatio(vid) {
-      if (!vid) return '16:9';
-      if (vid.ratio) return vid.ratio;
-      if (vid.id && verticalVideoIds.has(vid.id)) return '9:16';
-      return '16:9';
+    // Helper: Send command to embedded YouTube player
+    function postMessageToPlayer(iframe, func, args = []) {
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage(JSON.stringify({
+          event: 'command',
+          func: func,
+          args: args
+        }), '*');
+      }
     }
 
-    // Format seconds to mm:ss
-    function formatTime(sec) {
-      sec = Math.max(0, Math.floor(sec || 0));
-      const m = Math.floor(sec / 60);
-      const s = sec % 60;
-      return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
-    }
+    // Open Modal in Vertical Scroll-Snap Feed Mode
+    function openModal(itemOrId, playlist = [], startIndex = 0) {
+      savedPortfolioScrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
 
-    // Open Cinema Theater Modal
-    function openModal(vidOrId, playlistOrTitle = [], indexOrCategory = 0) {
-      if (typeof vidOrId === 'string') {
-        const vidObj = { id: vidOrId, title: playlistOrTitle || 'Featured Showcase', catName: indexOrCategory || 'Signature 3D & Motion', ratio: '16:9' };
-        modalPlaylist = [vidObj];
-        modalCurrentIndex = 0;
-      } else {
-        modalPlaylist = (playlistOrTitle && playlistOrTitle.length) ? playlistOrTitle : [vidOrId];
-        modalCurrentIndex = (typeof indexOrCategory === 'number' && indexOrCategory >= 0 && indexOrCategory < modalPlaylist.length) ? indexOrCategory : 0;
+      // Normalize playlist
+      let list = [];
+      if (playlist && playlist.length > 0) {
+        list = [...playlist];
+      } else if (typeof itemOrId === 'object' && itemOrId !== null) {
+        // If single item, use its category items or all items
+        const cat = itemOrId.category || itemOrId.catKey;
+        list = cat ? getPortfolioItems(cat) : [itemOrId];
+        if (!list.length) list = [itemOrId];
+      } else if (typeof itemOrId === 'string') {
+        const found = portfolioData.find(i => i.id === itemOrId);
+        list = found ? getPortfolioItems(found.category) : portfolioData;
       }
 
+      currentPlaylist = list;
+
+      // Find index in currentPlaylist
+      let initialIdx = 0;
+      if (typeof startIndex === 'number' && startIndex >= 0 && startIndex < list.length) {
+        initialIdx = startIndex;
+      } else if (typeof itemOrId === 'object' && itemOrId !== null) {
+        const fIdx = list.findIndex(i => (i.id === itemOrId.id || i.title === itemOrId.title));
+        if (fIdx !== -1) initialIdx = fIdx;
+      } else if (typeof itemOrId === 'string') {
+        const fIdx = list.findIndex(i => i.id === itemOrId);
+        if (fIdx !== -1) initialIdx = fIdx;
+      }
+
+      currentFeedIndex = initialIdx;
+
+      // Show Modal
       const modal = document.getElementById('video-modal');
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
 
-      loadModalVideo(modalPlaylist[modalCurrentIndex]);
-      setupModalInactivityTracking();
-    }
+      // Build Feed DOM
+      const feed = document.getElementById('modal-feed');
+      feed.innerHTML = '';
+      activeSlots.clear();
 
-    // Load video into Cinema Modal
-    function loadModalVideo(vid) {
-      if (!vid) return;
+      currentPlaylist.forEach((item, idx) => {
+        const section = document.createElement('div');
+        section.className = 'feed-snap-section';
+        section.dataset.index = idx;
+        section.id = `feed-item-${idx}`;
 
-      const titleEl = document.getElementById('modal-title');
-      const tagEl = document.getElementById('modal-tag');
-      const directLink = document.getElementById('modal-direct-link');
-      const stage = document.getElementById('modal-stage');
-      const slot = document.getElementById('modal-player-slot');
+        const isVert = (item.aspectRatio === 'vertical' || item.ratio === '9:16');
+        const stageClass = isVert ? 'feed-stage-vertical' : 'feed-stage-horizontal';
 
-      titleEl.innerText = vid.title || 'Untitled Project';
-      tagEl.innerText = vid.catName || 'Featured Showcase';
-      directLink.href = `https://www.youtube.com/watch?v=${vid.id}`;
-
-      // Set Aspect Ratio Container: 16:9 Widescreen or 9:16 Vertical
-      const ratio = getVideoRatio(vid);
-      const isVertical = (ratio === '9:16');
-      if (isVertical) {
-        stage.className = 'relative transition-all duration-300 flex items-center justify-center h-[85vh] max-h-[85vh] aspect-[9/16] max-w-[calc(85vh*9/16)] shadow-2xl rounded-2xl overflow-hidden';
-      } else {
-        stage.className = 'relative transition-all duration-300 flex items-center justify-center w-[92vw] max-w-[1360px] aspect-[16/9] max-h-[82vh] shadow-2xl rounded-2xl overflow-hidden';
-      }
-
-      // Reset Seek Bar & Time
-      modalCurrentSeconds = 0;
-      if (vid.duration) {
-        const parts = vid.duration.split(':');
-        if (parts.length === 2) {
-          modalTotalSeconds = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
-        }
-      } else {
-        modalTotalSeconds = 45;
-      }
-      updateModalSeekBarUI(0, modalTotalSeconds);
-
-      // Mount Video Player (Supports Local MP4 or YouTube)
-      if (vid.src) {
-        directLink.style.display = 'none';
-        slot.innerHTML = `
-          <video 
-            id="modal-active-video"
-            class="w-full h-full object-contain bg-black" 
-            src="${vid.src}" 
-            autoplay 
-            playsinline
-          ></video>
-        `;
-        const videoEl = document.getElementById('modal-active-video');
-        videoEl.onloadedmetadata = () => {
-          if (videoEl.duration && !isNaN(videoEl.duration)) {
-            modalTotalSeconds = videoEl.duration;
-            updateModalSeekBarUI(0, modalTotalSeconds);
-          }
-        };
-        videoEl.ontimeupdate = () => {
-          modalCurrentSeconds = videoEl.currentTime;
-          updateModalSeekBarUI(modalCurrentSeconds, modalTotalSeconds);
-        };
-        videoEl.onended = () => {
-          playNextVideo();
-        };
-
-        isModalPlaying = true;
-        isModalMuted = false;
-        updatePlayPauseIcon(true);
-        updateModalSoundUI(false);
-      } else {
-        directLink.style.display = 'flex';
-        directLink.href = `https://www.youtube.com/watch?v=${vid.id}`;
-
-        // Mount YouTube IFrame with full HD 1080p, autoplay, enablejsapi (youtube-nocookie with clean scale & mask)
-        const originHost = (window.location.protocol === 'file:') ? 'https://www.youtube.com' : window.location.origin;
-        const embedUrl = `https://www.youtube-nocookie.com/embed/${vid.id}?autoplay=1&mute=0&rel=0&modestbranding=1&controls=0&playsinline=1&enablejsapi=1&origin=${encodeURIComponent(originHost)}&widget_referrer=${encodeURIComponent(originHost)}`;
-
-        slot.innerHTML = `
-          <div class="w-full h-full relative overflow-hidden bg-black ${isVertical ? 'rounded-2xl' : 'rounded-lg'}">
-            <iframe 
-              id="modal-active-iframe"
-              class="w-full h-full border-0 select-none ${isVertical ? 'scale-[1.03]' : ''} transition-transform" 
-              src="${embedUrl}" 
-              title="${escapeHtml(vid.title)}" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              referrerpolicy="strict-origin-when-cross-origin" 
-              allowfullscreen>
-            </iframe>
-            ${isVertical ? `
-              <div class="pointer-events-none absolute top-0 left-0 right-0 h-10 bg-gradient-to-b from-black/80 to-transparent z-10"></div>
-              <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-            ` : ''}
+        section.innerHTML = `
+          <div class="${stageClass}">
+            <div class="feed-player-slot w-full h-full relative bg-black" id="feed-slot-${idx}"></div>
           </div>
         `;
+        feed.appendChild(section);
+      });
 
-        isModalPlaying = true;
-        isModalMuted = false;
-        updatePlayPauseIcon(true);
-        updateModalSoundUI(false);
+      // Jump instantly to initial item
+      const initialSection = document.getElementById(`feed-item-${initialIdx}`);
+      if (initialSection) {
+        initialSection.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }
 
-        // Enforce 1080p high resolution playback once loaded
-        const iframe = slot.querySelector('iframe');
-        if (iframe) {
-          iframe.onload = () => {
-            setTimeout(() => {
-              postMessageToPlayer(iframe, 'setPlaybackQuality', ['hd1080']);
-              postMessageToPlayer(iframe, 'playVideo');
-            }, 300);
-          };
-        }
+      // Sync active 3-item window & play initial item
+      syncFeedWindow(initialIdx, true);
 
-        // Start Seek Bar Progression Loop
-        clearInterval(modalSeekInterval);
-        modalSeekInterval = setInterval(() => {
-          if (isModalPlaying) {
-            modalCurrentSeconds += 0.1;
-            if (modalCurrentSeconds >= modalTotalSeconds) {
-              playNextVideo();
-              return;
+      // Setup IntersectionObserver for smooth auto play/pause on snap
+      setupFeedObserver();
+    }
+
+    // Set up scroll-snap IntersectionObserver
+    function setupFeedObserver() {
+      if (feedObserver) {
+        feedObserver.disconnect();
+      }
+
+      const feed = document.getElementById('modal-feed');
+      feedObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+            const idx = parseInt(entry.target.dataset.index, 10);
+            if (!isNaN(idx) && idx !== currentFeedIndex) {
+              onFeedItemSnapped(idx);
             }
-            updateModalSeekBarUI(modalCurrentSeconds, modalTotalSeconds);
           }
-        }, 100);
-      }
+        });
+      }, {
+        root: feed,
+        threshold: 0.6
+      });
 
-      // Show controls and restart 3s auto-hide timer
-      wakeModalControls();
+      feed.querySelectorAll('.feed-snap-section').forEach(sec => feedObserver.observe(sec));
     }
 
-    // Previous & Next Video Navigation
-    function playPreviousVideo() {
-      if (!modalPlaylist.length) return;
-      modalCurrentIndex = (modalCurrentIndex - 1 + modalPlaylist.length) % modalPlaylist.length;
-      loadModalVideo(modalPlaylist[modalCurrentIndex]);
-    }
-
-    function playNextVideo() {
-      if (!modalPlaylist.length) return;
-      modalCurrentIndex = (modalCurrentIndex + 1) % modalPlaylist.length;
-      loadModalVideo(modalPlaylist[modalCurrentIndex]);
-    }
-
-    // Update Seek Bar UI
-    function updateModalSeekBarUI(current, total) {
-      const progressBar = document.getElementById('seek-progress');
-      const thumb = document.getElementById('seek-thumb');
-      const timeDisplay = document.getElementById('modal-time-display');
-
-      if (!progressBar || !timeDisplay) return;
-
-      const pct = total > 0 ? Math.min(100, Math.max(0, (current / total) * 100)) : 0;
-      progressBar.style.width = pct + '%';
-      if (thumb) thumb.style.left = pct + '%';
-      timeDisplay.innerText = `${formatTime(current)} / ${formatTime(total)}`;
-    }
-
-    // Click on Seek Bar to scrub
-    function handleSeekBarClick(event) {
-      const container = document.getElementById('seek-bar-container');
-      if (!container) return;
-
-      const rect = container.getBoundingClientRect();
-      const clickX = event.clientX - rect.left;
-      const pct = Math.max(0, Math.min(1, clickX / rect.width));
-      modalCurrentSeconds = pct * modalTotalSeconds;
-
-      updateModalSeekBarUI(modalCurrentSeconds, modalTotalSeconds);
-
-      const videoEl = document.getElementById('modal-active-video');
-      if (videoEl) {
-        videoEl.currentTime = modalCurrentSeconds;
-      }
-      const iframe = document.getElementById('modal-active-iframe');
-      if (iframe) {
-        postMessageToPlayer(iframe, 'seekTo', [modalCurrentSeconds, true]);
-      }
-    }
-
-    // Play / Pause Toggle
-    function toggleModalPlayback() {
-      const videoEl = document.getElementById('modal-active-video');
-      if (videoEl) {
-        if (videoEl.paused) {
-          videoEl.play();
-          isModalPlaying = true;
-          updatePlayPauseIcon(true);
-          wakeModalControls();
-        } else {
-          videoEl.pause();
-          isModalPlaying = false;
-          updatePlayPauseIcon(false);
-          showModalControlsPermanently();
+    // When a video card snaps into view
+    function onFeedItemSnapped(newIdx) {
+      // Pause previously active video
+      const prevData = activeSlots.get(currentFeedIndex);
+      if (prevData) {
+        if (prevData.isNative) {
+          if (prevData.element) prevData.element.pause();
+        } else if (prevData.iframe) {
+          postMessageToPlayer(prevData.iframe, 'pauseVideo');
         }
-        return;
       }
 
-      const iframe = document.getElementById('modal-active-iframe');
-      if (!iframe) return;
-
-      isModalPlaying = !isModalPlaying;
-      if (isModalPlaying) {
-        postMessageToPlayer(iframe, 'playVideo');
-        updatePlayPauseIcon(true);
-        wakeModalControls();
-      } else {
-        postMessageToPlayer(iframe, 'pauseVideo');
-        updatePlayPauseIcon(false);
-        showModalControlsPermanently();
-      }
+      currentFeedIndex = newIdx;
+      syncFeedWindow(newIdx, false);
     }
 
-    function updatePlayPauseIcon(playing) {
-      const playIcon = document.getElementById('modal-play-icon');
-      const pauseIcon = document.getElementById('modal-pause-icon');
-      if (!playIcon || !pauseIcon) return;
-      if (playing) {
-        playIcon.classList.add('hidden');
-        pauseIcon.classList.remove('hidden');
-      } else {
-        playIcon.classList.remove('hidden');
-        pauseIcon.classList.add('hidden');
-      }
-    }
+    // Virtualized Buffering Engine (Keeps only index - 1, index, index + 1 in DOM)
+    function syncFeedWindow(centerIdx, isInitial) {
+      if (!currentPlaylist.length) return;
 
-    // Sound Toggle
-    function toggleModalSound() {
-      const videoEl = document.getElementById('modal-active-video');
-      if (videoEl) {
-        videoEl.muted = !videoEl.muted;
-        isModalMuted = videoEl.muted;
-        updateModalSoundUI(isModalMuted);
-        return;
+      const currentItem = currentPlaylist[centerIdx];
+      if (currentItem) {
+        const catEl = document.getElementById('modal-feed-cat');
+        const titleEl = document.getElementById('modal-feed-title');
+        if (catEl) catEl.innerText = getCategoryNiceName(currentItem.category || currentItem.catKey || 'Featured');
+        if (titleEl) titleEl.innerText = currentItem.title || 'Featured Project';
       }
 
-      const iframe = document.getElementById('modal-active-iframe');
-      if (!iframe) return;
+      // Determine required 3-item window
+      const needed = new Set([centerIdx - 1, centerIdx, centerIdx + 1].filter(i => i >= 0 && i < currentPlaylist.length));
 
-      isModalMuted = !isModalMuted;
-      if (isModalMuted) {
-        postMessageToPlayer(iframe, 'mute');
-      } else {
-        postMessageToPlayer(iframe, 'unMute');
-        postMessageToPlayer(iframe, 'setVolume', [100]);
-      }
-      updateModalSoundUI(isModalMuted);
-    }
-
-    function updateModalSoundUI(muted) {
-      const icon = document.getElementById('modal-sound-icon');
-      const label = document.getElementById('modal-sound-label');
-      if (!icon || !label) return;
-      if (muted) {
-        icon.innerText = '🔇';
-        label.innerText = 'Muted';
-      } else {
-        icon.innerText = '🔊';
-        label.innerText = 'Sound ON';
-      }
-    }
-
-    // Fullscreen Toggle
-    function toggleModalFullscreen() {
-      const modal = document.getElementById('video-modal');
-      if (!document.fullscreenElement) {
-        if (modal.requestFullscreen) modal.requestFullscreen();
-        else if (modal.webkitRequestFullscreen) modal.webkitRequestFullscreen();
-      } else {
-        if (document.exitFullscreen) document.exitFullscreen();
-      }
-    }
-
-    // 3-Second Inactivity Auto-Hide Engine
-    function wakeModalControls() {
-      const header = document.getElementById('modal-header');
-      const controls = document.getElementById('modal-controls');
-      const prevBtn = document.getElementById('modal-prev-btn');
-      const nextBtn = document.getElementById('modal-next-btn');
-      const modal = document.getElementById('video-modal');
-
-      if (!header || !controls) return;
-
-      header.style.opacity = '1';
-      header.style.pointerEvents = 'auto';
-      controls.style.opacity = '1';
-      controls.style.pointerEvents = 'auto';
-      if (prevBtn) { prevBtn.style.opacity = '1'; prevBtn.style.pointerEvents = 'auto'; }
-      if (nextBtn) { nextBtn.style.opacity = '1'; nextBtn.style.pointerEvents = 'auto'; }
-      if (modal) modal.classList.remove('modal-hide-cursor');
-
-      clearTimeout(modalIdleTimer);
-      if (isModalPlaying) {
-        modalIdleTimer = setTimeout(() => {
-          if (isModalPlaying) {
-            header.style.opacity = '0';
-            header.style.pointerEvents = 'none';
-            controls.style.opacity = '0';
-            controls.style.pointerEvents = 'none';
-            if (prevBtn) { prevBtn.style.opacity = '0'; prevBtn.style.pointerEvents = 'none'; }
-            if (nextBtn) { nextBtn.style.opacity = '0'; nextBtn.style.pointerEvents = 'none'; }
-            if (modal) modal.classList.add('modal-hide-cursor');
+      // 1. Destroy iframes outside the 3-item window to save RAM and network
+      for (const [idx, data] of activeSlots.entries()) {
+        if (!needed.has(idx)) {
+          if (data.isNative && data.element) {
+            data.element.pause();
+          } else if (data.iframe) {
+            postMessageToPlayer(data.iframe, 'stopVideo');
           }
-        }, 3000); // 3 seconds
+          const slot = document.getElementById(`feed-slot-${idx}`);
+          if (slot) slot.innerHTML = '';
+          activeSlots.delete(idx);
+        }
+      }
+
+      // 2. Mount needed items
+      const originHost = (window.location.protocol === 'file:') ? 'https://www.youtube.com' : window.location.origin;
+
+      needed.forEach(idx => {
+        const item = currentPlaylist[idx];
+        if (!item) return;
+
+        const slot = document.getElementById(`feed-slot-${idx}`);
+        if (!slot) return;
+
+        const isCurrent = (idx === centerIdx);
+
+        if (!activeSlots.has(idx)) {
+          // Mount item
+          if (item.src) {
+            // Local MP4 Video (e.g. Hero video)
+            slot.innerHTML = `
+              <video 
+                id="feed-video-${idx}"
+                class="w-full h-full object-contain bg-black" 
+                src="${item.src}" 
+                ${isCurrent ? 'autoplay' : ''} 
+                controls 
+                playsinline
+              ></video>
+            `;
+            const videoEl = slot.querySelector('video');
+            if (isCurrent && videoEl) {
+              videoEl.muted = false;
+              videoEl.play().catch(() => {
+                videoEl.muted = true;
+                videoEl.play();
+              });
+            }
+            activeSlots.set(idx, { element: videoEl, isNative: true });
+          } else {
+            // Native YouTube IFrame with controls=1, modestbranding=1, rel=0, playsinline=1, enablejsapi=1
+            const ytid = extractYouTubeId(item.youtubeUrl || item.id);
+            const autoplayFlag = isCurrent ? 1 : 0;
+            const embedUrl = `https://www.youtube.com/embed/${ytid}?enablejsapi=1&autoplay=${autoplayFlag}&controls=1&modestbranding=1&rel=0&playsinline=1&origin=${encodeURIComponent(originHost)}&widget_referrer=${encodeURIComponent(originHost)}`;
+
+            slot.innerHTML = `
+              <iframe 
+                id="feed-iframe-${idx}"
+                class="w-full h-full border-0 select-none" 
+                src="${embedUrl}" 
+                title="${escapeHtml(item.title)}" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+              </iframe>
+            `;
+            const iframe = slot.querySelector('iframe');
+            if (iframe) {
+              iframe.onload = () => {
+                if (currentFeedIndex === idx) {
+                  postMessageToPlayer(iframe, 'unMute');
+                  postMessageToPlayer(iframe, 'setVolume', [100]);
+                  postMessageToPlayer(iframe, 'playVideo');
+                }
+              };
+            }
+            activeSlots.set(idx, { iframe, ytid, isNative: false });
+          }
+        } else {
+          // Item already in DOM
+          const slotData = activeSlots.get(idx);
+          if (isCurrent) {
+            if (slotData.isNative && slotData.element) {
+              slotData.element.muted = false;
+              slotData.element.play().catch(() => {});
+            } else if (slotData.iframe) {
+              postMessageToPlayer(slotData.iframe, 'unMute');
+              postMessageToPlayer(slotData.iframe, 'setVolume', [100]);
+              postMessageToPlayer(slotData.iframe, 'playVideo');
+            }
+          }
+        }
+      });
+    }
+
+    // Scroll Feed Helper for Keyboard Navigation
+    function scrollFeedTo(idx) {
+      if (idx < 0 || idx >= currentPlaylist.length) return;
+      const target = document.getElementById(`feed-item-${idx}`);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
 
-    function showModalControlsPermanently() {
-      clearTimeout(modalIdleTimer);
-      const header = document.getElementById('modal-header');
-      const controls = document.getElementById('modal-controls');
-      const prevBtn = document.getElementById('modal-prev-btn');
-      const nextBtn = document.getElementById('modal-next-btn');
-      const modal = document.getElementById('video-modal');
-
-      if (header) { header.style.opacity = '1'; header.style.pointerEvents = 'auto'; }
-      if (controls) { controls.style.opacity = '1'; controls.style.pointerEvents = 'auto'; }
-      if (prevBtn) { prevBtn.style.opacity = '1'; prevBtn.style.pointerEvents = 'auto'; }
-      if (nextBtn) { nextBtn.style.opacity = '1'; nextBtn.style.pointerEvents = 'auto'; }
-      if (modal) modal.classList.remove('modal-hide-cursor');
-    }
-
-    let inactivityTrackingBound = false;
-    function setupModalInactivityTracking() {
-      if (inactivityTrackingBound) return;
-      const modal = document.getElementById('video-modal');
-      modal.addEventListener('mousemove', wakeModalControls);
-      modal.addEventListener('mousedown', wakeModalControls);
-      modal.addEventListener('touchstart', wakeModalControls);
-      inactivityTrackingBound = true;
-    }
-
+    // Close Modal and Restore Original Scroll Position
     function closeModal() {
       const modal = document.getElementById('video-modal');
-      const slot = document.getElementById('modal-player-slot');
-      clearInterval(modalSeekInterval);
-      clearTimeout(modalIdleTimer);
-      slot.innerHTML = '';
+      const feed = document.getElementById('modal-feed');
+
+      // Stop all active iframes / videos
+      for (const [idx, data] of activeSlots.entries()) {
+        if (data.isNative && data.element) {
+          data.element.pause();
+        } else if (data.iframe) {
+          postMessageToPlayer(data.iframe, 'stopVideo');
+        }
+      }
+      activeSlots.clear();
+
+      if (feedObserver) {
+        feedObserver.disconnect();
+        feedObserver = null;
+      }
+
+      if (feed) feed.innerHTML = '';
       modal.classList.add('hidden');
       document.body.style.overflow = '';
+
       if (document.fullscreenElement) {
         document.exitFullscreen().catch(() => {});
       }
+
+      // Smoothly return to exact portfolio position
+      window.scrollTo({ top: savedPortfolioScrollY, behavior: 'instant' });
     }
 
-    function handleModalBackdropClick(e) {
-      if (e.target.id === 'video-modal') closeModal();
+    // Hero Video Fullscreen Modal Launcher
+    function openHeroInModal() {
+      const heroItem = {
+        id: 'htTfc_paA8c',
+        src: './compressed_1080p_5MB.mp4',
+        title: 'From Motion Design to Humanity Advances (3D Camera Showcase)',
+        subtitle: 'Featured 3D Motion (1080p Full HD)',
+        category: 'motion',
+        aspectRatio: 'horizontal',
+        youtubeUrl: 'https://youtu.be/htTfc_paA8c',
+        duration: '0:45'
+      };
+      openModal(heroItem, [heroItem], 0);
     }
 
-    // Keyboard Shortcuts
+    // Expose modal methods on window
+    window.openModal = openModal;
+    window.closeModal = closeModal;
+    window.activeSlots = activeSlots;
+    window.scrollFeedTo = scrollFeedTo;
+
+    // Global Keyboard Navigation (ESC to close, Up/Down arrow to scroll)
     window.addEventListener('keydown', (e) => {
       const modal = document.getElementById('video-modal');
-      const isModalOpen = !modal.classList.contains('hidden');
+      const isModalOpen = modal && !modal.classList.contains('hidden');
 
-      if (e.key === 'Escape') closeModal();
-
-      if (isModalOpen) {
-        if (e.code === 'Space') {
+      if (e.key === 'Escape') {
+        if (isModalOpen) closeModal();
+      } else if (isModalOpen) {
+        if (e.key === 'ArrowDown') {
           e.preventDefault();
-          toggleModalPlayback();
-        } else if (e.key === 'ArrowLeft') {
+          scrollFeedTo(currentFeedIndex + 1);
+        } else if (e.key === 'ArrowUp') {
           e.preventDefault();
-          playPreviousVideo();
-        } else if (e.key === 'ArrowRight') {
-          e.preventDefault();
-          playNextVideo();
-        } else if (e.key === 'f' || e.key === 'F') {
-          e.preventDefault();
-          toggleModalFullscreen();
-        } else if (e.key === 'm' || e.key === 'M') {
-          e.preventDefault();
-          toggleModalSound();
+          scrollFeedTo(currentFeedIndex - 1);
         }
       }
     });
