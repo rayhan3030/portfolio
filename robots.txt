@@ -1,0 +1,44 @@
+# Robots.txt for https://rayhan3030.github.io/portfolio/
+# Allow legitimate search engines for SEO indexing
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+# Disallow aggressive scrapers and data-harvesting bots
+User-agent: GPTBot
+Disallow: /Preview/
+
+User-agent: CCBot
+Disallow: /Preview/
+
+User-agent: anthropic-ai
+Disallow: /Preview/
+
+User-agent: Claude-Web
+Disallow: /Preview/
+
+User-agent: *
+Allow: /
+Disallow: /Preview/*.mp4$
+
+Sitemap: https://rayhan3030.github.io/portfolio/
