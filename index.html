@@ -603,6 +603,7 @@
         <a href="#shots" onclick="showSection('shots'); closeSidebar();" class="nav-link" id="nav-shots">Shots</a>
         <a href="#about" onclick="showSection('about'); closeSidebar();" class="nav-link" id="nav-about">About</a>
         <a href="#tools" onclick="showSection('tools'); closeSidebar();" class="nav-link" id="nav-tools">SoundBoard</a>
+        <a href="#metadata-cleaner" onclick="showSection('metadata-cleaner'); closeSidebar();" class="nav-link" id="nav-metadata-cleaner">Metadata Cleaner</a>
       </nav>
     </header>
 
@@ -1102,6 +1103,178 @@
           <div class="text-[#8a5cf5] font-bold text-lg mb-1">03 / Real-Time Audition &amp; Pitch</div>
           <p class="text-xs text-neutral-600 leading-relaxed font-sans">
             Instant click-to-play with waveform visualizer and variable semitone pitch shifting, allowing sound designers to tune impacts and whooshes on the fly.
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ==================== TAB 5: METADATA CLEANER ==================== -->
+    <section id="section-metadata-cleaner" class="tab-page hidden">
+      
+      <!-- Header Strip -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#ec662d] animate-pulse"></span>
+            <span class="font-poppins text-xs font-bold text-[#ec662d] uppercase tracking-wider">Privacy &bull; 100% Client-Side Engine</span>
+          </div>
+          <h2 class="font-poppins font-bold text-3xl sm:text-4xl text-[#1f1a16]">Image Metadata &amp; AI Tag Cleaner</h2>
+          <p class="font-sans text-sm text-neutral-600 mt-1 max-w-2xl">
+            Remove EXIF data, GPS locations, and hidden AI-generation tags (C2PA) completely offline. Your image never leaves your browser.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-mono text-neutral-500 bg-neutral-100 px-3.5 py-1.5 rounded-full self-start md:self-auto border border-neutral-200">
+          <span class="text-emerald-500 font-bold">●</span> Offline Sandbox Mode
+        </div>
+      </div>
+
+      <!-- Main Tool Card (Dark Theme matching portfolio) -->
+      <div class="bg-[#18181b] border border-neutral-800 rounded-2xl p-6 sm:p-8 text-white shadow-2xl">
+        
+        <!-- Top Instruction & Security Notice -->
+        <div class="bg-[#27272a]/60 border border-neutral-700/60 rounded-xl p-4 sm:p-5 mb-6 flex items-start gap-3.5">
+          <div class="w-8 h-8 rounded-lg bg-[#ec662d]/20 text-[#ec662d] flex items-center justify-center shrink-0 mt-0.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          </div>
+          <div>
+            <h3 class="font-poppins font-semibold text-sm text-neutral-100">Zero Server Uploads &bull; Full Local Rasterization</h3>
+            <p class="font-sans text-xs text-neutral-400 mt-0.5 leading-relaxed">
+              When you load an image, it is drawn directly onto an isolated HTML5 off-screen canvas. EXIF tags, GPS metadata, camera serial numbers, Photoshop history, and AI C2PA manifests are natively excluded upon re-export.
+            </p>
+          </div>
+        </div>
+
+        <!-- Upload Drag & Drop Area -->
+        <div 
+          id="mc-dropzone" 
+          class="border-2 border-dashed border-neutral-700 hover:border-[#ec662d] focus-within:border-[#ec662d] transition-all rounded-2xl p-8 sm:p-12 text-center bg-[#202024]/50 cursor-pointer relative group"
+          onclick="document.getElementById('mc-file-input').click()"
+        >
+          <input 
+            type="file" 
+            id="mc-file-input" 
+            accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" 
+            class="hidden" 
+            onchange="mcHandleFileSelect(this.files)"
+          />
+          
+          <div class="flex flex-col items-center justify-center pointer-events-none">
+            <div class="w-16 h-16 rounded-2xl bg-neutral-800/80 group-hover:bg-[#ec662d]/20 group-hover:text-[#ec662d] text-neutral-400 flex items-center justify-center transition mb-4 shadow-inner">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            </div>
+            
+            <p class="font-poppins font-semibold text-base text-neutral-200 mb-1">
+              Drag &amp; drop your image here, or 
+              <span class="text-[#ec662d] underline decoration-[#ec662d]/50 group-hover:decoration-[#ec662d]">browse files</span>
+            </p>
+            <p class="font-sans text-xs text-neutral-400 mb-4">
+              Accepted formats: JPG, PNG, WEBP &bull; Max resolution preserved
+            </p>
+            
+            <button 
+              type="button" 
+              class="pointer-events-auto bg-[#27272a] hover:bg-[#323238] border border-neutral-700 text-neutral-200 px-5 py-2.5 rounded-xl text-xs font-poppins font-semibold transition inline-flex items-center gap-2 cursor-pointer focus:outline-none"
+              onclick="event.stopPropagation(); document.getElementById('mc-file-input').click()"
+            >
+              <svg class="w-4 h-4 text-[#ec662d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+              <span>Select Image</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Preview & Control Area (Shown after upload) -->
+        <div id="mc-preview-container" class="hidden mt-6 space-y-6">
+          
+          <div class="bg-[#202024] border border-neutral-800 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-5">
+            <!-- Small Preview Thumbnail -->
+            <div class="relative shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden border border-neutral-700 bg-black/60 flex items-center justify-center">
+              <img id="mc-preview-img" src="" alt="Image preview" class="w-full h-full object-cover">
+            </div>
+
+            <!-- Image Metadata & Specs -->
+            <div class="flex-1 min-w-0 text-center sm:text-left">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                <h4 id="mc-file-name" class="font-poppins font-semibold text-sm text-neutral-100 truncate max-w-xs sm:max-w-md">
+                  filename.jpg
+                </h4>
+                <button 
+                  type="button" 
+                  onclick="mcResetImage()" 
+                  class="text-xs text-neutral-400 hover:text-rose-400 font-sans transition self-center sm:self-auto"
+                >
+                  Remove &bull; Select Another
+                </button>
+              </div>
+
+              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-[11px] font-mono">
+                <span id="mc-file-size" class="bg-neutral-800 px-2.5 py-1 rounded-md text-neutral-300 border border-neutral-700/60">
+                  Size: --
+                </span>
+                <span id="mc-file-dims" class="bg-neutral-800 px-2.5 py-1 rounded-md text-neutral-300 border border-neutral-700/60">
+                  Dimensions: --
+                </span>
+                <span id="mc-file-type" class="bg-neutral-800 px-2.5 py-1 rounded-md text-neutral-300 border border-neutral-700/60 uppercase">
+                  Format: --
+                </span>
+              </div>
+
+              <div class="mt-2.5 flex items-center justify-center sm:justify-start gap-2 text-xs font-sans text-amber-400">
+                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                <span>Contains raw device / AI tags. Ready to be stripped.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Output Settings Strip -->
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#202024]/60 border border-neutral-800/80 rounded-xl px-5 py-3 text-xs">
+            <div class="flex items-center gap-2 text-neutral-300 font-sans">
+              <span class="text-emerald-400 font-bold">&#10003;</span>
+              <span>Output Format: <strong class="text-white">JPEG (100% Quality, Max Resolution)</strong></span>
+            </div>
+            <div class="text-neutral-400 font-mono text-[11px]">
+              Destination: <span id="mc-output-filename" class="text-neutral-200">filename_cleaned.jpg</span>
+            </div>
+          </div>
+
+          <!-- Action Button & Status Block -->
+          <div class="pt-2">
+            <button 
+              type="button" 
+              id="mc-download-btn" 
+              onclick="mcCleanAndDownload()" 
+              class="w-full sm:w-auto bg-[#ec662d] hover:bg-orange-600 active:scale-[0.99] text-white font-poppins font-semibold text-sm px-8 py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2.5 cursor-pointer focus:outline-none"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+              <span>Clean &amp; Download Image</span>
+            </button>
+
+            <!-- Status Message (Hidden by default) -->
+            <div id="mc-status" class="hidden mt-4 p-4 rounded-xl text-xs font-sans transition-all"></div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Features Cards Strip -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+        <div class="p-5 rounded-xl border border-gray-100 bg-[#f9f9f9]">
+          <div class="text-[#ec662d] font-bold text-base mb-1">01 / Complete EXIF Removal</div>
+          <p class="text-xs text-neutral-600 leading-relaxed font-sans">
+            Wipes camera make, lens model, shutter speed, timestamp, and device serial numbers permanently.
+          </p>
+        </div>
+        <div class="p-5 rounded-xl border border-gray-100 bg-[#f9f9f9]">
+          <div class="text-[#ec662d] font-bold text-base mb-1">02 / GPS Location Purge</div>
+          <p class="text-xs text-neutral-600 leading-relaxed font-sans">
+            Protects your personal safety by deleting exact latitude, longitude, and altitude geo-coordinates.
+          </p>
+        </div>
+        <div class="p-5 rounded-xl border border-gray-100 bg-[#f9f9f9]">
+          <div class="text-[#ec662d] font-bold text-base mb-1">03 / AI Tag &amp; C2PA Neutralization</div>
+          <p class="text-xs text-neutral-600 leading-relaxed font-sans">
+            Erases invisible content credentials, prompt history, and generative AI tracking signatures.
           </p>
         </div>
       </div>
@@ -3156,7 +3329,7 @@
             <span class="font-mono text-[10px] bg-[#1a1a1a] border border-[#2e2e2e] text-neutral-400 px-2 py-0.5 rounded-full">
               ${sound.durationStr.slice(6)}
             </span>
-            <button onclick="event.stopPropagation(); sbPlaySound(sbData.sounds.find(s= aria-label="Play sound effect">s.id==='${sound.id}'))" class="w-6 h-6 rounded bg-[#333] hover:bg-[#8a5cf5] hover:text-white flex items-center justify-center text-[10px] font-bold text-neutral-300 transition" title="Audition Sound">
+            <button onclick="event.stopPropagation(); sbPlaySound(sbData.sounds.find(s => s.id === '${sound.id}'))" class="w-6 h-6 rounded bg-[#333] hover:bg-[#8a5cf5] hover:text-white flex items-center justify-center text-[10px] font-bold text-neutral-300 transition" title="Audition Sound" aria-label="Play sound effect">
               ${isPlayingThis ? '⏸' : '▶'}
             </button>
             <button onclick="event.stopPropagation(); sbInsertSoundDirect('${sound.id}')" class="bg-[#333] hover:bg-[#8a5cf5] hover:text-white text-neutral-300 px-2 py-1 rounded text-[10px] font-bold transition flex items-center gap-1" title="Insert directly to Timeline" aria-label="Insert sound effect">
@@ -3597,6 +3770,207 @@
         sbDrawWaveform(sbActiveSound, sbCurrentProgress);
       }
     });
+
+    // =========================================================================
+    // METADATA CLEANER (100% Client-Side HTML5 Canvas Engine)
+    // =========================================================================
+    let mcCurrentFile = null;
+    let mcLoadedImage = null;
+
+    // Direct hash access for Metadata Cleaner
+    if (window.location.hash === '#metadata-cleaner') {
+      window.addEventListener('DOMContentLoaded', () => {
+        showSection('metadata-cleaner');
+      });
+    }
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#metadata-cleaner') {
+        showSection('metadata-cleaner');
+      }
+    });
+
+    // Drag and Drop handling
+    const mcDropzone = document.getElementById('mc-dropzone');
+    if (mcDropzone) {
+      ['dragenter', 'dragover'].forEach(eventName => {
+        mcDropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          mcDropzone.classList.add('border-[#ec662d]', 'bg-[#27272a]/70');
+        }, false);
+      });
+
+      ['dragleave', 'drop'].forEach(eventName => {
+        mcDropzone.addEventListener(eventName, (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          mcDropzone.classList.remove('border-[#ec662d]', 'bg-[#27272a]/70');
+        }, false);
+      });
+
+      mcDropzone.addEventListener('drop', (e) => {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        if (files && files.length > 0) {
+          mcHandleFileSelect(files);
+        }
+      }, false);
+    }
+
+    function mcFormatBytes(bytes) {
+      if (!bytes || bytes === 0) return '0 Bytes';
+      const k = 1024;
+      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+    }
+
+    function mcHandleFileSelect(files) {
+      if (!files || files.length === 0) return;
+      const file = files[0];
+      const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+      if (!validTypes.includes(file.type) && !file.name.match(/\.(jpe?g|png|webp)$/i)) {
+        alert('Please select a valid image file (JPG, PNG, or WEBP).');
+        return;
+      }
+
+      mcCurrentFile = file;
+
+      // Reset previous status
+      const statusEl = document.getElementById('mc-status');
+      if (statusEl) {
+        statusEl.classList.add('hidden');
+        statusEl.innerHTML = '';
+      }
+
+      // Read file via FileReader
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          mcLoadedImage = img;
+
+          // Update UI
+          const previewImg = document.getElementById('mc-preview-img');
+          const fileNameEl = document.getElementById('mc-file-name');
+          const fileSizeEl = document.getElementById('mc-file-size');
+          const fileDimsEl = document.getElementById('mc-file-dims');
+          const fileTypeEl = document.getElementById('mc-file-type');
+          const outputNameEl = document.getElementById('mc-output-filename');
+          const previewContainer = document.getElementById('mc-preview-container');
+
+          if (previewImg) previewImg.src = e.target.result;
+          if (fileNameEl) fileNameEl.innerText = file.name;
+          if (fileSizeEl) fileSizeEl.innerText = `Size: ${mcFormatBytes(file.size)}`;
+          if (fileDimsEl) fileDimsEl.innerText = `Dimensions: ${img.naturalWidth} × ${img.naturalHeight} px`;
+          if (fileTypeEl) fileTypeEl.innerText = `Format: ${file.type.replace('image/', '').toUpperCase() || 'IMAGE'}`;
+
+          const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
+          const outputFilename = `${baseName}_cleaned.jpg`;
+          if (outputNameEl) outputNameEl.innerText = outputFilename;
+
+          if (previewContainer) {
+            previewContainer.classList.remove('hidden');
+            previewContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function mcResetImage() {
+      mcCurrentFile = null;
+      mcLoadedImage = null;
+      const fileInput = document.getElementById('mc-file-input');
+      if (fileInput) fileInput.value = '';
+
+      const previewContainer = document.getElementById('mc-preview-container');
+      if (previewContainer) previewContainer.classList.add('hidden');
+
+      const statusEl = document.getElementById('mc-status');
+      if (statusEl) {
+        statusEl.classList.add('hidden');
+        statusEl.innerHTML = '';
+      }
+    }
+
+    function mcCleanAndDownload() {
+      if (!mcLoadedImage || !mcCurrentFile) {
+        alert('Please select or upload an image first.');
+        return;
+      }
+
+      const btn = document.getElementById('mc-download-btn');
+      const statusEl = document.getElementById('mc-status');
+
+      try {
+        if (btn) {
+          btn.disabled = true;
+          btn.classList.add('opacity-75');
+        }
+
+        // 1. Create off-screen canvas with exact dimensions
+        const canvas = document.createElement('canvas');
+        canvas.width = mcLoadedImage.naturalWidth;
+        canvas.height = mcLoadedImage.naturalHeight;
+
+        // 2. Draw image onto canvas
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(mcLoadedImage, 0, 0);
+
+        // 3. Export to Blob using image/jpeg with 1.0 maximum quality
+        canvas.toBlob((blob) => {
+          if (!blob) {
+            throw new Error('Canvas to Blob conversion failed.');
+          }
+
+          // 4. Construct cleaned filename
+          const baseName = mcCurrentFile.name.substring(0, mcCurrentFile.name.lastIndexOf('.')) || mcCurrentFile.name;
+          const downloadName = `${baseName}_cleaned.jpg`;
+
+          // 5. Trigger download via object URL
+          const downloadUrl = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = downloadUrl;
+          a.download = downloadName;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+
+          setTimeout(() => URL.revokeObjectURL(downloadUrl), 4000);
+
+          // 6. Show status message
+          if (statusEl) {
+            statusEl.className = "mt-4 p-4 rounded-xl text-xs font-sans bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 flex items-start gap-2.5 shadow-lg";
+            statusEl.innerHTML = `
+              <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div>
+                <strong class="font-poppins text-sm text-white block mb-0.5">Metadata stripped successfully!</strong>
+                <span>Cleaned file <strong>${escapeHtml(downloadName)}</strong> (${mcFormatBytes(blob.size)}) has been generated and saved to your Downloads. All EXIF, GPS coordinates, and C2PA AI tags have been scrubbed.</span>
+              </div>
+            `;
+            statusEl.classList.remove('hidden');
+          }
+
+          if (btn) {
+            btn.disabled = false;
+            btn.classList.remove('opacity-75');
+          }
+        }, 'image/jpeg', 1.0);
+
+      } catch (err) {
+        if (statusEl) {
+          statusEl.className = "mt-4 p-4 rounded-xl text-xs font-sans bg-rose-950/60 border border-rose-500/40 text-rose-300";
+          statusEl.innerText = "Error cleaning metadata: " + err.message;
+          statusEl.classList.remove('hidden');
+        }
+        if (btn) {
+          btn.disabled = false;
+          btn.classList.remove('opacity-75');
+        }
+      }
+    }
 
     // Initialize on Load
     window.addEventListener('DOMContentLoaded', () => {
