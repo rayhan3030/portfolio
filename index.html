@@ -31,6 +31,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;600&family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   </noscript>
 
+  <!-- JSZip for Metadata Cleaner Batch Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -1121,11 +1123,11 @@
           </div>
           <h2 class="font-poppins font-bold text-3xl sm:text-4xl text-[#1f1a16]">Image Metadata &amp; AI Tag Cleaner</h2>
           <p class="font-sans text-sm text-neutral-600 mt-1 max-w-2xl">
-            Remove EXIF data, GPS locations, and hidden AI-generation tags (C2PA) completely offline. Your image never leaves your browser.
+            Remove EXIF data, GPS locations, and hidden AI-generation tags (C2PA) completely offline. Your images never leave your browser.
           </p>
         </div>
         <div class="flex items-center gap-2 text-xs font-mono text-neutral-500 bg-neutral-100 px-3.5 py-1.5 rounded-full self-start md:self-auto border border-neutral-200">
-          <span class="text-emerald-500 font-bold">●</span> Offline Sandbox Mode
+          <span class="text-emerald-500 font-bold">●</span> Batch Mode Ready
         </div>
       </div>
 
@@ -1138,9 +1140,9 @@
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
           </div>
           <div>
-            <h3 class="font-poppins font-semibold text-sm text-neutral-100">Zero Server Uploads &bull; Full Local Rasterization</h3>
+            <h3 class="font-poppins font-semibold text-sm text-neutral-100">Zero Server Uploads &bull; Full Local Batch Rasterization</h3>
             <p class="font-sans text-xs text-neutral-400 mt-0.5 leading-relaxed">
-              When you load an image, it is drawn directly onto an isolated HTML5 off-screen canvas. EXIF tags, GPS metadata, camera serial numbers, Photoshop history, and AI C2PA manifests are natively excluded upon re-export.
+              Upload single or multiple images. Every image is processed entirely within your browser memory using HTML5 Canvas. EXIF camera details, GPS coordinates, Photoshop edit history, and C2PA generative AI tracking credentials are natively stripped.
             </p>
           </div>
         </div>
@@ -1154,9 +1156,10 @@
           <input 
             type="file" 
             id="mc-file-input" 
+            multiple
             accept="image/jpeg,image/png,image/webp,.jpg,.jpeg,.png,.webp" 
             class="hidden" 
-            onchange="mcHandleFileSelect(this.files)"
+            onchange="mcHandleFilesSelect(this.files)"
           />
           
           <div class="flex flex-col items-center justify-center pointer-events-none">
@@ -1165,11 +1168,11 @@
             </div>
             
             <p class="font-poppins font-semibold text-base text-neutral-200 mb-1">
-              Drag &amp; drop your image here, or 
+              Drag &amp; drop single or multiple images here, or 
               <span class="text-[#ec662d] underline decoration-[#ec662d]/50 group-hover:decoration-[#ec662d]">browse files</span>
             </p>
             <p class="font-sans text-xs text-neutral-400 mb-4">
-              Accepted formats: JPG, PNG, WEBP &bull; Max resolution preserved
+              Accepted formats: JPG, PNG, WEBP &bull; Select as many images as you need
             </p>
             
             <button 
@@ -1178,62 +1181,62 @@
               onclick="event.stopPropagation(); document.getElementById('mc-file-input').click()"
             >
               <svg class="w-4 h-4 text-[#ec662d]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-              <span>Select Image</span>
+              <span>Select Images</span>
             </button>
           </div>
         </div>
 
         <!-- Preview & Control Area (Shown after upload) -->
-        <div id="mc-preview-container" class="hidden mt-6 space-y-6">
+        <div id="mc-preview-container" class="hidden mt-6 space-y-5">
           
-          <div class="bg-[#202024] border border-neutral-800 rounded-xl p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-5">
-            <!-- Small Preview Thumbnail -->
-            <div class="relative shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-xl overflow-hidden border border-neutral-700 bg-black/60 flex items-center justify-center">
-              <img id="mc-preview-img" src="" alt="Image preview" class="w-full h-full object-cover">
+          <!-- Queue Header Strip -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#202024] border border-neutral-800 rounded-xl px-5 py-3.5">
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <span id="mc-queue-count" class="font-poppins font-bold text-sm text-white">0 Images Selected</span>
+              <span id="mc-queue-size" class="text-xs text-neutral-400 font-mono bg-neutral-800/80 px-2.5 py-0.5 rounded-full border border-neutral-700/60">Total: 0 MB</span>
             </div>
-
-            <!-- Image Metadata & Specs -->
-            <div class="flex-1 min-w-0 text-center sm:text-left">
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                <h4 id="mc-file-name" class="font-poppins font-semibold text-sm text-neutral-100 truncate max-w-xs sm:max-w-md">
-                  filename.jpg
-                </h4>
-                <button 
-                  type="button" 
-                  onclick="mcResetImage()" 
-                  class="text-xs text-neutral-400 hover:text-rose-400 font-sans transition self-center sm:self-auto"
-                >
-                  Remove &bull; Select Another
-                </button>
-              </div>
-
-              <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2 text-[11px] font-mono">
-                <span id="mc-file-size" class="bg-neutral-800 px-2.5 py-1 rounded-md text-neutral-300 border border-neutral-700/60">
-                  Size: --
-                </span>
-                <span id="mc-file-dims" class="bg-neutral-800 px-2.5 py-1 rounded-md text-neutral-300 border border-neutral-700/60">
-                  Dimensions: --
-                </span>
-                <span id="mc-file-type" class="bg-neutral-800 px-2.5 py-1 rounded-md text-neutral-300 border border-neutral-700/60 uppercase">
-                  Format: --
-                </span>
-              </div>
-
-              <div class="mt-2.5 flex items-center justify-center sm:justify-start gap-2 text-xs font-sans text-amber-400">
-                <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
-                <span>Contains raw device / AI tags. Ready to be stripped.</span>
-              </div>
+            <div class="flex items-center gap-3 text-xs">
+              <button 
+                type="button" 
+                onclick="document.getElementById('mc-file-input').click()" 
+                class="font-poppins font-semibold text-[#ec662d] hover:text-orange-400 flex items-center gap-1.5 cursor-pointer transition focus:outline-none"
+              >
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+                <span>Add More Images</span>
+              </button>
+              <span class="text-neutral-700">|</span>
+              <button 
+                type="button" 
+                onclick="mcClearQueue()" 
+                class="font-poppins text-neutral-400 hover:text-rose-400 transition cursor-pointer focus:outline-none"
+              >
+                Clear All
+              </button>
             </div>
           </div>
 
+          <!-- Queue Items List -->
+          <div id="mc-queue-list" class="space-y-2.5 max-h-80 overflow-y-auto pr-1"></div>
+
           <!-- Output Settings Strip -->
-          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#202024]/60 border border-neutral-800/80 rounded-xl px-5 py-3 text-xs">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-3 bg-[#202024]/60 border border-neutral-800/80 rounded-xl px-5 py-3 text-xs">
             <div class="flex items-center gap-2 text-neutral-300 font-sans">
               <span class="text-emerald-400 font-bold">&#10003;</span>
               <span>Output Format: <strong class="text-white">JPEG (100% Quality, Max Resolution)</strong></span>
             </div>
-            <div class="text-neutral-400 font-mono text-[11px]">
-              Destination: <span id="mc-output-filename" class="text-neutral-200">filename_cleaned.jpg</span>
+            <div id="mc-download-mode-badge" class="text-neutral-400 font-mono text-[11px] bg-neutral-800/60 px-2.5 py-1 rounded-md border border-neutral-700/50">
+              Single Download
+            </div>
+          </div>
+
+          <!-- Progress Bar Block -->
+          <div id="mc-progress-box" class="hidden space-y-2 bg-[#202024] border border-neutral-800 rounded-xl p-4">
+            <div class="flex items-center justify-between text-xs font-mono">
+              <span id="mc-progress-label" class="text-neutral-300">Cleaning images...</span>
+              <span id="mc-progress-pct" class="text-[#ec662d] font-bold">0%</span>
+            </div>
+            <div class="w-full bg-neutral-800 rounded-full h-2 overflow-hidden border border-neutral-700/60">
+              <div id="mc-progress-bar" class="bg-[#ec662d] h-2 rounded-full transition-all duration-200" style="width: 0%"></div>
             </div>
           </div>
 
@@ -1242,11 +1245,11 @@
             <button 
               type="button" 
               id="mc-download-btn" 
-              onclick="mcCleanAndDownload()" 
+              onclick="mcCleanAndDownloadBatch()" 
               class="w-full sm:w-auto bg-[#ec662d] hover:bg-orange-600 active:scale-[0.99] text-white font-poppins font-semibold text-sm px-8 py-4 rounded-xl shadow-lg transition flex items-center justify-center gap-2.5 cursor-pointer focus:outline-none"
             >
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-              <span>Clean &amp; Download Image</span>
+              <span id="mc-btn-label">Clean &amp; Download Image</span>
             </button>
 
             <!-- Status Message (Hidden by default) -->
@@ -3772,10 +3775,9 @@
     });
 
     // =========================================================================
-    // METADATA CLEANER (100% Client-Side HTML5 Canvas Engine)
+    // METADATA CLEANER (Batch 100% Client-Side HTML5 Canvas + JSZip Engine)
     // =========================================================================
-    let mcCurrentFile = null;
-    let mcLoadedImage = null;
+    let mcQueue = [];
 
     // Direct hash access for Metadata Cleaner
     if (window.location.hash === '#metadata-cleaner') {
@@ -3812,7 +3814,7 @@
         const dt = e.dataTransfer;
         const files = dt.files;
         if (files && files.length > 0) {
-          mcHandleFileSelect(files);
+          mcHandleFilesSelect(files);
         }
       }, false);
     }
@@ -3825,63 +3827,66 @@
       return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
     }
 
-    function mcHandleFileSelect(files) {
-      if (!files || files.length === 0) return;
-      const file = files[0];
-      const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
-      if (!validTypes.includes(file.type) && !file.name.match(/\.(jpe?g|png|webp)$/i)) {
-        alert('Please select a valid image file (JPG, PNG, or WEBP).');
+    async function mcHandleFilesSelect(fileList) {
+      if (!fileList || fileList.length === 0) return;
+
+      const validFiles = Array.from(fileList).filter(file => {
+        const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+        return validTypes.includes(file.type) || file.name.match(/\.(jpe?g|png|webp)$/i);
+      });
+
+      if (validFiles.length === 0) {
+        alert('Please select valid image files (JPG, PNG, or WEBP).');
         return;
       }
 
-      mcCurrentFile = file;
-
-      // Reset previous status
+      // Hide previous status message
       const statusEl = document.getElementById('mc-status');
       if (statusEl) {
         statusEl.classList.add('hidden');
         statusEl.innerHTML = '';
       }
 
-      // Read file via FileReader
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const img = new Image();
-        img.onload = () => {
-          mcLoadedImage = img;
+      // Read each file and push to queue
+      for (const file of validFiles) {
+        await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+              const item = {
+                id: 'mc_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
+                file: file,
+                name: file.name,
+                size: file.size,
+                type: file.type || 'image/jpeg',
+                width: img.naturalWidth,
+                height: img.naturalHeight,
+                dataUrl: e.target.result,
+                img: img,
+                cleanedBlob: null
+              };
+              mcQueue.push(item);
+              resolve();
+            };
+            img.onerror = () => resolve();
+            img.src = e.target.result;
+          };
+          reader.onerror = () => resolve();
+          reader.readAsDataURL(file);
+        });
+      }
 
-          // Update UI
-          const previewImg = document.getElementById('mc-preview-img');
-          const fileNameEl = document.getElementById('mc-file-name');
-          const fileSizeEl = document.getElementById('mc-file-size');
-          const fileDimsEl = document.getElementById('mc-file-dims');
-          const fileTypeEl = document.getElementById('mc-file-type');
-          const outputNameEl = document.getElementById('mc-output-filename');
-          const previewContainer = document.getElementById('mc-preview-container');
-
-          if (previewImg) previewImg.src = e.target.result;
-          if (fileNameEl) fileNameEl.innerText = file.name;
-          if (fileSizeEl) fileSizeEl.innerText = `Size: ${mcFormatBytes(file.size)}`;
-          if (fileDimsEl) fileDimsEl.innerText = `Dimensions: ${img.naturalWidth} × ${img.naturalHeight} px`;
-          if (fileTypeEl) fileTypeEl.innerText = `Format: ${file.type.replace('image/', '').toUpperCase() || 'IMAGE'}`;
-
-          const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || file.name;
-          const outputFilename = `${baseName}_cleaned.jpg`;
-          if (outputNameEl) outputNameEl.innerText = outputFilename;
-
-          if (previewContainer) {
-            previewContainer.classList.remove('hidden');
-            previewContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
-        };
-        img.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
+      mcRenderQueueUI();
     }
 
-    function mcResetImage() {
-      mcCurrentFile = null;
-      mcLoadedImage = null;
+    function mcRemoveQueueItem(itemId) {
+      mcQueue = mcQueue.filter(item => item.id !== itemId);
+      mcRenderQueueUI();
+    }
+
+    function mcClearQueue() {
+      mcQueue = [];
       const fileInput = document.getElementById('mc-file-input');
       if (fileInput) fileInput.value = '';
 
@@ -3893,16 +3898,94 @@
         statusEl.classList.add('hidden');
         statusEl.innerHTML = '';
       }
+
+      const progressBox = document.getElementById('mc-progress-box');
+      if (progressBox) progressBox.classList.add('hidden');
     }
 
-    function mcCleanAndDownload() {
-      if (!mcLoadedImage || !mcCurrentFile) {
-        alert('Please select or upload an image first.');
+    function mcRenderQueueUI() {
+      const previewContainer = document.getElementById('mc-preview-container');
+      const queueList = document.getElementById('mc-queue-list');
+      const queueCount = document.getElementById('mc-queue-count');
+      const queueSize = document.getElementById('mc-queue-size');
+      const btnLabel = document.getElementById('mc-btn-label');
+      const modeBadge = document.getElementById('mc-download-mode-badge');
+
+      if (!mcQueue || mcQueue.length === 0) {
+        mcClearQueue();
+        return;
+      }
+
+      if (previewContainer) {
+        previewContainer.classList.remove('hidden');
+      }
+
+      const totalBytes = mcQueue.reduce((acc, cur) => acc + cur.size, 0);
+      if (queueCount) queueCount.innerText = `${mcQueue.length} ${mcQueue.length === 1 ? 'Image' : 'Images'} Selected`;
+      if (queueSize) queueSize.innerText = `Total: ${mcFormatBytes(totalBytes)}`;
+
+      if (btnLabel) {
+        if (mcQueue.length === 1) {
+          btnLabel.innerText = "Clean & Download Image";
+        } else {
+          btnLabel.innerText = `Clean & Download All (ZIP - ${mcQueue.length} Images)`;
+        }
+      }
+
+      if (modeBadge) {
+        if (mcQueue.length === 1) {
+          const baseName = mcQueue[0].name.substring(0, mcQueue[0].name.lastIndexOf('.')) || mcQueue[0].name;
+          modeBadge.innerText = `Single: ${baseName}_cleaned.jpg`;
+        } else {
+          modeBadge.innerText = `Batch Package: cleaned_images.zip (${mcQueue.length} files)`;
+        }
+      }
+
+      // Render items
+      if (queueList) {
+        queueList.innerHTML = mcQueue.map((item, index) => `
+          <div class="bg-[#202024] border border-neutral-800/80 rounded-xl p-3 sm:p-3.5 flex items-center justify-between gap-3 sm:gap-4 hover:border-neutral-700 transition">
+            <div class="flex items-center gap-3 min-w-0 flex-1">
+              <div class="w-12 h-12 rounded-lg overflow-hidden border border-neutral-700/80 bg-black/50 shrink-0 flex items-center justify-center">
+                <img src="${item.dataUrl}" alt="${escapeHtml(item.name)}" class="w-full h-full object-cover">
+              </div>
+              <div class="min-w-0 flex-1">
+                <div class="font-poppins font-medium text-xs text-neutral-200 truncate" title="${escapeHtml(item.name)}">
+                  ${index + 1}. ${escapeHtml(item.name)}
+                </div>
+                <div class="flex items-center gap-2 text-[10px] font-mono text-neutral-400 mt-1 flex-wrap">
+                  <span class="bg-neutral-800/80 px-2 py-0.5 rounded border border-neutral-700/40">${mcFormatBytes(item.size)}</span>
+                  <span class="bg-neutral-800/80 px-2 py-0.5 rounded border border-neutral-700/40">${item.width} × ${item.height}px</span>
+                  <span class="text-amber-400">⚠️ Raw Tags</span>
+                </div>
+              </div>
+            </div>
+            <button 
+              type="button" 
+              onclick="mcRemoveQueueItem('${item.id}')" 
+              class="w-7 h-7 rounded-lg bg-neutral-800 hover:bg-rose-900/50 hover:text-rose-300 text-neutral-400 flex items-center justify-center text-xs transition shrink-0 cursor-pointer focus:outline-none" 
+              title="Remove from queue"
+              aria-label="Remove item from queue"
+            >
+              ✕
+            </button>
+          </div>
+        `).join('');
+      }
+    }
+
+    async function mcCleanAndDownloadBatch() {
+      if (!mcQueue || mcQueue.length === 0) {
+        alert('Please select or upload at least one image first.');
         return;
       }
 
       const btn = document.getElementById('mc-download-btn');
       const statusEl = document.getElementById('mc-status');
+      const progressBox = document.getElementById('mc-progress-box');
+      const progressBar = document.getElementById('mc-progress-bar');
+      const progressPct = document.getElementById('mc-progress-pct');
+      const progressLabel = document.getElementById('mc-progress-label');
 
       try {
         if (btn) {
@@ -3910,61 +3993,133 @@
           btn.classList.add('opacity-75');
         }
 
-        // 1. Create off-screen canvas with exact dimensions
-        const canvas = document.createElement('canvas');
-        canvas.width = mcLoadedImage.naturalWidth;
-        canvas.height = mcLoadedImage.naturalHeight;
+        if (statusEl) {
+          statusEl.classList.add('hidden');
+          statusEl.innerHTML = '';
+        }
 
-        // 2. Draw image onto canvas
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(mcLoadedImage, 0, 0);
+        if (progressBox) {
+          progressBox.classList.remove('hidden');
+          if (progressBar) progressBar.style.width = '0%';
+          if (progressPct) progressPct.innerText = '0%';
+          if (progressLabel) progressLabel.innerText = `Starting batch process for ${mcQueue.length} images...`;
+        }
 
-        // 3. Export to Blob using image/jpeg with 1.0 maximum quality
-        canvas.toBlob((blob) => {
-          if (!blob) {
-            throw new Error('Canvas to Blob conversion failed.');
-          }
+        const total = mcQueue.length;
 
-          // 4. Construct cleaned filename
-          const baseName = mcCurrentFile.name.substring(0, mcCurrentFile.name.lastIndexOf('.')) || mcCurrentFile.name;
+        // Process each image sequentially using HTML5 Canvas
+        for (let i = 0; i < total; i++) {
+          const item = mcQueue[i];
+          const pct = Math.round(((i + 1) / total) * 90);
+
+          if (progressLabel) progressLabel.innerText = `[${i + 1}/${total}] Cleaning: ${item.name}...`;
+          if (progressBar) progressBar.style.width = `${pct}%`;
+          if (progressPct) progressPct.innerText = `${pct}%`;
+
+          // Canvas rasterization
+          const canvas = document.createElement('canvas');
+          canvas.width = item.width;
+          canvas.height = item.height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(item.img, 0, 0);
+
+          const blob = await new Promise((resolve, reject) => {
+            canvas.toBlob((b) => {
+              if (b) resolve(b);
+              else reject(new Error('Canvas rasterization failed for ' + item.name));
+            }, 'image/jpeg', 1.0);
+          });
+
+          item.cleanedBlob = blob;
+        }
+
+        // Single Image Mode
+        if (total === 1) {
+          const item = mcQueue[0];
+          const baseName = item.name.substring(0, item.name.lastIndexOf('.')) || item.name;
           const downloadName = `${baseName}_cleaned.jpg`;
 
-          // 5. Trigger download via object URL
-          const downloadUrl = URL.createObjectURL(blob);
+          if (progressLabel) progressLabel.innerText = "Downloading cleaned image...";
+          if (progressBar) progressBar.style.width = '100%';
+          if (progressPct) progressPct.innerText = '100%';
+
+          const downloadUrl = URL.createObjectURL(item.cleanedBlob);
           const a = document.createElement('a');
           a.href = downloadUrl;
           a.download = downloadName;
           document.body.appendChild(a);
           a.click();
           document.body.removeChild(a);
-
           setTimeout(() => URL.revokeObjectURL(downloadUrl), 4000);
 
-          // 6. Show status message
           if (statusEl) {
             statusEl.className = "mt-4 p-4 rounded-xl text-xs font-sans bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 flex items-start gap-2.5 shadow-lg";
             statusEl.innerHTML = `
               <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
               <div>
                 <strong class="font-poppins text-sm text-white block mb-0.5">Metadata stripped successfully!</strong>
-                <span>Cleaned file <strong>${escapeHtml(downloadName)}</strong> (${mcFormatBytes(blob.size)}) has been generated and saved to your Downloads. All EXIF, GPS coordinates, and C2PA AI tags have been scrubbed.</span>
+                <span>Cleaned file <strong>${escapeHtml(downloadName)}</strong> (${mcFormatBytes(item.cleanedBlob.size)}) downloaded. EXIF, GPS, and C2PA AI tags scrubbed.</span>
               </div>
             `;
             statusEl.classList.remove('hidden');
           }
 
-          if (btn) {
-            btn.disabled = false;
-            btn.classList.remove('opacity-75');
+        } else {
+          // Multiple Images: Bundle into ZIP using JSZip
+          if (progressLabel) progressLabel.innerText = `Packaging ${total} cleaned images into ZIP archive...`;
+          if (progressBar) progressBar.style.width = '95%';
+          if (progressPct) progressPct.innerText = '95%';
+
+          const zip = new JSZip();
+          const usedNames = new Set();
+
+          mcQueue.forEach(item => {
+            const baseName = item.name.substring(0, item.name.lastIndexOf('.')) || item.name;
+            let targetName = `${baseName}_cleaned.jpg`;
+            let counter = 1;
+            while (usedNames.has(targetName.toLowerCase())) {
+              targetName = `${baseName}_cleaned_${counter}.jpg`;
+              counter++;
+            }
+            usedNames.add(targetName.toLowerCase());
+            zip.file(targetName, item.cleanedBlob);
+          });
+
+          const zipBlob = await zip.generateAsync({ type: 'blob' });
+
+          if (progressBar) progressBar.style.width = '100%';
+          if (progressPct) progressPct.innerText = '100%';
+          if (progressLabel) progressLabel.innerText = 'ZIP Package Ready! Downloading...';
+
+          const zipUrl = URL.createObjectURL(zipBlob);
+          const a = document.createElement('a');
+          a.href = zipUrl;
+          a.download = "cleaned_images.zip";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          setTimeout(() => URL.revokeObjectURL(zipUrl), 4000);
+
+          if (statusEl) {
+            statusEl.className = "mt-4 p-4 rounded-xl text-xs font-sans bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 flex items-start gap-2.5 shadow-lg";
+            statusEl.innerHTML = `
+              <svg class="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div>
+                <strong class="font-poppins text-sm text-white block mb-0.5">Batch metadata stripped successfully!</strong>
+                <span>All <strong>${total} cleaned images</strong> bundled and downloaded as <strong>cleaned_images.zip</strong> (${mcFormatBytes(zipBlob.size)}). All EXIF, GPS locations, and AI C2PA tags have been neutralized.</span>
+              </div>
+            `;
+            statusEl.classList.remove('hidden');
           }
-        }, 'image/jpeg', 1.0);
+        }
 
       } catch (err) {
         if (statusEl) {
           statusEl.className = "mt-4 p-4 rounded-xl text-xs font-sans bg-rose-950/60 border border-rose-500/40 text-rose-300";
-          statusEl.innerText = "Error cleaning metadata: " + err.message;
+          statusEl.innerText = "Error in batch processing: " + err.message;
           statusEl.classList.remove('hidden');
         }
+      } finally {
         if (btn) {
           btn.disabled = false;
           btn.classList.remove('opacity-75');
